@@ -1,0 +1,154 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "User Details",
+    "description": "Schema for the response of the /userdetails/:userid endpoint. It provides a list of required fields associated with a user.",
+    "type": "object",
+    "properties": {
+      "address": {
+        "type": "string",
+        "description": "Physical mailing address of the user. This field can be left as an empty string but is required."
+      },
+      "affiliate_reference": {
+        "type": "string",
+        "description": "Affiliate reference or identifier for tracking purposes. This field can be left as an empty string but is required."
+      },
+      "birth_date": {
+        "type": "string",
+        "format": "date",
+        "description": "User's birth date in YYYY-MM-DD format. This field is required."
+      },
+      "city": {
+        "type": "string",
+        "description": "City of the user's address. This field can be left as an empty string but is required."
+      },
+      "country": {
+        "type": "string",
+        "description": "Country of the user's residence. This field can be left as an empty string but is required."
+      },
+      "currency": {
+        "type": "string",
+        "description": "Preferred currency for the user's transactions."
+      },
+      "email": {
+        "type": "string",
+        "format": "email",
+        "description": "Email address of the user. This field can be left as an empty string but is required."
+      },
+      "first_name": {
+        "type": "string",
+        "description": "User's first name. This field can be left as an empty string but is required."
+      },
+      "is_blocked": {
+        "type": "boolean",
+        "description": "Indicates whether the user's account is blocked. This field is required."
+      },
+      "is_excluded": {
+        "type": "boolean",
+        "description": "Flag to indicate if the user is excluded. This field is required."
+      },
+      "language": {
+        "type": "string",
+        "description": "Preferred language of the user. This field can be left as an empty string but is required."
+      },
+      "last_name": {
+        "type": "string",
+        "description": "User's last name. This field can be left as an empty string but is required."
+      },
+      "market": {
+        "type": "string",
+        "description": "Market or region the user is associated with. This field can be left as an empty string but is required."
+      },
+      "mobile": {
+        "type": "string",
+        "description": "User's mobile phone number without country prefix. This field can be left as an empty string but is required."
+      },
+      "mobile_prefix": {
+        "type": "string",
+        "description": "Country prefix for the user's mobile phone number. This field can be left as an empty string but is required."
+      },
+      "origin": {
+        "type": "string",
+        "description": "Origin of the user's account or referral source, typically the brand name. This field can be left as an empty string but is required."
+      },
+      "postal_code": {
+        "type": "string",
+        "description": "Postal code for the user's address. This field can be left as an empty string but is required."
+      },
+      "registration_code": {
+        "type": "string",
+        "description": "Registration code used during the user's account creation. This field can be left as an empty string but is required."
+      },
+      "registration_date": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Date and time of the user's account registration in RFC3339 format. This field is required."
+      },
+      "roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of roles or permissions assigned to the user. This field can be left as an empty array but is required."
+      },
+      "sex": {
+        "type": "string",
+        "description": "User's sex as specified in their profile. This field can be left as an empty string but is required."
+      },
+      "title": {
+        "type": "string",
+        "description": "Title or honorific of the user. This field can be left as an empty string but is required."
+      },
+      "user_id": {
+        "type": "string",
+        "description": "Unique identifier for the user, can be an integer or GUID. This field is required."
+      },
+      "username": {
+        "type": "string",
+        "description": "User's chosen username. This field can be left as an empty string but is required."
+      },
+      "verified_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp of when the user's account was verified, optional. In RFC3339 format."
+      },
+      "segmentation": {
+        "type": "object",
+        "description": "Optional segmentation information for the user. Additional custom segmentation fields may be included.",
+        "properties": {
+          "custom_segment": {
+            "type": "string",
+            "description": "Custom segment value for targeted marketing or analytics."
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "required": [
+      "address",
+      "affiliate_reference",
+      "birth_date",
+      "city",
+      "country",
+      "email",
+      "first_name",
+      "is_blocked",
+      "is_excluded",
+      "language",
+      "last_name",
+      "market",
+      "mobile",
+      "mobile_prefix",
+      "origin",
+      "postal_code",
+      "registration_code",
+      "registration_date",
+      "roles",
+      "sex",
+      "title",
+      "user_id",
+      "username",
+      "verified_at"
+    ],
+    "additionalProperties": false
+  }
+  
