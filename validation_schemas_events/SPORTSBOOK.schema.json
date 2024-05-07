@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sports Event (SPORTSBOOK)",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "amount": {
+      "type": "number"
+    },
+    "odds": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "exchange_rate": {
+      "type": "number"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Rollback"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "bet_type": {
+      "type": "string",
+      "enum": [
+        "Single",
+        "Multi",
+        "System"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Bet",
+        "Settlement"
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "balance_after": {
+      "type": "number"
+    },
+    "balance_before": {
+      "type": "number"
+    },
+    "wager_amount": {
+      "type": "number"
+    },
+    "bonus_wager_amount": {
+      "type": "number"
+    },
+    "locked_wager_amount": {
+      "type": "number"
+    },
+    "is_cashout": {
+      "type": "boolean"
+    },
+    "activity_id": {
+      "type": "string"
+    },
+    "activity_id_reference": {
+      "type": "string"
+    },
+    "device_type": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object"
+    },
+    "bets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_name",
+          "match_start",
+          "odds",
+          "outcomes"
+        ],
+        "properties": {
+          "event_name": {
+            "type": "string"
+          },
+          "tournament_name": {
+            "type": "string"
+          },
+          "sports_name": {
+            "type": "string"
+          },
+          "match_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "market": {
+            "type": "string"
+          },
+          "is_free_bet": {
+            "type": "boolean"
+          },
+          "is_risk_free_bet": {
+            "type": "boolean"
+          },
+          "odds": {
+            "type": "number"
+          },
+          "is_live": {
+            "type": "boolean"
+          },
+          "meta": {
+            "type": "object"
+          },
+          "outcomes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "criterion_name",
+                "outcome_label"
+              ],
+              "properties": {
+                "criterion_name": {
+                  "type": "string"
+                },
+                "outcome_label": {
+                  "type": "string"
+                },
+                "meta": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

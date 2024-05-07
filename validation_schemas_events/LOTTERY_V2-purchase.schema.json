@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lottery Bet Event (LOTTERY_V2)",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "ticket_id": {
+      "type": "string"
+    },
+    "lottery_id": {
+      "type": "string"
+    },
+    "lottery_name": {
+      "type": "string"
+    },
+    "lottery_type": {
+      "type": "string"
+    },
+    "draw_id": {
+      "type": "string"
+    },
+    "draw_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "exchange_rate": {
+      "type": "number"
+    },
+    "bonus_code": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "discount_amount": {
+      "type": "number"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line_id",
+          "is_free_bet",
+          "numbers",
+          "special_numbers",
+          "is_quick_pick",
+          "meta"
+        ],
+        "properties": {
+          "line_id": {
+            "type": "integer"
+          },
+          "is_free_bet": {
+            "type": "boolean"
+          },
+          "numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "special_numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "is_quick_pick": {
+            "type": "boolean"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "origin": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "device_type": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object"
+    }
+  }
+}

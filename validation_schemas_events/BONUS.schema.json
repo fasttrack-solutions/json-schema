@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bonus Event (BONUS)",
+  "type": "object",
+  "required": [
+    "amount",
+    "bonus_id",
+    "currency",
+    "exchange_rate",
+    "origin",
+    "product",
+    "status",
+    "timestamp",
+    "type",
+    "user_bonus_id",
+    "user_id"
+  ],
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Bonus amount"
+    },
+    "bonus_code": {
+      "type": "string",
+      "description": "Bonus code"
+    },
+    "bonus_id": {
+      "type": "string",
+      "description": "Bonus id"
+    },
+    "bonus_turned_real": {
+      "type": "number",
+      "description": "Bonus amount turned to real money: If wagering is finished"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "exchange_rate": {
+      "type": "number",
+      "description": "The exchange rate at the timestamp"
+    },
+    "locked_amount": {
+      "type": "number",
+      "description": "Bonus amount locked to wagering"
+    },
+    "meta": {
+      "type": "object",
+      "description": "If meta data is required to be sent"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Origin",
+      "format": "hostname"
+    },
+    "product": {
+      "type": "string",
+      "description": "Product type",
+      "enum": [
+        "Casino",
+        "Sportsbook",
+        "Lotto",
+        "Poker"
+      ]
+    },
+    "required_wagering_amount": {
+      "type": "number",
+      "description": "Required wagering amount of bonus"
+    },
+    "status": {
+      "type": "string",
+      "description": "Bonus status",
+      "enum": [
+        "Pending",
+        "Created",
+        "Ongoing",
+        "Completed",
+        "AutoCompleted",
+        "Forfeited",
+        "Expired",
+        "Lost",
+        "Reversed"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp"
+    },
+    "type": {
+      "type": "string",
+      "description": "Bonus type",
+      "enum": [
+        "NoDeposit",
+        "WelcomeBonus",
+        "CashbackBonus",
+        "ReloadBonus",
+        "WagerFree",
+        "FreeSpins",
+        "RiskFreeBet",
+        "Undefined"
+      ]
+    },
+    "user_bonus_id": {
+      "type": "string",
+      "description": "User bonus id"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User id"
+    }
+  }
+}

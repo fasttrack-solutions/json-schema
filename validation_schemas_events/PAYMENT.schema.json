@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Payment Event (PAYMENT)",
+  "type": "object",
+  "required": [
+    "amount",
+    "currency",
+    "exchange_rate",
+    "fee_amount",
+    "origin",
+    "payment_id",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "vendor_id"
+  ],
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Amount"
+    },
+    "bonus_code": {
+      "type": "string",
+      "description": "Bonus code"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Transactions currency in ISO 4217 format"
+    },
+    "exchange_rate": {
+      "type": "number",
+      "description": "The exchange rate at the timestamp"
+    },
+    "fee_amount": {
+      "type": "number",
+      "description": "Fee Amount, if not applicable then send 0"
+    },
+    "note": {
+      "type": "string",
+      "description": "Any useful notes"
+    },
+    "origin": {
+      "type": "string",
+      "description": "The Origin of the user"
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "Platform Id of the payment"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Requested",
+        "Rejected",
+        "Rollback",
+        "Cancelled"
+      ],
+      "description": "Payment Status. Please select a value from the provided list of options"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the payment in RFC3339 format"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Credit",
+        "Debit"
+      ],
+      "description": "Payment type. Please select a value from the provided list of options"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User Id"
+    },
+    "vendor_id": {
+      "type": "string",
+      "description": "Platform Id of the vendor"
+    },
+    "vendor_name": {
+      "type": "string",
+      "description": "Platform name of the vendor"
+    }
+  }
+}

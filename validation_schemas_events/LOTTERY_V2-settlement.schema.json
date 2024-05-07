@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lottery Settlement Event (LOTTERY_V2)",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "ticket_id": {
+      "type": "string"
+    },
+    "lottery_id": {
+      "type": "string"
+    },
+    "lottery_name": {
+      "type": "string"
+    },
+    "lottery_type": {
+      "type": "string"
+    },
+    "draw_id": {
+      "type": "string"
+    },
+    "draw_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "exchange_rate": {
+      "type": "number"
+    },
+    "draw_numbers": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "draw_special_numbers": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "amount": {
+      "type": "number"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "line_id",
+          "matched_numbers",
+          "is_winning_line",
+          "meta"
+        ],
+        "properties": {
+          "line_id": {
+            "type": "integer"
+          },
+          "matched_numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "matched_special_numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "is_winning_line": {
+            "type": "boolean"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "origin": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object"
+    }
+  }
+}

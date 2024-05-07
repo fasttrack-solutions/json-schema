@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Update Event (USER_UPDATE_V2)",
+  "type": "object",
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin"
+  ],
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The unique id of the user"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of login in RFC3339 format"
+    },
+    "origin": {
+      "type": "string",
+      "description": "The Origin of the user"
+    }
+  }
+}

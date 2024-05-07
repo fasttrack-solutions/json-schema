@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Casino Event (CASINO)",
+  "type": "object",
+  "required": [
+    "activity_id",
+    "amount",
+    "currency",
+    "exchange_rate",
+    "game_id",
+    "game_name",
+    "is_round_end",
+    "origin",
+    "round_id",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "vendor_id"
+  ],
+  "properties": {
+    "activity_id": {
+      "type": "string",
+      "description": "Unique ID for each event"
+    },
+    "amount": {
+      "type": "number",
+      "description": "The total amount (bonus_wager_amount + wager_amount + locked_wager_amount)"
+    },
+    "balance_after": {
+      "type": "number",
+      "description": "Player balance after the round is finished"
+    },
+    "balance_before": {
+      "type": "number",
+      "description": "Player balance before the round started"
+    },
+    "bonus_wager_amount": {
+      "type": "number",
+      "description": "Amount (either bet or win) if the round was played using bonus money"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Transactions currency in ISO 4217 format"
+    },
+    "exchange_rate": {
+      "type": "number",
+      "description": "Exchange rate"
+    },
+    "game_id": {
+      "type": "string",
+      "description": "Game ID"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Game Name"
+    },
+    "game_type": {
+      "type": "string",
+      "description": "Game Type as defined in the platform"
+    },
+    "is_round_end": {
+      "type": "boolean",
+      "description": "Is the round ended?"
+    },
+    "locked_wager_amount": {
+      "type": "number",
+      "description": "Amount (either bet or win) if the round was played using money from a 'locked' wallet (when bonus and real money is combined)"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Origin of the event"
+    },
+    "round_id": {
+      "type": "string",
+      "description": "Round ID, send same for Bet & Win"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Rollback"
+      ],
+      "description": "Status, indicates whether the event should be reversed or not"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp in RFC3339 format"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Bet",
+        "Win"
+      ],
+      "description": "Type, either 'Bet' or 'Win'"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "vendor_id": {
+      "type": "integer",
+      "description": "Vendor ID"
+    },
+    "vendor_name": {
+      "type": "string",
+      "description": "Vendor Name"
+    },
+    "wager_amount": {
+      "type": "number",
+      "description": "Amount (either bet or win) if the round was played using real money"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Used for miscellaneous/auxiliary values that are brand specific"
+    }
+  }
+}

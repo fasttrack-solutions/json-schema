@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Game Details",
+  "type": "object",
+  "required": [
+    "game_id",
+    "is_live"
+  ],
+  "properties": {
+    "game_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "subcategory": {
+      "type": "string"
+    },
+    "supported_devices": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "mobile",
+          "desktop",
+          "app",
+          "unknown"
+        ]
+      }
+    },
+    "is_live": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Balance Update Event (USER_BALANCES_UPDATE)",
+  "type": "object",
+  "required": [
+    "amount",
+    "currency",
+    "key",
+    "exchange_rate",
+    "origin",
+    "timestamp",
+    "user_id"
+  ],
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Amount of balance"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "key": {
+      "type": "string",
+      "description": "Wallet type",
+      "enum": [
+        "real_money",
+        "bonus_money"
+      ]
+    },
+    "exchange_rate": {
+      "type": "number",
+      "description": "Exchange rate"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Origin",
+      "format": "hostname"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User id"
+    }
+  }
+}
