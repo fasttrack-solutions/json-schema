@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Cart Update Request",
+  "title": "Cart Update Event (LOTTERY_V2)",
   "type": "object",
   "required": [
     "amount",
