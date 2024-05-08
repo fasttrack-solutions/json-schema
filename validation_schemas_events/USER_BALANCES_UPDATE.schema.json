@@ -3,49 +3,54 @@
   "title": "Balance Update Event (USER_BALANCES_UPDATE)",
   "type": "object",
   "required": [
-    "amount",
-    "currency",
-    "key",
-    "exchange_rate",
+    "balances",
     "origin",
     "timestamp",
     "user_id"
   ],
   "properties": {
-    "amount": {
-      "type": "number",
-      "description": "Amount of balance"
-    },
-    "currency": {
-      "type": "string",
-      "description": "Currency",
-      "pattern": "^[A-Z]{3}$"
-    },
-    "key": {
-      "type": "string",
-      "description": "Wallet type",
-      "enum": [
-        "real_money",
-        "bonus_money"
-      ]
-    },
-    "exchange_rate": {
-      "type": "number",
-      "description": "Exchange rate"
+    "balances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "amount",
+          "currency",
+          "key",
+          "exchange_rate"
+        ],
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string",
+            "enum": [
+              "real_money",
+              "bonus_money"
+            ]
+          },
+          "exchange_rate": {
+            "type": "number"
+          }
+        }
+      }
     },
     "origin": {
-      "type": "string",
-      "description": "Origin",
-      "format": "hostname"
+      "type": "string"
     },
     "timestamp": {
       "type": "string",
-      "format": "date-time",
-      "description": "Timestamp"
+      "format": "date-time"
     },
     "user_id": {
       "type": "string",
-      "description": "User id"
+      "pattern": "^.*[a-zA-Z0-9]+.*$",
+      "minLength": 1,
+      "maxLength": 36
     }
   }
 }
