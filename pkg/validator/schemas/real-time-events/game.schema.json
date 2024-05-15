@@ -1,4 +1,5 @@
 {
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/games",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Game Details (GAME)",
   "type": "object",

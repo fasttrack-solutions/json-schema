@@ -1,4 +1,5 @@
 {
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-updates",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "User Update Event (USER_UPDATE_V2)",
   "type": "object",

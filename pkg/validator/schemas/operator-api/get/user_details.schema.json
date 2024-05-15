@@ -4,142 +4,144 @@
   "description": "Schema for the response of the /userdetails/:userid endpoint. It provides a list of required fields associated with a user.",
   "type": "object",
   "properties": {
-    "address": { 
+    "address": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Physical mailing address of the user."
     },
-    "affiliate_reference": { 
+    "affiliate_reference": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Affiliate reference or identifier for tracking purposes."
     },
-    "birth_date": { 
-      "type": "string", 
+    "birth_date": {
+      "type": "string",
       "format": "date",
       "message": {
         "format": "Field is required in DATE format. Can be left as an empty string"
       },
       "description": "User's birth date in YYYY-MM-DD format."
     },
-    "city": { 
+    "city": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "City of the user's address."
     },
-    "country": { 
+    "country": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Country of the user's residence."
     },
-    "currency": { 
+    "currency": {
       "type": "string",
       "description": "Preferred currency for the user's transactions."
     },
-    "email": { 
-      "type": "string", 
+    "email": {
+      "type": "string",
       "format": "email",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Email address of the user."
     },
-    "first_name": { 
+    "first_name": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "User's first name."
     },
-    "is_blocked": { 
+    "is_blocked": {
       "type": "boolean",
       "message": {
         "format": "Field is required"
       },
       "description": "Indicates whether the user's account is blocked."
     },
-    "is_excluded": { 
+    "is_excluded": {
       "type": "boolean",
       "message": {
         "format": "Field is required"
       },
       "description": "Flag to indicate if the user is excluded."
     },
-    "language": { 
+    "language": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Preferred language of the user."
     },
-    "last_name": { 
+    "last_name": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "User's last name."
     },
-    "market": { 
+    "market": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Market or region the user is associated with."
     },
-    "mobile": { 
+    "mobile": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "User's mobile phone number without country prefix"
     },
-    "mobile_prefix": { 
+    "mobile_prefix": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Country prefix for the user's mobile phone number."
     },
-    "origin": { 
+    "origin": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Origin of the user's account or referral source. Typically this is the brand name"
     },
-    "postal_code": { 
+    "postal_code": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Postal code for the user's address."
     },
-    "registration_code": { 
+    "registration_code": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Registration code used during the user's account creation."
     },
-    "registration_date": { 
-      "type": "string", 
+    "registration_date": {
+      "type": "string",
       "format": "date-time",
       "message": {
         "format": "Date and time of the user's account registration in RFC3339 format."
       },
       "description": "Date and time of the user's account registration in RFC3339 format."
     },
-    "roles": { 
-      "type": "array", 
-      "items": { "type": "string" },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
       "message": {
         "format": "Field is required. Can be left as an empty array"
       },
@@ -158,21 +160,21 @@
       },
       "description": "User's sex as specified in their profile."
     },
-    "title": { 
+    "title": {
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
       },
       "description": "Title or honorific of the user."
     },
-    "user_id": { 
+    "user_id": {
       "type": "string",
       "message": {
         "format": "Field is required."
       },
       "description": "Unique identifier for the user. Can either be an integer of GUID, kindly advise your integration manager if not using an integer"
     },
-    "username": { 
+    "username": {
       "type": "string",
       "minLength": 3,
       "maxLength": 255,
@@ -194,7 +196,7 @@
       "type": "object",
       "description": "Optional segmentation information for the user. Kindly advide your integration manager before sending any custom segmentation fields",
       "properties": {
-        "custom_segment": { 
+        "custom_segment": {
           "type": "string",
           "description": "Custom segment value for targeted marketing or analytics."
         }

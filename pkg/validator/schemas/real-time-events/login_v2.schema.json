@@ -1,6 +1,7 @@
 {
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/login",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "User Consent Event (USER_CONSENTS_V2)",
+  "title": "Login Event (LOGIN_V2)",
   "type": "object",
   "required": [
     "user_id",
@@ -11,6 +12,14 @@
     "user_id": {
       "type": "string",
       "description": "The unique id of the user"
+    },
+    "is_impersonated": {
+      "type": "boolean",
+      "description": "This field is true when a support agent is logged in impersonating a user"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "IP Address"
     },
     "timestamp": {
       "type": "string",

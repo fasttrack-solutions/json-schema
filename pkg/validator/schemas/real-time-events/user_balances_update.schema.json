@@ -1,4 +1,5 @@
 {
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/balances",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Balance Update Event (USER_BALANCES_UPDATE)",
   "type": "object",
