@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	validatorClient, err := validator.New()
+	validatorClient, err := validator.NewValidator()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
