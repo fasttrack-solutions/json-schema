@@ -6,6 +6,9 @@
     "consents": {
       "type": "array",
       "description": "List of user consent preferences for different communication types.",
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 6,
       "items": {
         "type": "object",
         "properties": {

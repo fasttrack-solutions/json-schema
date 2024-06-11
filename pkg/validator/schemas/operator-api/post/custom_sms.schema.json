@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for the request payload of POST /bonus/credit. It specifies the user identifier and a bonus code.",
+  "properties": {
+    "activity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "A unique identifier of the SMS."
+        },
+        "brand_id": {
+          "type": "integer",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "The unique identifier of the brand on Fast Track."
+        },
+        "user_id": {
+          "type": "string",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "The unique identifier of the player."
+        },
+        "internal_user_id": {
+          "type": "integer",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "The internal identifier of the player."
+        },
+        "activity_id": {
+          "type": "integer",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "The unique identifier of the activity setup in Fast Track."
+        },
+        "action_group_id": {
+          "type": "integer",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "The unique identifier of the action group which the SMS originates from Fast Track."
+        },
+        "trigger_hash": {
+          "type": "string",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "Trigger hash."
+        },
+        "action_id": {
+          "type": "integer",
+          "message": {
+            "format": "Field is required."
+          },
+          "description": "The unique identifier of the individual action from Fast Track."
+        }
+      },
+      "required": [
+        "id",
+        "brand_id",
+        "user_id",
+        "internal_user_id",
+        "activity_id",
+        "action_group_id",
+        "trigger_hash",
+        "action_id"
+      ],
+      "additionalProperties": false
+    },
+    "content": {
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      },
+      "description": "The content of the SMS."
+    },
+    "recipient": {
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      },
+      "description": "The recipient of the SMS."
+    },
+    "sender_name": {
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      },
+      "description": "The sender name of the SMS."
+    },
+    "provider_name": {
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      },
+      "description": "The name of the integrated provider."
+    },
+    "enconding": {
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      },
+      "description": "Type of encoding of SMS. Can be \"auto\", \"gsm7\" or \"usc2\""
+    }
+  },
+  "required": [
+    "activity",
+    "content",
+    "recipient",
+    "sender_name",
+    "provider_name",
+    "enconding"
+  ],
+  "additionalProperties": false
+}

@@ -6,8 +6,9 @@
     "consents": {
       "type": "array",
       "description": "A list containing a single user consent preference.",
+      "uniqueItems": true,
       "minItems": 1,
-      "maxItems": 1,
+      "maxItems": 6,
       "items": {
         "type": "object",
         "properties": {

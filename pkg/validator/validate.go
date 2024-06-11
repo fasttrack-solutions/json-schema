@@ -16,7 +16,7 @@ func (c *Client) ValidateEvent(notificationType string, payload []byte) ([]Error
 		return nil, errors.New("no payload type provided")
 	}
 
-	if !isValidType(notificationTypes, notificationType) {
+	if !isValidType(notificationType, notificationTypes) {
 		return nil, fmt.Errorf("%s is an invalid notification type", notificationType)
 	}
 
@@ -33,7 +33,7 @@ func (c *Client) ValidateOperatorAPIResponse(endpoint string, payload []byte) ([
 		return nil, errors.New("no endpoint provided")
 	}
 
-	if !isValidType(operatorAPIEndpoints, endpoint) {
+	if !isValidType(endpoint, operatorAPIEndpoints) {
 		return nil, fmt.Errorf("%s is an invalid endpoint", endpoint)
 	}
 
@@ -86,6 +86,6 @@ func validateSchema(payload []byte, validatorSchema gojsonschema.JSONLoader) ([]
 	return returnErrors, nil
 }
 
-func isValidType(array []string, t string) bool {
+func isValidType(t string, array []string) bool {
 	return slices.Contains(array, strings.ToLower(t))
 }

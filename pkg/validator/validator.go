@@ -34,11 +34,11 @@ type Error struct {
 }
 
 type Client struct {
-	eventSchemas       map[string]gojsonschema.JSONLoader
-	operatorAPISchemas map[string]gojsonschema.JSONLoader
+	eventSchemas        map[string]gojsonschema.JSONLoader
+	eventSchemaRegistry map[string]map[string]interface{}
 
-	publicEventSchemas       map[string]map[string]interface{}
-	publicOperatorAPISchemas map[string]map[string]interface{}
+	operatorAPISchemas         map[string]gojsonschema.JSONLoader
+	operatorAPISchemasRegistry map[string]map[string]interface{}
 }
 
 func NewValidator() (*Client, error) {
@@ -53,20 +53,20 @@ func NewValidator() (*Client, error) {
 	}
 
 	return &Client{
-		eventSchemas:       eventSchemas,
-		publicEventSchemas: publicEventSchemas,
+		eventSchemas:        eventSchemas,
+		eventSchemaRegistry: publicEventSchemas,
 
-		operatorAPISchemas:       operatorAPISchemas,
-		publicOperatorAPISchemas: publicOperatorAPISchemas,
+		operatorAPISchemas:         operatorAPISchemas,
+		operatorAPISchemasRegistry: publicOperatorAPISchemas,
 	}, nil
 }
 
 // GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
 func (c *Client) GetEventSchemas() map[string]map[string]interface{} {
-	return c.publicEventSchemas
+	return c.eventSchemaRegistry
 }
 
 // GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
 func (c *Client) GetOperatorAPISchemas() map[string]map[string]interface{} {
-	return c.publicOperatorAPISchemas
+	return c.operatorAPISchemasRegistry
 }
