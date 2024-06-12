@@ -22,9 +22,9 @@ func TestValidData_Realtime_Post_CustomEvent(t *testing.T) {
 					"password_unlock_code": "abc123"
 				}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, customEventsSchema, tests)
+	runTestCases(t, customEventsSchema, tests)
 }

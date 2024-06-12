@@ -12,18 +12,13 @@ var (
 )
 
 func TestValidData_Operator_Get_UserConsents(t *testing.T) {
-	runTests(t, pathUserConsents, generateUserConsentTests())
+	runTestCases(t, pathUserConsents, generateUserConsentTests())
 }
 
 func TestValidData_Operator_Post_UserConsents(t *testing.T) {
-	runTests(t, pathPostUserConsents, generateUserConsentTests())
+	runTestCases(t, pathPostUserConsents, generateUserConsentTests())
 }
 
 func TestValidData_Realtime_Put_UserConsents(t *testing.T) {
-	userConsentsV2Tests := generateUserConsentsV2Tests()
-
-	runTests(t, pathUserConsentsV2, userConsentsV2Tests)
-	validateUserIDField(t, pathUserConsentsV2, userConsentsV2Tests[0])
-	validateTimestampField(t, pathUserConsentsV2, userConsentsV2Tests[0])
-	validateOriginField(t, pathUserConsentsV2, userConsentsV2Tests[0])
+	runTestCases(t, pathUserConsentsV2, generateUserConsentsV2Tests())
 }

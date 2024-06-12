@@ -52,11 +52,11 @@ func TestValidData_Realtime_Post_LotteryPurchase(t *testing.T) {
 					"key3": false
 				}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, lotterySchema, tests)
+	runTestCases(t, lotterySchema, tests)
 }
 
 func TestValidData_Realtime_Post_LotterySettlement(t *testing.T) {
@@ -96,11 +96,11 @@ func TestValidData_Realtime_Post_LotterySettlement(t *testing.T) {
 				"user_id": "52530",
 				"meta": {}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, lotterySchema, tests)
+	runTestCases(t, lotterySchema, tests)
 }
 
 func TestValidData_Realtime_Post_LotterySubscription(t *testing.T) {
@@ -139,11 +139,11 @@ func TestValidData_Realtime_Post_LotterySubscription(t *testing.T) {
 					}
 				]
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, lotterySchema, tests)
+	runTestCases(t, lotterySchema, tests)
 }
 
 func TestValidData_Realtime_Post_LotteryCart(t *testing.T) {
@@ -208,9 +208,9 @@ func TestValidData_Realtime_Post_LotteryCart(t *testing.T) {
 					"key3": false
 				}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, lotterySchema, tests)
+	runTestCases(t, lotterySchema, tests)
 }

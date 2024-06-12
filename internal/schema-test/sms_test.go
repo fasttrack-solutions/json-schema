@@ -28,9 +28,9 @@ func TestValidData_Realtime_Post_SMS(t *testing.T) {
 				"provider_name": "LinkMobility",
 				"enconding": "auto"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, customSMSSchema, tests)
+	runTestCases(t, customSMSSchema, tests)
 }

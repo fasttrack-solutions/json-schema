@@ -2,24 +2,54 @@ package schemas
 
 import "testing"
 
-func validateTimestampField(t *testing.T, schemaPath string, test schemaTest) {
+func validateTimestampField(t *testing.T, schemaPath string, test schemaTest) []schemaTest {
 	var timestampTestCases = []validationCase{
 		{
-			name:            "Valid format",
-			value:           "2015-03-02T8:27:58.721607Z",
-			failsValidation: false,
+			name:  "Valid format",
+			value: "2015-03-02T8:27:58.721607Z",
+			valid: true,
 		},
 		{
-			name:            "Invalid format",
-			value:           "2015-03",
-			failsValidation: false,
+			name:  "Valid format with offset",
+			value: "2015-03-02T8:27:58.721607+01:00",
+			valid: true,
 		},
 		{
-			name:            "Numeric format",
-			value:           20150302,
-			failsValidation: true,
+			name:  "Valid format with missing milliseconds",
+			value: "2015-03-02T8:27.721607Z",
+			valid: false,
+		},
+		{
+			name:  "Valid format without Z",
+			value: "2015-03-02T8:27.721607Z",
+			valid: false,
+		},
+		{
+			name:  "Invalid format",
+			value: "2015-03",
+			valid: false,
+		},
+		{
+			name:  "Timestamp as string of numbers",
+			value: "20150302",
+			valid: false,
+		},
+		{
+			name:  "Numeric format",
+			value: 20150302,
+			valid: false,
+		},
+		{
+			name:  "Boolean input",
+			value: false,
+			valid: false,
+		},
+		{
+			name:  "Null input",
+			value: nil,
+			valid: false,
 		},
 	}
 
-	validateField(t, "Timestamp", "timestamp", schemaPath, test, timestampTestCases)
+	return validateField(t, "Timestamp", "timestamp", schemaPath, test, timestampTestCases)
 }

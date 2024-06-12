@@ -12,16 +12,16 @@ var (
 	bonusRealtimeSchema    = filepath.Join(realtTimeSchemaPath, "/bonus.schema.json")
 )
 
-func TestValidData_Operator_Get_BonusList(t *testing.T) {
-	tests := []schemaTest{
+func loadTestsOperatorGetBonusList() []schemaTest {
+	return []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
-						"Data": [{"text": "Bonus 1", "value": "123"}, {"text": "Bonus 2", "value": "456"}],
-						"Success": true,
-						"Errors": []
-					}`,
-			failsValidation: false,
+				"Data": [{"text": "Bonus 1", "value": "123"}, {"text": "Bonus 2", "value": "456"}],
+				"Success": true,
+				"Errors": []
+			}`,
+			validTest: true,
 		},
 		{
 			name: "Invalid data",
@@ -30,30 +30,26 @@ func TestValidData_Operator_Get_BonusList(t *testing.T) {
 				"Success": true,
 				"Errors": []
 			}`,
-			failsValidation: true,
+			validTest: false,
 		},
 	}
-
-	runTests(t, bonusListSchema, tests)
 }
 
-func TestValidData_Operator_Post_BonsuCredit(t *testing.T) {
-	tests := []schemaTest{
+func loadTestsOperatorPostBonsuCredit() []schemaTest {
+	return []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
 				"user_id": "123abc",
 				"bonus_code": "xyz"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
-
-	runTests(t, bonusCreditSchema, tests)
 }
 
-func TestValidData_Operator_Post_BonusCreditFunds(t *testing.T) {
-	tests := []schemaTest{
+func loadTestsOperatorPostBonusCreditFunds() []schemaTest {
+	return []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -62,15 +58,13 @@ func TestValidData_Operator_Post_BonusCreditFunds(t *testing.T) {
 				"amount":  10.0,
 				"currency": "USD"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
-
-	runTests(t, bonusCreditFundsSchema, tests)
 }
 
-func TestValidData_Realtime_Post_Bonus(t *testing.T) {
-	tests := []schemaTest{
+func loadTestsRealtimePostBonus() []schemaTest {
+	return []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -95,9 +89,24 @@ func TestValidData_Realtime_Post_Bonus(t *testing.T) {
 				"user_bonus_id": "863512",
 				"user_id": "7865312321"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
+}
 
-	runTests(t, bonusRealtimeSchema, tests)
+func TestValidData_OperatorGetBonusList(t *testing.T) {
+	runTestCases(t, bonusListSchema, loadTestsOperatorGetBonusList())
+}
+
+func TestValidData_OperatorPostBonsuCredit(t *testing.T) {
+	runTestCases(t, bonusCreditSchema, loadTestsOperatorPostBonsuCredit())
+}
+
+func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
+	runTestCases(t, bonusCreditFundsSchema, loadTestsOperatorPostBonusCreditFunds())
+}
+
+func TestValidData_RealtimePostBonus(t *testing.T) {
+	tests := loadTestsRealtimePostBonus()
+	runTestCases(t, bonusRealtimeSchema, tests)
 }

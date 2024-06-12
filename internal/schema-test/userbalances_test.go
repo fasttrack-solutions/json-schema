@@ -30,9 +30,9 @@ func TestValidData_Realtime_Post_UserBalances(t *testing.T) {
 				"timestamp": "2019-07-16T12:00:00Z",
 				"user_id": "1234"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathUserBalanceUpdate, tests)
+	runTestCases(t, pathUserBalanceUpdate, tests)
 }

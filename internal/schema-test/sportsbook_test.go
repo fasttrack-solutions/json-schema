@@ -54,11 +54,11 @@ func TestValidData_Realtime_Get_SportsSingle(t *testing.T) {
 				"device_type": "App",
 				"meta": {}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathSportsbook, tests)
+	runTestCases(t, pathSportsbook, tests)
 }
 
 func TestValidData_Realtime_Get_SportsMulti(t *testing.T) {
@@ -146,11 +146,11 @@ func TestValidData_Realtime_Get_SportsMulti(t *testing.T) {
 				"device_type": "App",
 				"meta": {}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathSportsbook, tests)
+	runTestCases(t, pathSportsbook, tests)
 }
 
 func TestValidData_Realtime_Get_SportsSettlment(t *testing.T) {
@@ -179,11 +179,11 @@ func TestValidData_Realtime_Get_SportsSettlment(t *testing.T) {
 				"device_type": "App",
 				"meta": {}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathSportsbook, tests)
+	runTestCases(t, pathSportsbook, tests)
 }
 
 func TestValidData_Realtime_Get_SportsCashout(t *testing.T) {
@@ -212,11 +212,11 @@ func TestValidData_Realtime_Get_SportsCashout(t *testing.T) {
 				"device_type": "App",
 				"meta": {}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathSportsbook, tests)
+	runTestCases(t, pathSportsbook, tests)
 }
 
 func TestValidData_Realtime_Get_SportsCashoutMulti(t *testing.T) {
@@ -245,9 +245,9 @@ func TestValidData_Realtime_Get_SportsCashoutMulti(t *testing.T) {
 				"device_type": "App",
 				"meta": {}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathSportsbook, tests)
+	runTestCases(t, pathSportsbook, tests)
 }

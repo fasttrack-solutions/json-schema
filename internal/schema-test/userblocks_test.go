@@ -28,11 +28,11 @@ func TestValidData_Operator_Get_UserBlocks(t *testing.T) {
 					}
 				]
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathUserBlocks, tests)
+	runTestCases(t, pathUserBlocks, tests)
 }
 
 func TestValidData_Realtime_Put_UserBlock(t *testing.T) {
@@ -44,9 +44,9 @@ func TestValidData_Realtime_Put_UserBlock(t *testing.T) {
 				"timestamp": "2015-03-02T8:27:58.721607Z",
 				"origin": "sub.example.com"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, pathUserBlockV2, tests)
+	runTestCases(t, pathUserBlockV2, tests)
 }

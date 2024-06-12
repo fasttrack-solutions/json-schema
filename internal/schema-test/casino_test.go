@@ -7,7 +7,7 @@ import (
 
 var casinoSchema = filepath.Join(realtTimeSchemaPath, "/casino.schema.json")
 
-func TestValidData_Realtime_CasinoBet(t *testing.T) {
+func loadTestsRealtimeCasinoBet() []schemaTest {
 	tests := []schemaTest{
 		{
 			name: "Valid data",
@@ -39,14 +39,13 @@ func TestValidData_Realtime_CasinoBet(t *testing.T) {
 					"key3": false
 				}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
-
-	runTests(t, casinoSchema, tests)
+	return tests
 }
 
-func TestValidData_Realtime_CasinoWin(t *testing.T) {
+func loadTestsRealtimeCasinoWin() []schemaTest {
 	tests := []schemaTest{
 		{
 			name: "Valid data",
@@ -78,9 +77,20 @@ func TestValidData_Realtime_CasinoWin(t *testing.T) {
 					"key3": false
 				}
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
+	return tests
+}
 
-	runTests(t, casinoSchema, tests)
+func TestValidData_RealtimeCasinoBet(t *testing.T) {
+	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoBet())
+}
+
+func TestValidData_RealtimeCasinoWin(t *testing.T) {
+	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoWin())
+}
+
+func runTestsRealtimeCasino(t *testing.T, schema string, tests []schemaTest) {
+	runTestCases(t, schema, tests)
 }

@@ -27,9 +27,9 @@ func TestValidData_Realtime_Payment(t *testing.T) {
 				"vendor_id": "562",
 				"vendor_name": "Skrill"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, paymentSchema, tests)
+	runTestCases(t, paymentSchema, tests)
 }

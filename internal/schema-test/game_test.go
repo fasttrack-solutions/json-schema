@@ -7,8 +7,8 @@ import (
 
 var gameListSchema = filepath.Join(realtTimeSchemaPath, "/game.schema.json")
 
-func TestValidData_Realtime_Post_Game(t *testing.T) {
-	tests := []schemaTest{
+func loadTestsRealtimePostGame() []schemaTest {
+	return []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -23,9 +23,13 @@ func TestValidData_Realtime_Post_Game(t *testing.T) {
 				"is_live": true,
 				"origin":["brandname"]
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
+}
 
-	runTests(t, gameListSchema, tests)
+func TestValidData_Realtime_Post_Game(t *testing.T) {
+	tests := loadTestsRealtimePostGame()
+
+	runTestCases(t, gameListSchema, tests)
 }

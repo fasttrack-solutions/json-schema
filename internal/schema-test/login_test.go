@@ -19,9 +19,9 @@ func TestValidData_Realtime_Post_Login(t *testing.T) {
 				"timestamp": "2015-03-02T8:27:58.721607Z",
 				"origin": "sub.example.com"
 			}`,
-			failsValidation: false,
+			validTest: true,
 		},
 	}
 
-	runTests(t, loginSchema, tests)
+	runTestCases(t, loginSchema, tests)
 }

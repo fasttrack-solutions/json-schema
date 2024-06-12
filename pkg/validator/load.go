@@ -11,33 +11,37 @@ import (
 //go:embed schemas/*
 var schemasFileSystem embed.FS
 
-const (
-	schemasPathRealTimeEvents = "schemas/real-time-events"
-	schemasPathOperatorAPI    = "schemas/operator-api/get"
-)
-
 func loadSchemas(schemasPath string, notificationTypes []string) (map[string]gojsonschema.JSONLoader, map[string]map[string]interface{}, error) {
-	eventSchemas := make(map[string]gojsonschema.JSONLoader, len(notificationTypes))
-	publicEventSchemas := make(map[string]map[string]interface{}, len(notificationTypes))
+	schemas := make(map[string]gojsonschema.JSONLoader, len(notificationTypes))
+	schemasRegistry := make(map[string]map[string]interface{}, len(notificationTypes))
 
 	for _, notificationType := range notificationTypes {
-		filename := fmt.Sprintf("%s/%s.schema.json", schemasPath, notificationType)
-
-		fileData, err := schemasFileSystem.ReadFile(filename)
+		fileData, err := readSchemaFile(schemasPath, notificationType)
 		if err != nil {
-			return nil, nil, fmt.Errorf("reading file %s from embedded schemas file system: %v", notificationType, err)
+			return nil, nil, err
 		}
 
-		eventSchemas[notificationType] = gojsonschema.NewBytesLoader(fileData)
+		schemas[notificationType] = gojsonschema.NewBytesLoader(fileData)
 
-		var rawSchema map[string]interface{}
-		err = json.Unmarshal(fileData, &rawSchema)
+		var unmarshalledSchema map[string]interface{}
+		err = json.Unmarshal(fileData, &unmarshalledSchema)
 		if err != nil {
 			return nil, nil, fmt.Errorf("unmarshaling schema json: %v", err)
 		}
 
-		publicEventSchemas[notificationType] = rawSchema
+		schemasRegistry[notificationType] = unmarshalledSchema
 	}
 
-	return eventSchemas, publicEventSchemas, nil
+	return schemas, schemasRegistry, nil
+}
+
+func readSchemaFile(schemasPath string, notificationType string) ([]byte, error) {
+	filename := fmt.Sprintf("%s/%s.schema.json", schemasPath, notificationType)
+
+	fileData, err := schemasFileSystem.ReadFile(filename)
+	if err != nil {
+		return nil, fmt.Errorf("reading file %s from embedded schemas file system: %v", notificationType, err)
+	}
+
+	return fileData, nil
 }

@@ -4,30 +4,6 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var (
-	notificationTypes = []string{
-		"bonus",
-		"casino",
-		"custom",
-		"game",
-		"login_v2",
-		"lottery_v2",
-		"payment",
-		"sportsbook",
-		"user_balances_update",
-		"user_block_v2",
-		"user_consents_v2",
-		"user_create_v2",
-		"user_update_v2",
-	}
-
-	operatorAPIEndpoints = []string{
-		"user_details",
-		"user_blocks",
-		"user_consents",
-	}
-)
-
 type Error struct {
 	Path  string
 	Error string
@@ -42,22 +18,22 @@ type Client struct {
 }
 
 func NewValidator() (*Client, error) {
-	eventSchemas, publicEventSchemas, err := loadSchemas(schemasPathRealTimeEvents, notificationTypes)
+	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, notificationTypes)
 	if err != nil {
 		return nil, err
 	}
 
-	operatorAPISchemas, publicOperatorAPISchemas, err := loadSchemas(schemasPathOperatorAPI, notificationTypes)
+	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, operatorAPIEndpoints)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Client{
 		eventSchemas:        eventSchemas,
-		eventSchemaRegistry: publicEventSchemas,
+		eventSchemaRegistry: eventSchemaRegistry,
 
 		operatorAPISchemas:         operatorAPISchemas,
-		operatorAPISchemasRegistry: publicOperatorAPISchemas,
+		operatorAPISchemasRegistry: operatorAPISchemasRegistry,
 	}, nil
 }
 

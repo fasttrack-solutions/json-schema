@@ -34,7 +34,7 @@ func main() {
 	}`
 
 	notificationType := "payment"
-	resultValidateEvent, errValidateEvent := validatorClient.ValidateEvent(notificationType, []byte(realtimeEventTestPayload))
+	resultValidateEvent, errValidateEvent := validatorClient.ValidateRealTimeEvent(notificationType, []byte(realtimeEventTestPayload))
 	if errValidateEvent != nil {
 		fmt.Printf("failed to validate json document: %v\n", errValidateEvent)
 		os.Exit(1)
