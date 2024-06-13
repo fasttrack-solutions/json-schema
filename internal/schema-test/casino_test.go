@@ -30,7 +30,7 @@ func loadTestsRealtimeCasinoBet() []schemaTest {
 				"timestamp": "2015-03-02T8:27:58.721607Z",
 				"type": "Bet",
 				"user_id": "52530",
-				"vendor_id": "1",
+				"vendor_id": 123,
 				"vendor_name": "Netent",
 				"wager_amount": 20,
 				"meta":{
@@ -39,7 +39,7 @@ func loadTestsRealtimeCasinoBet() []schemaTest {
 					"key3": false
 				}
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 	return tests
@@ -68,7 +68,7 @@ func loadTestsRealtimeCasinoWin() []schemaTest {
 				"timestamp": "2015-03-02T8:27:58.721607Z",
 				"type": "Win",
 				"user_id": "52530",
-				"vendor_id": "1",
+				"vendor_id": 123,
 				"vendor_name": "Netent",
 				"wager_amount": 5,
 				"meta":{
@@ -77,20 +77,24 @@ func loadTestsRealtimeCasinoWin() []schemaTest {
 					"key3": false
 				}
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 	return tests
 }
 
 func TestValidData_RealtimeCasinoBet(t *testing.T) {
-	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoBet())
+	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoBet(), EventEnums{
+		typeEnums: []string{"Bet"},
+	})
 }
 
 func TestValidData_RealtimeCasinoWin(t *testing.T) {
-	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoWin())
+	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoWin(), EventEnums{
+		typeEnums: []string{"Bet", "Win"},
+	})
 }
 
-func runTestsRealtimeCasino(t *testing.T, schema string, tests []schemaTest) {
-	runTestCases(t, schema, tests)
+func runTestsRealtimeCasino(t *testing.T, schema string, schemaTests []schemaTest, enums EventEnums) {
+	runTestCases(t, schema, schemaTests, &enums)
 }

@@ -23,7 +23,7 @@ func loadTestsRealtimePostGame() []schemaTest {
 				"is_live": true,
 				"origin":["brandname"]
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 }
@@ -31,5 +31,5 @@ func loadTestsRealtimePostGame() []schemaTest {
 func TestValidData_Realtime_Post_Game(t *testing.T) {
 	tests := loadTestsRealtimePostGame()
 
-	runTestCases(t, gameListSchema, tests)
+	runTestCases(t, gameListSchema, tests, nil)
 }

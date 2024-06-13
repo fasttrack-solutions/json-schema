@@ -27,7 +27,8 @@
     },
     "currency": {
       "type": "string",
-      "description": "Transactions currency in ISO 4217 format"
+      "description": "Transactions currency in ISO 4217 format",
+      "pattern": "^[A-Z]{3}$"
     },
     "exchange_rate": {
       "type": "number",

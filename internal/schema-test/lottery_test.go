@@ -5,7 +5,9 @@ import (
 	"testing"
 )
 
-var lotterySchema = filepath.Join(realtTimeSchemaPath, "/lottery_v2.schema.json")
+var lotterySchema = filepath.Join(realtTimeSchemaPath, "/lottery.schema.json")
+var lotteryV2Schema = filepath.Join(realtTimeSchemaPath, "/lottery_v2.schema.json")
+var cartSchema = filepath.Join(realtTimeSchemaPath, "/cart.schema.json")
 
 func TestValidData_Realtime_Post_LotteryPurchase(t *testing.T) {
 	tests := []schemaTest{
@@ -52,11 +54,13 @@ func TestValidData_Realtime_Post_LotteryPurchase(t *testing.T) {
 					"key3": false
 				}
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, lotterySchema, tests)
+	runTestCases(t, lotteryV2Schema, tests, &EventEnums{
+		typeEnums: []string{"Bet"},
+	})
 }
 
 func TestValidData_Realtime_Post_LotterySettlement(t *testing.T) {
@@ -96,11 +100,13 @@ func TestValidData_Realtime_Post_LotterySettlement(t *testing.T) {
 				"user_id": "52530",
 				"meta": {}
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, lotterySchema, tests)
+	runTestCases(t, lotteryV2Schema, tests, &EventEnums{
+		typeEnums: []string{"Settlement"},
+	})
 }
 
 func TestValidData_Realtime_Post_LotterySubscription(t *testing.T) {
@@ -139,11 +145,11 @@ func TestValidData_Realtime_Post_LotterySubscription(t *testing.T) {
 					}
 				]
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, lotterySchema, tests)
+	runTestCases(t, lotterySchema, tests, &EventEnums{})
 }
 
 func TestValidData_Realtime_Post_LotteryCart(t *testing.T) {
@@ -208,9 +214,12 @@ func TestValidData_Realtime_Post_LotteryCart(t *testing.T) {
 					"key3": false
 				}
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, lotterySchema, tests)
+	runTestCases(t, cartSchema, tests, &EventEnums{
+		statusEnums: []string{"Successful"},
+		typeEnums:   []string{"Checkout"},
+	})
 }

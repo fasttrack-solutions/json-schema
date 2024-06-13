@@ -1,0 +1,136 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/lottery-and-scratch",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lottery Cart Event (CART)",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number"
+    },
+    "bonus_code": {
+      "type": "string"
+    },
+    "cart_id": {
+      "type": "number"
+    },
+    "discount_amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Successful"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Checkout"
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "device_type": {
+      "type": "string"
+    },
+    "exchange_rate": {
+      "type": "number"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "payments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "amount",
+          "meta"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "name",
+          "description",
+          "amount",
+          "discount_amount",
+          "bonus_code",
+          "meta"
+        ],
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "discount_amount": {
+            "type": "number"
+          },
+          "bonus_code": {
+            "type": "string"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "amount",
+    "bonus_code",
+    "cart_id",
+    "discount_amount",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "currency",
+    "device_type",
+    "exchange_rate",
+    "origin",
+    "payments",
+    "items",
+    "meta"
+  ]
+}

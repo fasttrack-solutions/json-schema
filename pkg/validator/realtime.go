@@ -9,11 +9,13 @@ const pathSchemasRealTime = "schemas/real-time-events"
 
 var notificationTypes = []string{
 	"bonus",
+	"cart",
 	"casino",
 	"custom",
 	"game",
 	"login_v2",
 	"lottery_v2",
+	"lottery",
 	"payment",
 	"sportsbook",
 	"user_balances_update",

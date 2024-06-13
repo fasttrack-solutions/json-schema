@@ -45,9 +45,9 @@ func TestValidData_Operator_Get_UserDetails(t *testing.T) {
 					"special_segmentation": "3D"
 				}
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, pathUserDetails, tests)
+	runTestCases(t, pathUserDetails, tests, nil)
 }

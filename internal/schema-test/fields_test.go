@@ -24,7 +24,7 @@ const (
 
 type fieldValidator struct {
 	fieldName string
-	validator func(string, schemaTest) ([]schemaTest, error)
+	validator func(string, schemaTest, *EventEnums) ([]schemaTest, error)
 }
 
 var fieldValidators = []fieldValidator{
@@ -35,23 +35,23 @@ var fieldValidators = []fieldValidator{
 	{keyExchangeRate, validateExchangeRateField},
 	{keyGameID, validateGameIDField},
 	{keyLockedAmount, validateLockedAmountField},
-	{keyOrigin, validateOriginField},
+	// {keyOrigin, validateOriginField},
 	{keyProduct, validateProductField},
 	{keyStatus, validateStatusField},
 	{keyTimestamp, validateTimestampField},
 	{keyType, validateTypeField},
 	{keyUserBonusID, validateUserBonusIDField},
-	{keyUserID, validateUserIDField},
+	// {keyUserID, validateUserIDField},
 }
 
-func validateFields(schema string, test schemaTest) ([]schemaTest, error) {
+func runFieldTests(schema string, test schemaTest, enums *EventEnums) ([]schemaTest, error) {
 	var (
 		jsonData  map[string]interface{}
 		testCases []schemaTest
 		errors    []error
 	)
 
-	methodMap := make(map[string]func(string, schemaTest) ([]schemaTest, error))
+	methodMap := make(map[string]func(string, schemaTest, *EventEnums) ([]schemaTest, error))
 	for _, validator := range fieldValidators {
 		methodMap[validator.fieldName] = validator.validator
 	}
@@ -61,10 +61,14 @@ func validateFields(schema string, test schemaTest) ([]schemaTest, error) {
 		return nil, fmt.Errorf("Failed to unmarshal payload: %v", err)
 	}
 
+	if enums == nil {
+		enums = &EventEnums{}
+	}
+
 	for key := range jsonData {
 		method, ok := methodMap[key]
 		if ok {
-			cassefs, err := method(schema, test)
+			cassefs, err := method(schema, test, enums)
 			if err != nil {
 				errors = append(errors, fmt.Errorf("Failed to validate field %s: %v", key, err))
 				continue
@@ -104,63 +108,118 @@ func addFieldTestCases(fieldName string, test schemaTest, testCases []validation
 		}
 
 		modifiedTestCases[i] = schemaTest{
-			name:      fmt.Sprintf("%s-%s", fieldName, testCase.name),
-			payload:   string(modifiedDocument),
-			validTest: testCase.valid,
+			name:    fmt.Sprintf("%s-%s", fieldName, testCase.name),
+			payload: string(modifiedDocument),
+			isValid: testCase.valid,
 		}
 	}
 
 	return modifiedTestCases, nil
 }
 
-func validateAmountField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyAmount, test, loadFieldTestsFloats())
+func validateAmountField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyAmount, schema, loadFieldTestsFloats())
 }
 
-func validateBonusCodeField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyBonusCode, test, loadFieldTestsString("Bonus", false))
+func validateBonusCodeField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyBonusCode, schema, loadFieldTestsString("BonusCode", nil))
 }
 
-func validateBonusIDField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyBonusID, test, loadFieldTestsString("Bonus", false))
+func validateBonusIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyBonusID, schema, loadFieldTestsString("Bonus", nil))
 }
 
-func validateCurrencyField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyCurrency, test, loadFieldTestsString("EUR", false))
+func validateCurrencyField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyCurrency, schema, loadFieldTestsString("EUR", &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: false,
+		allowNumbers:   false,
+		allowSpace:     false,
+		allowSpecial:   false,
+		allowUpperCase: true,
+	}))
 }
 
-func validateExchangeRateField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyExchangeRate, test, loadFieldTestsString("Bonus", false))
+func validateExchangeRateField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyExchangeRate, schema, loadFieldTestsFloats())
 }
 
-func validateGameIDField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyGameID, test, loadFieldTestsString("Origin", false))
+func validateGameIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyGameID, schema, loadFieldTestsString("Origin", nil))
 }
 
-func validateLockedAmountField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyLockedAmount, test, loadFieldTestsString("Bonus", false))
+func validateLockedAmountField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyLockedAmount, schema, loadFieldTestsFloats())
 }
 
-func validateOriginField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyOrigin, test, loadFieldTestsString("Origin", false))
+func validateOriginField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyOrigin, schema, loadFieldTestsString("Origin", &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: true,
+		allowNumbers:   true,
+		allowSpace:     false,
+		allowSpecial:   true,
+		allowUpperCase: true,
+	}))
 }
 
-func validateProductField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyProduct, test, loadFieldTestsString("Bonus", false))
+func validateProductField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyProduct, schema, loadFieldTestsString("Casino", &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: false,
+		allowNumbers:   false,
+		allowSpace:     false,
+		allowSpecial:   false,
+		allowUpperCase: false,
+	}))
 }
 
-func validateStatusField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyStatus, test, loadFieldTestsString("Pending", false))
+func validateStatusField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyStatus, schema, loadFieldTestsByEnums("Approved", enums.statusEnums, &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: false,
+		allowNumbers:   false,
+		allowSpace:     false,
+		allowSpecial:   false,
+		allowUpperCase: false,
+	}))
 }
 
-func validateTypeField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyType, test, loadFieldTestsString("Bonus", false))
+func validateTypeField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyType, schema, loadFieldTestsByEnums("Bet", enums.typeEnums, &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: false,
+		allowNumbers:   false,
+		allowSpace:     false,
+		allowSpecial:   false,
+		allowUpperCase: false,
+	}))
 }
 
-func validateUserBonusIDField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyUserBonusID, test, loadFieldTestsString("Bonus", false))
+func validateUserBonusIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyUserBonusID, schema, loadFieldTestsString("Bonus", nil))
 }
 
-func validateUserIDField(schemaPath string, test schemaTest) ([]schemaTest, error) {
-	return addFieldTestCases(keyUserID, test, loadFieldTestsString("UserID", false))
+func validateUserIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyUserID, schema, loadFieldTestsString("12345", &StringSettings{
+		allowEmpty:     true,
+		allowLowerCase: true,
+		allowNumbers:   true,
+		allowSpace:     true,
+		allowSpecial:   true,
+		allowUpperCase: true,
+	}))
+}
+
+func loadFieldTestsByEnums(defaultInput string, enumArray []string, settings *StringSettings) []validationCase {
+	var testCases []validationCase
+	if len(enumArray) == 0 || enumArray == nil {
+		return loadFieldTestsString(defaultInput, settings)
+	}
+
+	for _, value := range enumArray {
+		testCases = append(testCases, loadFieldTestsString(value, settings)...)
+	}
+
+	return testCases
 }

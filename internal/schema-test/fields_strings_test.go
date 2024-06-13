@@ -5,30 +5,73 @@ import (
 	"strings"
 )
 
-const formatHostname = "hostname"
+type StringSettings struct {
+	allowEmpty     bool
+	allowLowerCase bool
+	allowNumbers   bool
+	allowSpace     bool
+	allowSpecial   bool
+	allowUpperCase bool
+}
 
-func loadFieldTestsString(input string, allowSpaceAndSpecials bool) []validationCase {
-	cases := []validationCase{
-		{
-			name:  "String input",
-			value: "%s",
-			valid: true,
-		},
-		{
-			name:  "String input with numbers",
-			value: "%s123",
-			valid: true,
-		},
-		{
-			name:  "String input to lower case",
-			value: strings.ToLower("%s"),
-			valid: true,
-		},
-		{
-			name:  "String input to upper case",
-			value: strings.ToLower("%s"),
-			valid: true,
-		},
+func createTestCases(valid bool, testCases map[string]string) []validationCase {
+	result := make([]validationCase, 0, len(testCases))
+
+	for testName, testString := range testCases {
+		result = append(result, validationCase{
+			name:  testName,
+			value: testString,
+			valid: valid,
+		})
+	}
+
+	return result
+}
+
+func loadFieldTestsString(input string, config *StringSettings) []validationCase {
+	if config == nil {
+		config = &StringSettings{
+			allowEmpty:     true,
+			allowLowerCase: true,
+			allowNumbers:   true,
+			allowSpace:     true,
+			allowSpecial:   true,
+			allowUpperCase: true,
+		}
+	}
+
+	defaultTests := createTestCases(true, map[string]string{
+		"String input": input,
+	})
+
+	numberTests := createTestCases(config.allowNumbers, map[string]string{
+		"String input as numbers":   "123",
+		"String input with numbers": fmt.Sprintf("%s123", input),
+	})
+
+	lowerCaseTests := createTestCases(config.allowLowerCase, map[string]string{
+		"String input to lower case": strings.ToLower(input),
+	})
+
+	upperCaseTests := createTestCases(config.allowUpperCase, map[string]string{
+		"String input to upper case": strings.ToUpper(input),
+	})
+
+	spacingTests := createTestCases(config.allowSpace, map[string]string{
+		"String input with leading and trailing spaces": fmt.Sprintf(" %s ", input),
+		"String input with spaces":                      fmt.Sprintf("test %s 123", input),
+	})
+
+	specialCharTests := createTestCases(config.allowSpecial, map[string]string{
+		"String input with special characters and spaces": fmt.Sprintf("test@%s#123 £!$^&*()", input),
+	})
+
+	emptyStringTests := createTestCases(config.allowEmpty, map[string]string{
+		"Empty input":          "",
+		"Input as spaces only": "  ",
+	})
+
+	nonStringTests := []validationCase{
 		{
 			name:  "Numeric input",
 			value: 12345,
@@ -46,40 +89,15 @@ func loadFieldTestsString(input string, allowSpaceAndSpecials bool) []validation
 		},
 	}
 
-	hostnameCases := []validationCase{
-		{
-			name:  "String input with spaces",
-			value: "test %s 123",
-		},
-		{
-			name:  "String input with special characters and spaces",
-			value: "test@%s#123 £!$%^&*()",
-		},
-		{
-			name:  "Empty string input",
-			value: "",
-		},
-		{
-			name:  "String input with only spaces",
-			value: "  ",
-		},
-		{
-			name:  "String input with leading and trailing spaces",
-			value: " %s ",
-		},
-	}
-
-	for i := range hostnameCases {
-		hostnameCases[i].valid = allowSpaceAndSpecials
-	}
-
-	cases = append(cases, hostnameCases...)
-
-	for i, c := range cases {
-		if str, ok := c.value.(string); ok {
-			cases[i].value = fmt.Sprintf(str, input)
-		}
-	}
+	cases := make([]validationCase, 0)
+	cases = append(cases, defaultTests...)
+	cases = append(cases, numberTests...)
+	cases = append(cases, lowerCaseTests...)
+	cases = append(cases, upperCaseTests...)
+	cases = append(cases, spacingTests...)
+	cases = append(cases, specialCharTests...)
+	cases = append(cases, emptyStringTests...)
+	cases = append(cases, nonStringTests...)
 
 	return cases
 }

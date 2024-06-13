@@ -1,7 +1,7 @@
 package schemas
 
 func loadFieldTestsFloats() []validationCase {
-	cases := []validationCase{
+	return []validationCase{
 		{
 			name:  "Float input",
 			value: 10.54,
@@ -38,6 +38,4 @@ func loadFieldTestsFloats() []validationCase {
 			valid: false,
 		},
 	}
-
-	return cases
 }

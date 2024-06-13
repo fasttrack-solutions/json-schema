@@ -27,9 +27,12 @@ func TestValidData_Realtime_Payment(t *testing.T) {
 				"vendor_id": "562",
 				"vendor_name": "Skrill"
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, paymentSchema, tests)
+	runTestCases(t, paymentSchema, tests, &EventEnums{
+		statusEnums: []string{"Approved"},
+		typeEnums:   []string{"Debit"},
+	})
 }

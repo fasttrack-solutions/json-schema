@@ -21,7 +21,7 @@ func loadTestsOperatorGetBonusList() []schemaTest {
 				"Success": true,
 				"Errors": []
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 		{
 			name: "Invalid data",
@@ -30,7 +30,7 @@ func loadTestsOperatorGetBonusList() []schemaTest {
 				"Success": true,
 				"Errors": []
 			}`,
-			validTest: false,
+			isValid: false,
 		},
 	}
 }
@@ -43,7 +43,7 @@ func loadTestsOperatorPostBonsuCredit() []schemaTest {
 				"user_id": "123abc",
 				"bonus_code": "xyz"
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 }
@@ -58,7 +58,7 @@ func loadTestsOperatorPostBonusCreditFunds() []schemaTest {
 				"amount":  10.0,
 				"currency": "USD"
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 }
@@ -89,23 +89,26 @@ func loadTestsRealtimePostBonus() []schemaTest {
 				"user_bonus_id": "863512",
 				"user_id": "7865312321"
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 }
 
 func TestValidData_OperatorGetBonusList(t *testing.T) {
-	runTestCases(t, bonusListSchema, loadTestsOperatorGetBonusList())
+	runTestCases(t, bonusListSchema, loadTestsOperatorGetBonusList(), nil)
 }
 
 func TestValidData_OperatorPostBonsuCredit(t *testing.T) {
-	runTestCases(t, bonusCreditSchema, loadTestsOperatorPostBonsuCredit())
+	runTestCases(t, bonusCreditSchema, loadTestsOperatorPostBonsuCredit(), nil)
 }
 
 func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
-	runTestCases(t, bonusCreditFundsSchema, loadTestsOperatorPostBonusCreditFunds())
+	runTestCases(t, bonusCreditFundsSchema, loadTestsOperatorPostBonusCreditFunds(), nil)
 }
 
 func TestValidData_RealtimePostBonus(t *testing.T) {
-	runTestCases(t, bonusRealtimeSchema, loadTestsRealtimePostBonus())
+	runTestCases(t, bonusRealtimeSchema, loadTestsRealtimePostBonus(), &EventEnums{
+		statusEnums: []string{"Pending"},
+		typeEnums:   []string{"WelcomeBonus"},
+	})
 }

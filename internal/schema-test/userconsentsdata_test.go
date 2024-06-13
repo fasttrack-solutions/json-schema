@@ -50,7 +50,7 @@ func generateUserConsentTests() []schemaTest {
 					}
 				]
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 		{
 			name: "Valid response with one consent",
@@ -62,14 +62,14 @@ func generateUserConsentTests() []schemaTest {
 					}
 				]
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 		{
 			name: "Empty consents array",
 			payload: `{
 				"consents": []
 			}`,
-			validTest: false,
+			isValid: false,
 		},
 		{
 			name: "Missing object from consent",
@@ -80,7 +80,7 @@ func generateUserConsentTests() []schemaTest {
 					}
 				]
 			}`,
-			validTest: false,
+			isValid: false,
 		},
 		{
 			name: "Duplicated email consent",
@@ -112,7 +112,7 @@ func generateUserConsentTests() []schemaTest {
 					}
 				]
 			}`,
-			validTest: false,
+			isValid: false,
 		},
 
 		{
@@ -145,7 +145,7 @@ func generateUserConsentTests() []schemaTest {
 					}
 				]
 			}`,
-			validTest: false,
+			isValid: false,
 		},
 		{
 			name: "Over limit of consents",
@@ -181,7 +181,7 @@ func generateUserConsentTests() []schemaTest {
 					}
 				]
 			}`,
-			validTest: false,
+			isValid: false,
 		},
 	}
 	return userConsentTests
@@ -196,7 +196,7 @@ func generateUserConsentsV2Tests() []schemaTest {
 						"timestamp": "2015-03-02T8:27:58.721607Z",
 						"origin": "sub.example.com"
 					}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 }

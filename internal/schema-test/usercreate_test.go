@@ -19,9 +19,9 @@ func TestValidData_Realtime_Post_UserRegistration(t *testing.T) {
 				"timestamp": "2015-03-02T8:27:58.721607Z",
 				"origin": "sub.example.com"
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, pathUserCreateV2, tests)
+	runTestCases(t, pathUserCreateV2, tests, nil)
 }

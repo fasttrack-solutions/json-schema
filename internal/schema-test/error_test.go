@@ -15,9 +15,9 @@ func TestValidData_Operator_Error(t *testing.T) {
 				"error": "invalid_request",
 				"code": 400
 			}`,
-			validTest: true,
+			isValid: true,
 		},
 	}
 
-	runTestCases(t, errorSchema, tests)
+	runTestCases(t, errorSchema, tests, nil)
 }

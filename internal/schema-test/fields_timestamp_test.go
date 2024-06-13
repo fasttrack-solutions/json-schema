@@ -1,6 +1,6 @@
 package schemas
 
-func validateTimestampField(schemaPath string, test schemaTest) ([]schemaTest, error) {
+func validateTimestampField(schemaPath string, test schemaTest, enums *EventEnums) ([]schemaTest, error) {
 	var timestampTestCases = []validationCase{
 		{
 			name:  "Valid format",

@@ -25,7 +25,8 @@
             "type": "number"
           },
           "currency": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
           },
           "key": {
             "type": "string",

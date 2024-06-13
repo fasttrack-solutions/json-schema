@@ -12,7 +12,8 @@
       "type": "number"
     },
     "currency": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
     },
     "exchange_rate": {
       "type": "number"
