@@ -1,8 +1,6 @@
 package schemas
 
-import "testing"
-
-func validateTimestampField(t *testing.T, schemaPath string, test schemaTest) []schemaTest {
+func validateTimestampField(schemaPath string, test schemaTest) ([]schemaTest, error) {
 	var timestampTestCases = []validationCase{
 		{
 			name:  "Valid format",
@@ -51,5 +49,5 @@ func validateTimestampField(t *testing.T, schemaPath string, test schemaTest) []
 		},
 	}
 
-	return validateField(t, "Timestamp", "timestamp", schemaPath, test, timestampTestCases)
+	return addFieldTestCases("timestamp", test, timestampTestCases)
 }

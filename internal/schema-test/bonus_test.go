@@ -107,6 +107,5 @@ func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
 }
 
 func TestValidData_RealtimePostBonus(t *testing.T) {
-	tests := loadTestsRealtimePostBonus()
-	runTestCases(t, bonusRealtimeSchema, tests)
+	runTestCases(t, bonusRealtimeSchema, loadTestsRealtimePostBonus())
 }
