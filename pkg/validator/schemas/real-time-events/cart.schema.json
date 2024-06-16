@@ -1,5 +1,5 @@
 {
-  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/lottery-and-scratch",
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/lottery-and-scratch/cart",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lottery Cart Event (CART)",
   "type": "object",
@@ -118,19 +118,17 @@
   },
   "required": [
     "amount",
-    "bonus_code",
     "cart_id",
+    "currency",
     "discount_amount",
     "status",
     "timestamp",
     "type",
     "user_id",
-    "currency",
     "device_type",
     "exchange_rate",
     "origin",
     "payments",
-    "items",
-    "meta"
+    "items"
   ]
 }

@@ -4,34 +4,37 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
+type IValidator interface {
+	GetEventSchemas() map[string]map[string]interface{}
+	GetOperatorAPISchemas() map[string]map[string]interface{}
+	ValidateRealTimeEvent(notificationType string, payload []byte) ([]Error, error)
+	ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]Error, error)
+}
+
 type Error struct {
 	Path  string
 	Error string
 }
 
 type Client struct {
-	eventSchemas        map[string]gojsonschema.JSONLoader
-	eventSchemaRegistry map[string]map[string]interface{}
-
-	operatorAPISchemas         map[string]gojsonschema.JSONLoader
-	operatorAPISchemasRegistry map[string]map[string]interface{}
+	realTimeSchemas, operatorAPISchemas                map[string]gojsonschema.JSONLoader
+	realTimeSchemaRegistry, operatorAPISchemasRegistry map[string]map[string]interface{}
 }
 
 func NewValidator() (*Client, error) {
-	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, notificationTypes)
+	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, getNotificationTypes())
 	if err != nil {
 		return nil, err
 	}
 
-	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, operatorAPIEndpoints)
+	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, getOperatorAPIEndpoints())
 	if err != nil {
 		return nil, err
 	}
 
 	return &Client{
-		eventSchemas:        eventSchemas,
-		eventSchemaRegistry: eventSchemaRegistry,
-
+		realTimeSchemas:            eventSchemas,
+		realTimeSchemaRegistry:     eventSchemaRegistry,
 		operatorAPISchemas:         operatorAPISchemas,
 		operatorAPISchemasRegistry: operatorAPISchemasRegistry,
 	}, nil
@@ -39,10 +42,38 @@ func NewValidator() (*Client, error) {
 
 // GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
 func (c *Client) GetEventSchemas() map[string]map[string]interface{} {
-	return c.eventSchemaRegistry
+	return c.realTimeSchemaRegistry
 }
 
 // GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
 func (c *Client) GetOperatorAPISchemas() map[string]map[string]interface{} {
 	return c.operatorAPISchemasRegistry
+}
+
+func getNotificationTypes() []string {
+	return []string{
+		"bonus",
+		"cart",
+		"casino",
+		"custom",
+		"game",
+		"login_v2",
+		"lottery_v2",
+		"lottery",
+		"payment",
+		"sportsbook",
+		"user_balances_update",
+		"user_block_v2",
+		"user_consents_v2",
+		"user_create_v2",
+		"user_update_v2",
+	}
+}
+
+func getOperatorAPIEndpoints() []string {
+	return []string{
+		"user_details",
+		"user_blocks",
+		"user_consents",
+	}
 }
