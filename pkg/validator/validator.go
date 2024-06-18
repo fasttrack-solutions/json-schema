@@ -4,13 +4,6 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-type IValidator interface {
-	GetEventSchemas() map[string]map[string]interface{}
-	GetOperatorAPISchemas() map[string]map[string]interface{}
-	ValidateRealTimeEvent(notificationType string, payload []byte) ([]ValidationError, error)
-	ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]ValidationError, error)
-}
-
 type ValidationError struct {
 	Path  string
 	Error string
@@ -21,18 +14,18 @@ type ValidationClient struct {
 	realTimeSchemaRegistry, operatorAPISchemasRegistry map[string]map[string]interface{}
 }
 
-func NewValidator() (*ValidationClient, error) {
+func NewValidator() (ValidationClient, error) {
 	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, getNotificationTypes())
 	if err != nil {
-		return nil, err
+		return ValidationClient{}, err
 	}
 
 	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, getOperatorAPIEndpoints())
 	if err != nil {
-		return nil, err
+		return ValidationClient{}, err
 	}
 
-	return &ValidationClient{
+	return ValidationClient{
 		realTimeSchemas:            eventSchemas,
 		realTimeSchemaRegistry:     eventSchemaRegistry,
 		operatorAPISchemas:         operatorAPISchemas,
