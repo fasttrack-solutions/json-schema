@@ -7,21 +7,21 @@ import (
 type IValidator interface {
 	GetEventSchemas() map[string]map[string]interface{}
 	GetOperatorAPISchemas() map[string]map[string]interface{}
-	ValidateRealTimeEvent(notificationType string, payload []byte) ([]Error, error)
-	ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]Error, error)
+	ValidateRealTimeEvent(notificationType string, payload []byte) ([]ValidationError, error)
+	ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]ValidationError, error)
 }
 
-type Error struct {
+type ValidationError struct {
 	Path  string
 	Error string
 }
 
-type Client struct {
+type ValidationClient struct {
 	realTimeSchemas, operatorAPISchemas                map[string]gojsonschema.JSONLoader
 	realTimeSchemaRegistry, operatorAPISchemasRegistry map[string]map[string]interface{}
 }
 
-func NewValidator() (*Client, error) {
+func NewValidator() (*ValidationClient, error) {
 	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, getNotificationTypes())
 	if err != nil {
 		return nil, err
@@ -32,7 +32,7 @@ func NewValidator() (*Client, error) {
 		return nil, err
 	}
 
-	return &Client{
+	return &ValidationClient{
 		realTimeSchemas:            eventSchemas,
 		realTimeSchemaRegistry:     eventSchemaRegistry,
 		operatorAPISchemas:         operatorAPISchemas,
@@ -41,12 +41,12 @@ func NewValidator() (*Client, error) {
 }
 
 // GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
-func (c *Client) GetEventSchemas() map[string]map[string]interface{} {
+func (c *ValidationClient) GetEventSchemas() map[string]map[string]interface{} {
 	return c.realTimeSchemaRegistry
 }
 
-// GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
-func (c *Client) GetOperatorAPISchemas() map[string]map[string]interface{} {
+// GetOperatorAPISchemas returns schemas for real time events in a map string (payload type) gojsonschema
+func (c *ValidationClient) GetOperatorAPISchemas() map[string]map[string]interface{} {
 	return c.operatorAPISchemasRegistry
 }
 

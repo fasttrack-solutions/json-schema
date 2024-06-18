@@ -4,14 +4,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/gavv/httpexpect/v2"
-	"github.com/xeipuuv/gojsonschema"
 	"log"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/gavv/httpexpect/v2"
+	"github.com/xeipuuv/gojsonschema"
 )
 
 type APIClient struct {
