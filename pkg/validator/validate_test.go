@@ -35,6 +35,15 @@ func TestClient_ValidateRealTimeEvent(t *testing.T) {
 			expectError:              false,
 		},
 		{
+			name: "Valid payload with uppercase notification type",
+			args: args{
+				notificationType: "LOGIN_V2",
+				payload:          []byte(testValidEvent),
+			},
+			expectedValidationErrors: nil,
+			expectError:              false,
+		},
+		{
 			name: "Invalid payload",
 			args: args{
 				notificationType: "login_v2",
@@ -114,6 +123,15 @@ func TestClient_ValidateOperatorAPIResponse(t *testing.T) {
 			name: "Valid payload",
 			args: args{
 				endpoint: "bonus_credit",
+				payload:  []byte(testValidEvent),
+			},
+			expectedValidationErrors: nil,
+			expectError:              false,
+		},
+		{
+			name: "Valid payload with uppercase endpoint",
+			args: args{
+				endpoint: "BONUS_CREDIT",
 				payload:  []byte(testValidEvent),
 			},
 			expectedValidationErrors: nil,

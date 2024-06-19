@@ -3,6 +3,7 @@ package validator
 import (
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/xeipuuv/gojsonschema"
 )
@@ -25,6 +26,7 @@ func (c *ValidationClient) ValidateOperatorAPIResponse(endpoint string, payload 
 }
 
 func validatePayload(key string, payload []byte, schemasMap map[string]gojsonschema.JSONLoader) ([]ValidationError, error) {
+	key = strings.ToLower(key)
 	if key == "" || schemasMap[key] == nil {
 		return nil, fmt.Errorf("invalid payload type %s", key)
 	}

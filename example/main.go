@@ -33,7 +33,7 @@ func main() {
 		"vendor_name": "Skrill"
 	}`
 
-	notificationType := "payment"
+	notificationType := "PAYMENT"
 	resultValidateEvent, errValidateEvent := validatorClient.ValidateRealTimeEvent(notificationType, []byte(realtimeEventTestPayload))
 	if errValidateEvent != nil {
 		fmt.Printf("failed to validate json document: %v\n", errValidateEvent)
