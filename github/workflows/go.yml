@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+jobs:
+  run-tests:
+    uses: fasttrack-solutions/ci/.github/workflows/golang-ci.yml@main
+    with:
+      go-version: "~1.22"
+    secrets: inherit
