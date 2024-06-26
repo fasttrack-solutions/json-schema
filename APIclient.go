@@ -40,7 +40,9 @@ func (c *APIClient) CallAPI(t *testing.T, endpoint string, expectedStatusCode in
 }
 
 func (c *APIClient) ValidateResponse(t *testing.T, response interface{}, schemaFilename string) {
-	schemaPath := filepath.Join("validation_schemas", schemaFilename)
+	const schemasFolderPath = "pkg/validator/schemas"
+
+	schemaPath := filepath.Join(schemasFolderPath, schemaFilename)
 	schemaContent, err := os.ReadFile(schemaPath)
 	if err != nil {
 		t.Fatalf("Error reading schema from file: %s", err)

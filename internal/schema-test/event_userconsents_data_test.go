@@ -1,24 +1,6 @@
 package schemas
 
 func generateUserConsentTests() []schemaTest {
-	// This test is failing because the schema is not validating the duplicated email consent. Will need to find a way to validate this.
-	// {
-	// 	name: "Duplicated email and conflicting consent",
-	// 	document: `{
-	// 		"consents": [
-	// 			{
-	// 				"opted_in": true,
-	// 				"type": "email"
-	// 			},
-	// 			{
-	// 				"opted_in": false,
-	// 				"type": "email"
-	// 			},
-	// 		]
-	// 	}`,
-	// 	failsValidation: true,
-	// },
-
 	userConsentTests := []schemaTest{
 		{
 			name: "Valid response with six consents",

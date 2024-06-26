@@ -35,13 +35,11 @@ var fieldValidators = []fieldValidator{
 	{keyExchangeRate, validateExchangeRateField},
 	{keyGameID, validateGameIDField},
 	{keyLockedAmount, validateLockedAmountField},
-	// {keyOrigin, validateOriginField},
 	{keyProduct, validateProductField},
 	{keyStatus, validateStatusField},
 	{keyTimestamp, validateTimestampField},
 	{keyType, validateTypeField},
 	{keyUserBonusID, validateUserBonusIDField},
-	// {keyUserID, validateUserIDField},
 }
 
 func runFieldTests(schema string, test schemaTest, enums *EventEnums) ([]schemaTest, error) {
@@ -154,7 +152,7 @@ func validateLockedAmountField(schemaPath string, schema schemaTest, enums *Even
 
 func validateOriginField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
 	return addFieldTestCases(keyOrigin, schema, loadFieldTestsString("Origin", &StringSettings{
-		allowEmpty:     false,
+		allowEmpty:     true,
 		allowLowerCase: true,
 		allowNumbers:   true,
 		allowSpace:     false,
