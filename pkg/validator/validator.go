@@ -4,11 +4,6 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-type ValidationError struct {
-	Path  string
-	Error string
-}
-
 type ValidationClient struct {
 	realTimeSchemas, operatorAPISchemas                map[string]gojsonschema.JSONLoader
 	realTimeSchemaRegistry, operatorAPISchemasRegistry map[string]map[string]interface{}
