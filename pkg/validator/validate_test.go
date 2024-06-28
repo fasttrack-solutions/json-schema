@@ -79,7 +79,7 @@ func TestClient_ValidateRealTimeEvent(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
-			c := &ValidationClient{
+			c := &Client{
 				realTimeSchemas: map[string]gojsonschema.JSONLoader{
 					"login_v2": gojsonschema.NewStringLoader(schemaJson),
 				},
@@ -176,7 +176,7 @@ func TestClient_ValidateOperatorAPIResponse(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &ValidationClient{
+			c := &Client{
 				realTimeSchemas: nil,
 				operatorAPISchemas: map[string]gojsonschema.JSONLoader{
 					"bonus_credit": gojsonschema.NewStringLoader(schemaJson),

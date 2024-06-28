@@ -15,13 +15,13 @@ const (
 
 // ValidateRealTimeEvent takes in notificationType which can be the notification type for the real time feed event, and payload which is the json payload.
 // Allowed notification types are: bonus, casino, custom, game, login_v2, lottery_v2, payment, sportsbook, user_balances_update, user_block_v2, user_consents_v2, user_create_v2, user_update_v2
-func (c *ValidationClient) ValidateRealTimeEvent(notificationType string, payload []byte) ([]ValidationError, error) {
+func (c *Client) ValidateRealTimeEvent(notificationType string, payload []byte) ([]ValidationError, error) {
 	return validatePayload(notificationType, payload, c.realTimeSchemas)
 }
 
 // ValidateOperatorAPIResponse validates the given payload against the operator API schemas.
 // Allowed operator API endpoints are: user_details, user_blocks, user_consents
-func (c *ValidationClient) ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]ValidationError, error) {
+func (c *Client) ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]ValidationError, error) {
 	return validatePayload(endpoint, payload, c.operatorAPISchemas)
 }
 

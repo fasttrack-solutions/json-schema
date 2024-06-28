@@ -4,23 +4,23 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-type ValidationClient struct {
+type Client struct {
 	realTimeSchemas, operatorAPISchemas                map[string]gojsonschema.JSONLoader
 	realTimeSchemaRegistry, operatorAPISchemasRegistry map[string]map[string]interface{}
 }
 
-func NewValidator() (ValidationClient, error) {
+func NewClient() (*Client, error) {
 	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, getNotificationTypes())
 	if err != nil {
-		return ValidationClient{}, err
+		return nil, err
 	}
 
 	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, getOperatorAPIEndpoints())
 	if err != nil {
-		return ValidationClient{}, err
+		return nil, err
 	}
 
-	return ValidationClient{
+	return &Client{
 		realTimeSchemas:            eventSchemas,
 		realTimeSchemaRegistry:     eventSchemaRegistry,
 		operatorAPISchemas:         operatorAPISchemas,
@@ -29,12 +29,12 @@ func NewValidator() (ValidationClient, error) {
 }
 
 // GetEventSchemas returns schemas for real time events in a map string (payload type) gojsonschema
-func (c *ValidationClient) GetEventSchemas() map[string]map[string]interface{} {
+func (c *Client) GetEventSchemas() map[string]map[string]interface{} {
 	return c.realTimeSchemaRegistry
 }
 
 // GetOperatorAPISchemas returns schemas for real time events in a map string (payload type) gojsonschema
-func (c *ValidationClient) GetOperatorAPISchemas() map[string]map[string]interface{} {
+func (c *Client) GetOperatorAPISchemas() map[string]map[string]interface{} {
 	return c.operatorAPISchemasRegistry
 }
 
