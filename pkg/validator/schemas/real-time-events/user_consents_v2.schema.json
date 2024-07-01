@@ -15,8 +15,8 @@
       "format": "date-time"
     },
     "origin": {
-      "type": "string",
-      "description": "The Origin of the user"
+      "description": "The Origin of the user",
+      "type": "string"
     }
   },
   "required": [

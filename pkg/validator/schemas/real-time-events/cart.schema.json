@@ -5,6 +5,7 @@
   "type": "object",
   "properties": {
     "amount": {
+      "description": "Total amount of the cart",
       "type": "number",
       "minimum": 0
     },
@@ -13,110 +14,63 @@
     },
     "cart_id": {
       "type": "number",
-      "minimum": 1
-    },
-    "discount_amount": {
-      "type": "number",
       "minimum": 0
-    },
-    "status": {
-      "type": "string",
-      "enum": [
-        "Successful"
-      ]
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "Checkout"
-      ]
-    },
-    "user_id": {
-      "type": "string",
-      "minLength": 1
     },
     "currency": {
       "type": "string",
       "pattern": "^[A-Z]{3}$"
     },
     "device_type": {
-      "type": "string",
       "enum": [
-        "Desktop",
-        "Mobile",
-        "Tablet",
-        "Unkown"
-      ]
+        "desktop",
+        "mobile",
+        "tablet",
+        "unkown"
+      ],
+      "type": "string"
+    },
+    "discount_amount": {
+      "type": "number",
+      "minimum": 0
     },
     "exchange_rate": {
       "type": "number",
       "minimum": 0
     },
-    "origin": {
-      "type": "string",
-      "minLength": 1
-    },
-    "payments": {
-      "type": "array",
+    "items": {
       "items": {
-        "type": "object",
         "properties": {
-          "type": {
-            "type": "string",
-            "minLength": 1
-          },
           "amount": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "bonus_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "discount_amount": {
             "type": "number",
             "minimum": 0
           },
-          "meta": {
-            "type": "object"
-          }
-        },
-        "required": [
-          "type",
-          "amount",
-          "meta"
-        ]
-      }
-    },
-    "items": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
           "id": {
             "type": "number",
             "minimum": 0
           },
-          "type": {
-            "type": "string",
-            "minLength": 1
+          "meta": {
+            "type": [
+              "object",
+              "null"
+            ]
           },
           "name": {
             "type": "string",
             "minLength": 1
           },
-          "description": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "number",
-            "minimum": 0
-          },
-          "discount_amount": {
-            "type": "number",
+          "type": {
+            "type": "string",
             "minLength": 1
-          },
-          "bonus_code": {
-            "type": "string"
-          },
-          "meta": {
-            "type": "object"
           }
         },
         "required": [
@@ -126,13 +80,68 @@
           "description",
           "amount",
           "discount_amount",
-          "bonus_code",
-          "meta"
-        ]
-      }
+          "bonus_code"
+        ],
+        "type": "object"
+      },
+      "type": "array"
     },
     "meta": {
-      "type": "object"
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "origin": {
+      "type": "string",
+      "format": "hostname",
+      "minLength": 1
+    },
+    "payments": {
+      "items": {
+        "properties": {
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "meta": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "type",
+          "amount"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "Successful"
+      ],
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "enum": [
+        "Checkout"
+      ],
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1
     }
   },
   "required": [

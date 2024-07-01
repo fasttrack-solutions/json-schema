@@ -32,7 +32,10 @@
       "minLength": 1
     },
     "draw_numbers": {
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
     },
     "draw_special_numbers": {
       "type": "array",
@@ -62,7 +65,10 @@
             "type": "boolean"
           },
           "meta": {
-            "type": "object"
+            "type": [
+              "object",
+              "null"
+            ]
           },
           "matched_numbers": {
             "type": "array",
@@ -100,7 +106,10 @@
       "type": "string"
     },
     "meta": {
-      "type": "object"
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "origin": {
       "type": "string",

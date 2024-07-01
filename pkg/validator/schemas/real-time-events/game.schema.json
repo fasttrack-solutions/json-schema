@@ -5,24 +5,31 @@
   "type": "object",
   "properties": {
     "game_id": {
+      "description": "The ID of the game",
       "type": "string"
     },
     "name": {
+      "description": "The name of the game",
       "type": "string"
     },
     "slug": {
+      "description": "The slug of the game",
       "type": "string"
     },
     "provider": {
+      "description": "The provider of the game",
       "type": "string"
     },
     "category": {
+      "description": "The category of the game",
       "type": "string"
     },
     "subcategory": {
+      "description": "The subcategory of the game",
       "type": "string"
     },
     "supported_devices": {
+      "description": "The supported devices for the game",
       "type": "array",
       "items": {
         "type": "string",
@@ -35,12 +42,15 @@
       }
     },
     "origin": {
+      "description": "The origin of the game",
       "type": "string"
     },
     "is_live": {
+      "description": "Indicates if the game is live",
       "type": "boolean"
     },
     "rtp": {
+      "description": "The return to player percentage of the game",
       "type": "number"
     }
   },

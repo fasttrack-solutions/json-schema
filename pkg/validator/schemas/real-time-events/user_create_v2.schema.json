@@ -5,30 +5,30 @@
   "type": "object",
   "properties": {
     "user_id": {
-      "type": "string",
       "description": "The unique id of the user",
+      "type": "string",
       "minLength": 1
     },
     "note": {
-      "type": "string",
-      "description": "Notes"
+      "description": "Notes",
+      "type": "string"
     },
     "user_agent": {
-      "type": "string",
-      "description": "The client that is used in registration"
+      "description": "The client that is used in registration",
+      "type": "string"
     },
     "ip_address": {
-      "type": "string",
-      "description": "IP Address"
+      "description": "IP Address",
+      "type": "string"
     },
     "timestamp": {
+      "description": "Timestamp of registration in RFC3339 format",
       "type": "string",
-      "format": "date-time",
-      "description": "Timestamp of registration in RFC3339 format"
+      "format": "date-time"
     },
     "origin": {
-      "type": "string",
-      "description": "The Origin of the user"
+      "description": "The Origin of the user",
+      "type": "string"
     }
   },
   "required": [

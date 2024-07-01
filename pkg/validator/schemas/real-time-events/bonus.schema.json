@@ -43,7 +43,10 @@
     },
     "meta": {
       "description": "If meta data is required to be sent",
-      "type": "object"
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "origin": {
       "description": "Origin",
@@ -90,17 +93,7 @@
     "type": {
       "description": "Bonus type",
       "type": "string",
-      "minLength": 1,
-      "enum": [
-        "NoDeposit",
-        "WelcomeBonus",
-        "CashbackBonus",
-        "ReloadBonus",
-        "WagerFree",
-        "FreeSpins",
-        "RiskFreeBet",
-        "Undefined"
-      ]
+      "minLength": 1
     },
     "user_bonus_id": {
       "description": "User bonus id",
@@ -111,6 +104,10 @@
       "description": "User id",
       "type": "string",
       "minLength": 1
+    },
+    "skip_publishing": {
+      "description": "Skip publishing the event",
+      "type": "boolean"
     }
   },
   "required": [

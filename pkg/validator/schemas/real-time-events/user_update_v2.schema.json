@@ -5,18 +5,18 @@
   "type": "object",
   "properties": {
     "user_id": {
-      "type": "string",
       "description": "The unique id of the user",
+      "type": "string",
       "minLength": 1
     },
     "timestamp": {
+      "description": "Timestamp of login in RFC3339 format",
       "type": "string",
-      "format": "date-time",
-      "description": "Timestamp of login in RFC3339 format"
+      "format": "date-time"
     },
     "origin": {
-      "type": "string",
-      "description": "The Origin of the user"
+      "description": "The Origin of the user",
+      "type": "string"
     }
   },
   "required": [

@@ -5,88 +5,88 @@
   "type": "object",
   "properties": {
     "activity_id": {
-      "type": "string",
-      "description": "Unique ID for each event"
+      "description": "Unique ID for each event",
+      "type": "string"
     },
     "amount": {
-      "type": "number",
       "description": "The total amount (bonus_wager_amount + wager_amount + locked_wager_amount)",
+      "type": "number",
       "minimum": 0
     },
     "balance_after": {
-      "type": "number",
-      "description": "Player balance after the round is finished"
+      "description": "Player balance after the round is finished",
+      "type": "number"
     },
     "balance_before": {
-      "type": "number",
-      "description": "Player balance before the round started"
+      "description": "Player balance before the round started",
+      "type": "number"
     },
     "bonus_wager_amount": {
-      "type": "number",
       "description": "Amount (either bet or win) if the round was played using bonus money",
+      "type": "number",
       "minimum": 0
     },
     "currency": {
-      "type": "string",
       "description": "Transactions currency in ISO 4217 format",
+      "type": "string",
       "pattern": "^[A-Z]{3}$"
     },
     "exchange_rate": {
-      "type": "number",
       "description": "Exchange rate",
+      "type": "number",
       "minimum": 0
     },
     "game_id": {
+      "description": "Game ID",
       "type": [
         "string",
         "number"
-      ],
-      "description": "Game ID"
+      ]
     },
     "game_name": {
-      "type": "string",
-      "description": "Game Name"
+      "description": "Game Name",
+      "type": "string"
     },
     "game_type": {
-      "type": "string",
-      "description": "Game Type as defined in the platform"
+      "description": "Game Type as defined in the platform",
+      "type": "string"
     },
     "is_round_end": {
-      "type": "boolean",
-      "description": "Is the round ended?"
+      "description": "Is the round ended?",
+      "type": "boolean"
     },
     "locked_wager_amount": {
-      "type": "number",
-      "description": "Amount (either bet or win) if the round was played using money from a 'locked' wallet (when bonus and real money is combined)"
+      "description": "Amount (either bet or win) if the round was played using money from a 'locked' wallet (when bonus and real money is combined)",
+      "type": "number"
     },
     "origin": {
-      "type": "string",
-      "description": "Origin of the event"
+      "description": "Origin of the event",
+      "type": "string"
     },
     "round_id": {
-      "type": "string",
-      "description": "Round ID, send same for Bet & Win"
+      "description": "Round ID, send same for Bet & Win",
+      "type": "string"
     },
     "status": {
+      "description": "Status, indicates whether the event should be reversed or not",
       "type": "string",
       "enum": [
         "Approved",
         "Rollback"
-      ],
-      "description": "Status, indicates whether the event should be reversed or not"
+      ]
     },
     "timestamp": {
+      "description": "Timestamp in RFC3339 format",
       "type": "string",
-      "format": "date-time",
-      "description": "Timestamp in RFC3339 format"
+      "format": "date-time"
     },
     "type": {
+      "description": "Type, either 'Bet' or 'Win'",
       "type": "string",
       "enum": [
         "Bet",
         "Win"
-      ],
-      "description": "Type, either 'Bet' or 'Win'"
+      ]
     },
     "user_id": {
       "description": "User ID",
@@ -101,16 +101,19 @@
       ]
     },
     "vendor_name": {
-      "type": "string",
-      "description": "Vendor Name"
+      "description": "Vendor Name",
+      "type": "string"
     },
     "wager_amount": {
-      "type": "number",
-      "description": "Amount (either bet or win) if the round was played using real money"
+      "description": "Amount (either bet or win) if the round was played using real money",
+      "type": "number"
     },
     "meta": {
-      "type": "object",
-      "description": "Used for miscellaneous/auxiliary values that are brand specific"
+      "description": "Used for miscellaneous/auxiliary values that are brand specific",
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
   "required": [

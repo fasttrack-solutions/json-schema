@@ -12,6 +12,7 @@ type StringSettings struct {
 	allowSpace     bool
 	allowSpecial   bool
 	allowUpperCase bool
+	includeNumeric bool
 }
 
 func createTestCases(valid bool, testCases map[string]interface{}) []validationCase {
@@ -37,6 +38,7 @@ func loadFieldTestsString(input string, config *StringSettings) []validationCase
 			allowSpace:     true,
 			allowSpecial:   true,
 			allowUpperCase: true,
+			includeNumeric: false,
 		}
 	}
 
@@ -70,12 +72,11 @@ func loadFieldTestsString(input string, config *StringSettings) []validationCase
 		"Empty input": "",
 	})
 
+	numericTypes := createTestCases(config.includeNumeric, map[string]interface{}{
+		"Numeric input": 12345,
+	})
+
 	nonStringTests := []validationCase{
-		{
-			name:  "Numeric input",
-			value: 12345,
-			valid: false,
-		},
 		{
 			name:  "Boolean input",
 			value: false,
@@ -97,6 +98,7 @@ func loadFieldTestsString(input string, config *StringSettings) []validationCase
 	cases = append(cases, specialCharTests...)
 	cases = append(cases, emptyStringTests...)
 	cases = append(cases, nonStringTests...)
+	cases = append(cases, numericTypes...)
 
 	return cases
 }

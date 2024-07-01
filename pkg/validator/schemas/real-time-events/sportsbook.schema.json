@@ -27,7 +27,7 @@
         "Multi",
         "System",
         "Teaser"
-      ]      
+      ]
     },
     "bets": {
       "items": {
@@ -52,7 +52,10 @@
             "type": "string"
           },
           "meta": {
-            "type": "object"
+            "type": [
+              "object",
+              "null"
+            ]
           },
           "odds": {
             "type": "number"
@@ -64,7 +67,10 @@
                   "type": "string"
                 },
                 "meta": {
-                  "type": "object"
+                  "type": [
+                    "object",
+                    "null"
+                  ]
                 },
                 "outcome_label": {
                   "type": "string"
@@ -116,7 +122,10 @@
       "type": "number"
     },
     "meta": {
-      "type": "object"
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "odds": {
       "type": "number"
@@ -125,8 +134,8 @@
       "type": "string"
     },
     "skip_publishing": {
-      "type": "boolean",
-      "description": "Skip publishing the event"
+      "description": "Skip publishing the event",
+      "type": "boolean"
     },
     "status": {
       "type": "string",

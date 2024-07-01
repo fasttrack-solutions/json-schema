@@ -158,7 +158,15 @@ func validateExchangeRateField(schemaPath string, schema schemaTest, enums *Even
 }
 
 func validateGameIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyGameID, schema, loadFieldTestsString("Origin", nil))
+	return addFieldTestCases(keyGameID, schema, loadFieldTestsString("Origin", &StringSettings{
+		allowEmpty:     true,
+		allowLowerCase: true,
+		allowNumbers:   true,
+		allowSpace:     true,
+		allowSpecial:   true,
+		allowUpperCase: true,
+		includeNumeric: true,
+	}))
 }
 
 func validateLockedAmountField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
