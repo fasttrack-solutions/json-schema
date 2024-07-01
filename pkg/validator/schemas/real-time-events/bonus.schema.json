@@ -6,7 +6,11 @@
   "properties": {
     "amount": {
       "description": "Bonus amount",
-      "$ref": "general.schema.json/properties/street"
+      "type": "number",
+      "minimum": 0,
+      "message": {
+        "format": "Field is required."
+      }
     },
     "bonus_code": {
       "description": "Bonus code",
