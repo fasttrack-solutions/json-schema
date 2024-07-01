@@ -1,66 +1,67 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
   "description": "Schema for the request payload of POST /bonus/credit. It specifies the user identifier and a bonus code.",
+  "type": "object",
   "properties": {
     "activity": {
       "type": "object",
       "properties": {
         "id": {
+          "description": "A unique identifier of the SMS.",
           "type": "string",
           "message": {
             "format": "Field is required."
-          },
-          "description": "A unique identifier of the SMS."
+          }
         },
         "brand_id": {
+          "description": "The unique identifier of the brand on Fast Track.",
           "type": "integer",
           "message": {
             "format": "Field is required."
-          },
-          "description": "The unique identifier of the brand on Fast Track."
+          }
         },
         "user_id": {
+          "description": "The unique identifier of the player.",
           "type": "string",
+          "minLength": 1,
           "message": {
             "format": "Field is required."
-          },
-          "description": "The unique identifier of the player."
+          }
         },
         "internal_user_id": {
+          "description": "The internal identifier of the player.",
           "type": "integer",
           "message": {
             "format": "Field is required."
-          },
-          "description": "The internal identifier of the player."
+          }
         },
         "activity_id": {
+          "description": "The unique identifier of the activity setup in Fast Track.",
           "type": "integer",
           "message": {
             "format": "Field is required."
-          },
-          "description": "The unique identifier of the activity setup in Fast Track."
+          }
         },
         "action_group_id": {
+          "description": "The unique identifier of the action group which the SMS originates from Fast Track.",
           "type": "integer",
           "message": {
             "format": "Field is required."
-          },
-          "description": "The unique identifier of the action group which the SMS originates from Fast Track."
+          }
         },
         "trigger_hash": {
+          "description": "Trigger hash.",
           "type": "string",
           "message": {
             "format": "Field is required."
-          },
-          "description": "Trigger hash."
+          }
         },
         "action_id": {
+          "description": "The unique identifier of the individual action from Fast Track.",
           "type": "integer",
           "message": {
             "format": "Field is required."
-          },
-          "description": "The unique identifier of the individual action from Fast Track."
+          }
         }
       },
       "required": [
@@ -76,39 +77,39 @@
       "additionalProperties": false
     },
     "content": {
+      "description": "The content of the SMS.",
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "description": "The content of the SMS."
+      }
     },
     "recipient": {
+      "description": "The recipient of the SMS.",
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "description": "The recipient of the SMS."
+      }
     },
     "sender_name": {
+      "description": "The sender name of the SMS.",
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "description": "The sender name of the SMS."
+      }
     },
     "provider_name": {
+      "description": "The name of the integrated provider.",
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "description": "The name of the integrated provider."
+      }
     },
     "enconding": {
+      "description": "Type of encoding of SMS. Can be \"auto\", \"gsm7\" or \"usc2\"",
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "description": "Type of encoding of SMS. Can be \"auto\", \"gsm7\" or \"usc2\""
+      }
     }
   },
   "required": [

@@ -3,6 +3,99 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Payment Event (PAYMENT)",
   "type": "object",
+  "properties": {
+    "amount": {
+      "description": "Amount",
+      "type": "number",
+      "minimum": 0
+    },
+    "bonus_code": {
+      "description": "Bonus code",
+      "type": "string"
+    },
+    "currency": {
+      "description": "Transactions currency in ISO 4217 format",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "deposit_count": {
+      "description": "Number of deposits made by the user",
+      "type": "number",
+      "minimum": 0
+    },
+    "exchange_rate": {
+      "description": "The exchange rate at the timestamp",
+      "type": "number",
+      "minimum": 0
+    },
+    "fee_amount": {
+      "description": "Fee Amount, if not applicable then send 0",
+      "type": "number",
+      "minimum": 0
+    },
+    "note": {
+      "description": "Any useful notes",
+      "type": "string"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "payment_id": {
+      "description": "Platform Id of the payment",
+      "type": "string"
+    },
+    "status": {
+      "description": "Payment Status. Please select a value from the provided list of options",
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Requested",
+        "Rejected",
+        "Rollback",
+        "Cancelled"
+      ]
+    },
+    "timestamp": {
+      "description": "Timestamp of the payment in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "description": "Payment type. Please select a value from the provided list of options",
+      "type": "string",
+      "enum": [
+        "Credit",
+        "Debit"
+      ]
+    },
+    "user_id": {
+      "description": "User Id",
+      "type": "string",
+      "minLength": 1
+    },
+    "vendor_id": {
+      "description": "Platform Id of the vendor",
+      "type": [
+        "string",
+        "number"
+      ],
+      "minimum": 0
+    },
+    "vendor_name": {
+      "description": "Platform name of the vendor",
+      "type": "string"
+    },
+    "withdraw_count": {
+      "description": "Number of withdrawals made by the user",
+      "type": "number",
+      "minimum": 0
+    },
+    "skip_publishing": {
+      "description": "Skip publishing the event",
+      "type": "boolean"
+    }
+  },
   "required": [
     "amount",
     "currency",
@@ -15,76 +108,5 @@
     "type",
     "user_id",
     "vendor_id"
-  ],
-  "properties": {
-    "amount": {
-      "type": "number",
-      "description": "Amount"
-    },
-    "bonus_code": {
-      "type": "string",
-      "description": "Bonus code"
-    },
-    "currency": {
-      "type": "string",
-      "description": "Transactions currency in ISO 4217 format",
-      "pattern": "^[A-Z]{3}$"
-    },
-    "exchange_rate": {
-      "type": "number",
-      "description": "The exchange rate at the timestamp"
-    },
-    "fee_amount": {
-      "type": "number",
-      "description": "Fee Amount, if not applicable then send 0"
-    },
-    "note": {
-      "type": "string",
-      "description": "Any useful notes"
-    },
-    "origin": {
-      "type": "string",
-      "description": "The Origin of the user"
-    },
-    "payment_id": {
-      "type": "string",
-      "description": "Platform Id of the payment"
-    },
-    "status": {
-      "type": "string",
-      "enum": [
-        "Approved",
-        "Requested",
-        "Rejected",
-        "Rollback",
-        "Cancelled"
-      ],
-      "description": "Payment Status. Please select a value from the provided list of options"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Timestamp of the payment in RFC3339 format"
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "Credit",
-        "Debit"
-      ],
-      "description": "Payment type. Please select a value from the provided list of options"
-    },
-    "user_id": {
-      "type": "string",
-      "description": "User Id"
-    },
-    "vendor_id": {
-      "type": "string",
-      "description": "Platform Id of the vendor"
-    },
-    "vendor_name": {
-      "type": "string",
-      "description": "Platform name of the vendor"
-    }
-  }
+  ]
 }

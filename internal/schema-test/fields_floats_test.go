@@ -1,7 +1,13 @@
 package schemas
 
-func loadFieldTestsFloats() []validationCase {
-	return []validationCase{
+type FloatSettings struct {
+	allowNegatives bool
+	allowZero      bool
+	allowNull      bool
+}
+
+func loadFieldTestsFloats(config *FloatSettings) []validationCase {
+	testCases := []validationCase{
 		{
 			name:  "Float input",
 			value: 10.54,
@@ -32,10 +38,23 @@ func loadFieldTestsFloats() []validationCase {
 			value: false,
 			valid: false,
 		},
-		{
-			name:  "Null input",
-			value: nil,
-			valid: false,
-		},
 	}
+
+	negativeTestCases := createTestCases(config.allowNegatives, map[string]interface{}{
+		"Negative float input": -10.54,
+	})
+
+	zeroTestCases := createTestCases(config.allowZero, map[string]interface{}{
+		"Zero float input": 0,
+	})
+
+	nullTestCases := createTestCases(config.allowNull, map[string]interface{}{
+		"Null input": nil,
+	})
+
+	testCases = append(testCases, zeroTestCases...)
+	testCases = append(testCases, nullTestCases...)
+	testCases = append(testCases, negativeTestCases...)
+
+	return testCases
 }

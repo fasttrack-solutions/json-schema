@@ -32,7 +32,7 @@ type EventEnums struct {
 }
 
 func runTestCases(t *testing.T, schemaPath string, testCases []schemaTest, enums *EventEnums) {
-	fieldTestCases, err := runFieldTests(schemaPath, testCases[0], enums)
+	fieldTestCases, err := createFieldTests(schemaPath, testCases[0], enums)
 	require.NoError(t, err)
 
 	testCases = append(testCases, fieldTestCases...)

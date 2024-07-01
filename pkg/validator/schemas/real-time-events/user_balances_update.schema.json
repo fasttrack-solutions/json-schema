@@ -3,30 +3,22 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Balance Update Event (USER_BALANCES_UPDATE)",
   "type": "object",
-  "required": [
-    "balances",
-    "origin",
-    "timestamp",
-    "user_id"
-  ],
   "properties": {
     "balances": {
-      "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "amount",
-          "currency",
-          "key",
-          "exchange_rate"
-        ],
         "properties": {
           "amount": {
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "currency": {
             "type": "string",
             "pattern": "^[A-Z]{3}$"
+          },
+          "exchange_rate": {
+            "type": "number",
+            "minimum": 0
           },
           "key": {
             "type": "string",
@@ -34,12 +26,16 @@
               "real_money",
               "bonus_money"
             ]
-          },
-          "exchange_rate": {
-            "type": "number"
           }
-        }
-      }
+        },
+        "required": [
+          "amount",
+          "currency",
+          "key",
+          "exchange_rate"
+        ]
+      },
+      "type": "array"
     },
     "origin": {
       "type": "string"
@@ -54,5 +50,11 @@
       "minLength": 1,
       "maxLength": 36
     }
-  }
+  },
+  "required": [
+    "balances",
+    "origin",
+    "timestamp",
+    "user_id"
+  ]
 }

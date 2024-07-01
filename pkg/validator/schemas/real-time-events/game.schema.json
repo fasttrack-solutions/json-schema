@@ -3,10 +3,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Game Details (GAME)",
   "type": "object",
-  "required": [
-    "game_id",
-    "is_live"
-  ],
   "properties": {
     "game_id": {
       "type": "string"
@@ -38,8 +34,18 @@
         ]
       }
     },
+    "origin": {
+      "type": "string"
+    },
     "is_live": {
       "type": "boolean"
+    },
+    "rtp": {
+      "type": "number"
     }
-  }
+  },
+  "required": [
+    "game_id",
+    "is_live"
+  ]
 }

@@ -7,7 +7,7 @@ import (
 
 var casinoSchema = filepath.Join(realtTimeSchemaPath, "/casino.schema.json")
 
-func loadTestsRealtimeCasinoBet() []schemaTest {
+func TestValidData_RealtimeCasinoBet(t *testing.T) {
 	tests := []schemaTest{
 		{
 			name: "Valid data",
@@ -42,10 +42,13 @@ func loadTestsRealtimeCasinoBet() []schemaTest {
 			isValid: true,
 		},
 	}
-	return tests
+
+	runTestsRealtimeCasino(t, casinoSchema, tests, EventEnums{
+		typeEnums: []string{"Bet"},
+	})
 }
 
-func loadTestsRealtimeCasinoWin() []schemaTest {
+func TestValidData_RealtimeCasinoWin(t *testing.T) {
 	tests := []schemaTest{
 		{
 			name: "Valid data",
@@ -80,17 +83,8 @@ func loadTestsRealtimeCasinoWin() []schemaTest {
 			isValid: true,
 		},
 	}
-	return tests
-}
 
-func TestValidData_RealtimeCasinoBet(t *testing.T) {
-	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoBet(), EventEnums{
-		typeEnums: []string{"Bet"},
-	})
-}
-
-func TestValidData_RealtimeCasinoWin(t *testing.T) {
-	runTestsRealtimeCasino(t, casinoSchema, loadTestsRealtimeCasinoWin(), EventEnums{
+	runTestsRealtimeCasino(t, casinoSchema, tests, EventEnums{
 		typeEnums: []string{"Bet", "Win"},
 	})
 }

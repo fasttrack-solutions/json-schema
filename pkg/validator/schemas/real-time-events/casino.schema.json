@@ -3,22 +3,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Casino Event (CASINO)",
   "type": "object",
-  "required": [
-    "activity_id",
-    "amount",
-    "currency",
-    "exchange_rate",
-    "game_id",
-    "game_name",
-    "is_round_end",
-    "origin",
-    "round_id",
-    "status",
-    "timestamp",
-    "type",
-    "user_id",
-    "vendor_id"
-  ],
   "properties": {
     "activity_id": {
       "type": "string",
@@ -26,7 +10,8 @@
     },
     "amount": {
       "type": "number",
-      "description": "The total amount (bonus_wager_amount + wager_amount + locked_wager_amount)"
+      "description": "The total amount (bonus_wager_amount + wager_amount + locked_wager_amount)",
+      "minimum": 0
     },
     "balance_after": {
       "type": "number",
@@ -38,7 +23,8 @@
     },
     "bonus_wager_amount": {
       "type": "number",
-      "description": "Amount (either bet or win) if the round was played using bonus money"
+      "description": "Amount (either bet or win) if the round was played using bonus money",
+      "minimum": 0
     },
     "currency": {
       "type": "string",
@@ -47,10 +33,14 @@
     },
     "exchange_rate": {
       "type": "number",
-      "description": "Exchange rate"
+      "description": "Exchange rate",
+      "minimum": 0
     },
     "game_id": {
-      "type": "string",
+      "type": [
+        "string",
+        "number"
+      ],
       "description": "Game ID"
     },
     "game_name": {
@@ -99,12 +89,16 @@
       "description": "Type, either 'Bet' or 'Win'"
     },
     "user_id": {
+      "description": "User ID",
       "type": "string",
-      "description": "User ID"
+      "minLength": 1
     },
     "vendor_id": {
-      "type": "integer",
-      "description": "Vendor ID"
+      "description": "Vendor ID",
+      "type": [
+        "string",
+        "number"
+      ]
     },
     "vendor_name": {
       "type": "string",
@@ -118,5 +112,21 @@
       "type": "object",
       "description": "Used for miscellaneous/auxiliary values that are brand specific"
     }
-  }
+  },
+  "required": [
+    "activity_id",
+    "amount",
+    "currency",
+    "exchange_rate",
+    "game_id",
+    "game_name",
+    "is_round_end",
+    "origin",
+    "round_id",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "vendor_id"
+  ]
 }

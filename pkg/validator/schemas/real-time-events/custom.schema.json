@@ -3,19 +3,13 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Custom Event (CUSTOM)",
   "type": "object",
-  "required": [
-    "notification_type",
-    "user_id",
-    "origin",
-    "timestamp",
-    "data"
-  ],
   "properties": {
     "notification_type": {
       "type": "string"
     },
     "user_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "origin": {
       "type": "string"
@@ -34,5 +28,12 @@
       "type": "string",
       "format": "ipv4"
     }
-  }
+  },
+  "required": [
+    "notification_type",
+    "user_id",
+    "origin",
+    "timestamp",
+    "data"
+  ]
 }

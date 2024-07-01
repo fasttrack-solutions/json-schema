@@ -5,6 +5,11 @@ import (
 	"fmt"
 )
 
+type fieldValidator struct {
+	fieldName string
+	validator func(string, schemaTest, *EventEnums) ([]schemaTest, error)
+}
+
 const (
 	keyAmount       = "amount"
 	keyBonusCode    = "bonus_code"
@@ -22,11 +27,6 @@ const (
 	keyUserID       = "user_id"
 )
 
-type fieldValidator struct {
-	fieldName string
-	validator func(string, schemaTest, *EventEnums) ([]schemaTest, error)
-}
-
 var fieldValidators = []fieldValidator{
 	{keyAmount, validateAmountField},
 	{keyBonusCode, validateBonusCodeField},
@@ -42,7 +42,7 @@ var fieldValidators = []fieldValidator{
 	{keyUserBonusID, validateUserBonusIDField},
 }
 
-func runFieldTests(schema string, test schemaTest, enums *EventEnums) ([]schemaTest, error) {
+func createFieldTests(schema string, test schemaTest, enums *EventEnums) ([]schemaTest, error) {
 	var (
 		jsonData  map[string]interface{}
 		testCases []schemaTest
@@ -116,7 +116,11 @@ func addFieldTestCases(fieldName string, test schemaTest, testCases []validation
 }
 
 func validateAmountField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyAmount, schema, loadFieldTestsFloats())
+	return addFieldTestCases(keyAmount, schema, loadFieldTestsFloats(&FloatSettings{
+		allowNegatives: false,
+		allowZero:      true,
+		allowNull:      false,
+	}))
 }
 
 func validateBonusCodeField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
@@ -124,7 +128,14 @@ func validateBonusCodeField(schemaPath string, schema schemaTest, enums *EventEn
 }
 
 func validateBonusIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyBonusID, schema, loadFieldTestsString("Bonus", nil))
+	return addFieldTestCases(keyBonusID, schema, loadFieldTestsString("Bonus", &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: true,
+		allowNumbers:   true,
+		allowSpace:     true,
+		allowSpecial:   true,
+		allowUpperCase: true,
+	}))
 }
 
 func validateCurrencyField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
@@ -139,7 +150,11 @@ func validateCurrencyField(schemaPath string, schema schemaTest, enums *EventEnu
 }
 
 func validateExchangeRateField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyExchangeRate, schema, loadFieldTestsFloats())
+	return addFieldTestCases(keyExchangeRate, schema, loadFieldTestsFloats(&FloatSettings{
+		allowNegatives: false,
+		allowZero:      true,
+		allowNull:      false,
+	}))
 }
 
 func validateGameIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
@@ -147,7 +162,11 @@ func validateGameIDField(schemaPath string, schema schemaTest, enums *EventEnums
 }
 
 func validateLockedAmountField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyLockedAmount, schema, loadFieldTestsFloats())
+	return addFieldTestCases(keyLockedAmount, schema, loadFieldTestsFloats(&FloatSettings{
+		allowNegatives: false,
+		allowZero:      true,
+		allowNull:      false,
+	}))
 }
 
 func validateOriginField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
@@ -195,16 +214,23 @@ func validateTypeField(schemaPath string, schema schemaTest, enums *EventEnums) 
 }
 
 func validateUserBonusIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyUserBonusID, schema, loadFieldTestsString("Bonus", nil))
-}
-
-func validateUserIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	return addFieldTestCases(keyUserID, schema, loadFieldTestsString("12345", &StringSettings{
-		allowEmpty:     true,
+	return addFieldTestCases(keyUserBonusID, schema, loadFieldTestsString("Bonus", &StringSettings{
+		allowEmpty:     false,
 		allowLowerCase: true,
 		allowNumbers:   true,
 		allowSpace:     true,
 		allowSpecial:   true,
+		allowUpperCase: true,
+	}))
+}
+
+func validateUserIDField(schemaPath string, schema schemaTest, enums *EventEnums) ([]schemaTest, error) {
+	return addFieldTestCases(keyUserID, schema, loadFieldTestsString("12345", &StringSettings{
+		allowEmpty:     false,
+		allowLowerCase: true,
+		allowNumbers:   true,
+		allowSpace:     false,
+		allowSpecial:   false,
 		allowUpperCase: true,
 	}))
 }

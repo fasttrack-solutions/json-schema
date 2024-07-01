@@ -3,21 +3,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Lottery Event (LOTTERY_V2)",
   "type": "object",
-  "required": [
-    "timestamp",
-    "transaction_id",
-    "user_id",
-    "amount",
-    "account_amount",
-    "bonus_amount",
-    "bonus_code",
-    "currency",
-    "deposit_amount",
-    "exchange_rate",
-    "origin",
-    "status",
-    "tickets"
-  ],
   "properties": {
     "timestamp": {
       "type": "string",
@@ -27,10 +12,12 @@
       "type": "string"
     },
     "user_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "amount": {
-      "type": "number"
+      "type": "number",
+      "minimum": 0
     },
     "account_amount": {
       "type": "number"
@@ -49,7 +36,8 @@
       "type": "number"
     },
     "exchange_rate": {
-      "type": "number"
+      "type": "number",
+      "minimum": 0
     },
     "origin": {
       "type": "string"
@@ -83,7 +71,8 @@
             "type": "string"
           },
           "amount": {
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "lines_count": {
             "type": "number"
@@ -106,5 +95,20 @@
         }
       }
     }
-  }
+  },
+  "required": [
+    "timestamp",
+    "transaction_id",
+    "user_id",
+    "amount",
+    "account_amount",
+    "bonus_amount",
+    "bonus_code",
+    "currency",
+    "deposit_amount",
+    "exchange_rate",
+    "origin",
+    "status",
+    "tickets"
+  ]
 }

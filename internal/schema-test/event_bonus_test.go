@@ -12,8 +12,8 @@ var (
 	bonusRealtimeSchema    = filepath.Join(realtTimeSchemaPath, "/bonus.schema.json")
 )
 
-func loadTestsOperatorGetBonusList() []schemaTest {
-	return []schemaTest{
+func TestValidData_OperatorGetBonusList(t *testing.T) {
+	tests := []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -33,10 +33,12 @@ func loadTestsOperatorGetBonusList() []schemaTest {
 			isValid: false,
 		},
 	}
+
+	runTestCases(t, bonusListSchema, tests, nil)
 }
 
-func loadTestsOperatorPostBonsuCredit() []schemaTest {
-	return []schemaTest{
+func TestValidData_OperatorPostBonsuCredit(t *testing.T) {
+	tests := []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -46,10 +48,12 @@ func loadTestsOperatorPostBonsuCredit() []schemaTest {
 			isValid: true,
 		},
 	}
+
+	runTestCases(t, bonusCreditSchema, tests, nil)
 }
 
-func loadTestsOperatorPostBonusCreditFunds() []schemaTest {
-	return []schemaTest{
+func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
+	tests := []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -61,10 +65,12 @@ func loadTestsOperatorPostBonusCreditFunds() []schemaTest {
 			isValid: true,
 		},
 	}
+
+	runTestCases(t, bonusCreditFundsSchema, tests, nil)
 }
 
-func loadTestsRealtimePostBonus() []schemaTest {
-	return []schemaTest{
+func TestValidData_RealtimePostBonus(t *testing.T) {
+	tests := []schemaTest{
 		{
 			name: "Valid data",
 			payload: `{
@@ -92,22 +98,8 @@ func loadTestsRealtimePostBonus() []schemaTest {
 			isValid: true,
 		},
 	}
-}
 
-func TestValidData_OperatorGetBonusList(t *testing.T) {
-	runTestCases(t, bonusListSchema, loadTestsOperatorGetBonusList(), nil)
-}
-
-func TestValidData_OperatorPostBonsuCredit(t *testing.T) {
-	runTestCases(t, bonusCreditSchema, loadTestsOperatorPostBonsuCredit(), nil)
-}
-
-func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
-	runTestCases(t, bonusCreditFundsSchema, loadTestsOperatorPostBonusCreditFunds(), nil)
-}
-
-func TestValidData_RealtimePostBonus(t *testing.T) {
-	runTestCases(t, bonusRealtimeSchema, loadTestsRealtimePostBonus(), &EventEnums{
+	runTestCases(t, bonusRealtimeSchema, tests, &EventEnums{
 		statusEnums: []string{"Pending"},
 		typeEnums:   []string{"WelcomeBonus"},
 	})

@@ -4,33 +4,35 @@
   "description": "Schema for the request payload of POST /bonus/credit/funds. It specifies the user identifier, a bonus code, the amount, and the currency.",
   "properties": {
     "user_id": {
+      "description": "The unique identifier of the user.",
       "type": "string",
+      "minLength": 1,
       "message": {
         "format": "Field is required."
-      },
-      "description": "The unique identifier of the user."
+      }
     },
     "bonus_code": {
+      "description": "The code representing a specific bonus.",
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "description": "The code representing a specific bonus."
+      }
     },
     "amount": {
+      "description": "The amount of funds to credit.",
       "type": "number",
+      "minimum": 0,
       "message": {
         "format": "Field is required."
-      },
-      "description": "The amount of funds to credit."
+      }
     },
     "currency": {
+      "description": "The currency code for the amount, e.g., 'USD'.",
       "type": "string",
       "message": {
         "format": "Field is required."
       },
-      "pattern": "^[A-Z]{3}$",
-      "description": "The currency code for the amount, e.g., 'USD'."
+      "pattern": "^[A-Z]{3}$"
     }
   },
   "required": [

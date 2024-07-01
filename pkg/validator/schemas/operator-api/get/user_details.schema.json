@@ -5,150 +5,151 @@
   "type": "object",
   "properties": {
     "address": {
+      "description": "Physical mailing address of the user.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Physical mailing address of the user."
+      }
     },
     "affiliate_reference": {
+      "description": "Affiliate reference or identifier for tracking purposes.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Affiliate reference or identifier for tracking purposes."
+      }
     },
     "birth_date": {
+      "description": "User's birth date in YYYY-MM-DD format.",
       "type": "string",
       "format": "date",
       "message": {
         "format": "Field is required in DATE format. Can be left as an empty string"
-      },
-      "description": "User's birth date in YYYY-MM-DD format."
+      }
     },
     "city": {
+      "description": "City of the user's address.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "City of the user's address."
+      }
     },
     "country": {
+      "description": "Country of the user's residence.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Country of the user's residence."
+      }
     },
     "currency": {
-      "type": "string",
       "description": "Preferred currency for the user's transactions.",
+      "type": "string",
       "pattern": "^[A-Z]{3}$"
     },
     "email": {
+      "description": "Email address of the user.",
       "type": "string",
       "format": "email",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Email address of the user."
+      }
     },
     "first_name": {
+      "description": "User's first name.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "User's first name."
+      }
     },
     "is_blocked": {
+      "description": "Indicates whether the user's account is blocked.",
       "type": "boolean",
       "message": {
         "format": "Field is required"
-      },
-      "description": "Indicates whether the user's account is blocked."
+      }
     },
     "is_excluded": {
+      "description": "Flag to indicate if the user is excluded.",
       "type": "boolean",
       "message": {
         "format": "Field is required"
-      },
-      "description": "Flag to indicate if the user is excluded."
+      }
     },
     "language": {
+      "description": "Preferred language of the user.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Preferred language of the user."
+      }
     },
     "last_name": {
+      "description": "User's last name.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "User's last name."
+      }
     },
     "market": {
+      "description": "Market or region the user is associated with.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Market or region the user is associated with."
+      }
     },
     "mobile": {
+      "description": "User's mobile phone number without country prefix",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "User's mobile phone number without country prefix"
+      }
     },
     "mobile_prefix": {
+      "description": "Country prefix for the user's mobile phone number.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Country prefix for the user's mobile phone number."
+      }
     },
     "origin": {
+      "description": "Origin of the user's account or referral source. Typically this is the brand name",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Origin of the user's account or referral source. Typically this is the brand name"
+      }
     },
     "postal_code": {
+      "description": "Postal code for the user's address.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Postal code for the user's address."
+      }
     },
     "registration_code": {
+      "description": "Registration code used during the user's account creation.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Registration code used during the user's account creation."
+      }
     },
     "registration_date": {
+      "description": "Date and time of the user's account registration in RFC3339 format.",
       "type": "string",
       "format": "date-time",
       "message": {
         "format": "Date and time of the user's account registration in RFC3339 format."
-      },
-      "description": "Date and time of the user's account registration in RFC3339 format."
+      }
     },
     "roles": {
+      "description": "List of roles or permissions assigned to the user.",
       "type": "array",
       "items": {
         "type": "string"
       },
       "message": {
         "format": "Field is required. Can be left as an empty array"
-      },
-      "description": "List of roles or permissions assigned to the user."
+      }
     },
     "sex": {
+      "description": "User's sex as specified in their profile.",
       "type": "string",
       "enum": [
         "male",
@@ -158,44 +159,44 @@
       ],
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "User's sex as specified in their profile."
+      }
     },
     "title": {
+      "description": "Title or honorific of the user.",
       "type": "string",
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "Title or honorific of the user."
+      }
     },
     "user_id": {
+      "description": "Unique identifier for the user. Can either be an integer of GUID, kindly advise your integration manager if not using an integer",
       "type": "string",
+      "minLength": 1,
       "message": {
         "format": "Field is required."
-      },
-      "description": "Unique identifier for the user. Can either be an integer of GUID, kindly advise your integration manager if not using an integer"
+      }
     },
     "username": {
+      "description": "User's chosen username.",
       "type": "string",
       "minLength": 3,
       "maxLength": 255,
       "message": {
         "format": "Field is required. Can be left as an empty string"
-      },
-      "description": "User's chosen username."
+      }
     },
     "verified_at": {
+      "description": "Timestamp of when the user's account was verified, optional. In RFC3339 format.",
       "type": "string",
       "format": "date-time",
-      "description": "Timestamp of when the user's account was verified, optional. In RFC3339 format.",
       "message": {
         "format": "Expected format 2023-03-02T8:27:58Z, given: {0}",
         "type": "expected string"
       }
     },
     "segmentation": {
-      "type": "object",
       "description": "Optional segmentation information for the user. Kindly advide your integration manager before sending any custom segmentation fields",
+      "type": "object",
       "properties": {
         "custom_segment": {
           "type": "string",

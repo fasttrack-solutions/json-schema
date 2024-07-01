@@ -3,32 +3,46 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Login Event (LOGIN_V2)",
   "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "is_impersonated": {
+      "description": "This field is true when a support agent is logged in impersonating a user",
+      "type": "boolean"
+    },
+    "is_verified": {
+      "description": "This field is true when user has ID and Address approval",
+      "type": "boolean"
+    },
+    "ip_address": {
+      "description": "IP Address of the user",
+      "type": "string",
+      "format": "ipv4,ipv6"
+    },
+    "user_agent": {
+      "description": "User agent of the user",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp of login in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The origin of the login event",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "This field is true when the event should not be published",
+      "type": "boolean"
+    }
+  },
   "required": [
     "user_id",
     "timestamp",
     "origin"
-  ],
-  "properties": {
-    "user_id": {
-      "type": "string",
-      "description": "The unique id of the user"
-    },
-    "is_impersonated": {
-      "type": "boolean",
-      "description": "This field is true when a support agent is logged in impersonating a user"
-    },
-    "ip_address": {
-      "type": "string",
-      "description": "IP Address"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Timestamp of login in RFC3339 format"
-    },
-    "origin": {
-      "type": "string",
-      "description": "The Origin of the user"
-    }
-  }
+  ]
 }

@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
+  "title": "User Consents",
   "description": "Schema for the response of the /userconsents/:userid endpoint. It provides the user's consent preferences for various communication channels.",
+  "type": "object",
   "properties": {
     "consents": {
       "type": "array",
@@ -13,18 +14,18 @@
         "type": "object",
         "properties": {
           "opted_in": {
+            "description": "Indicates whether the user has opted in for the communication type.",
             "type": "boolean",
             "message": {
               "format": "Field is required."
-            },
-            "description": "Indicates whether the user has opted in for the communication type."
+            }
           },
           "type": {
+            "description": "Type of communication consented to, such as email, sms, telephone, etc.",
             "type": "string",
             "message": {
               "format": "Field is required."
             },
-            "description": "Type of communication consented to, such as email, sms, telephone, etc.",
             "enum": [
               "email",
               "sms",
