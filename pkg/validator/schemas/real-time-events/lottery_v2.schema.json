@@ -112,8 +112,7 @@
       ]
     },
     "origin": {
-      "type": "string",
-      "format": "hostname"
+      "type": "string"
     },
     "skip_publishing": {
       "type": "boolean"

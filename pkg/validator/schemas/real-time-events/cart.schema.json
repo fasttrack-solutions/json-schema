@@ -94,7 +94,6 @@
     },
     "origin": {
       "type": "string",
-      "format": "hostname",
       "minLength": 1
     },
     "payments": {

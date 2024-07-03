@@ -50,8 +50,7 @@
     },
     "origin": {
       "description": "Origin",
-      "type": "string",
-      "format": "hostname"
+      "type": "string"
     },
     "product": {
       "description": "Product type",
