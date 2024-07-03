@@ -94,8 +94,7 @@
         "required": [
           "event_name",
           "match_start",
-          "odds",
-          "outcomes"
+          "odds"
         ],
         "type": "object"
       },
@@ -133,9 +132,30 @@
     "origin": {
       "type": "string"
     },
+    "reference_bet_amount": {
+      "type": "number"
+    },
+    "reference_bet_real_amount": {
+      "type": "number"
+    },
+    "reference_bet_bonus_amount": {
+      "type": "number"
+    },
+    "reference_bet_locked_amount": {
+      "type": "number"
+    },
+    "reference_bet_exchange_rate": {
+      "type": "number"
+    },
+    "settlement_type": {
+      "type": "string"
+    },
     "skip_publishing": {
       "description": "Skip publishing the event",
       "type": "boolean"
+    },
+    "sportsbook_vendor_name": {
+      "type": "string"
     },
     "status": {
       "type": "string",
@@ -163,5 +183,16 @@
       "type": "number"
     }
   },
-  "required": []
+  "required": [
+    "amount",
+    "bet_type",
+    "bets",
+    "currency",
+    "exchange_rate",
+    "odds",
+    "origin",
+    "status",
+    "timestamp",
+    "user_id"
+  ]
 }

@@ -39,7 +39,8 @@
     },
     "origin": {
       "description": "The Origin of the user",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "payment_id": {
       "description": "Platform Id of the payment",
@@ -66,7 +67,10 @@
       "type": "string",
       "enum": [
         "Credit",
-        "Debit"
+        "Debit",
+        "Capture",
+        "Authorization",
+        "Void"
       ]
     },
     "user_id": {
@@ -99,8 +103,6 @@
   "required": [
     "amount",
     "currency",
-    "exchange_rate",
-    "fee_amount",
     "origin",
     "payment_id",
     "status",

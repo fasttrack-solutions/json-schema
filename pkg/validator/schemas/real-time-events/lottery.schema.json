@@ -45,7 +45,8 @@
     "status": {
       "type": "string",
       "enum": [
-        "Approved"
+        "Approved",
+        "Rejected"
       ]
     },
     "tickets": {
@@ -97,11 +98,8 @@
     }
   },
   "required": [
-    "timestamp",
-    "transaction_id",
-    "user_id",
-    "amount",
     "account_amount",
+    "amount",
     "bonus_amount",
     "bonus_code",
     "currency",
@@ -109,6 +107,9 @@
     "exchange_rate",
     "origin",
     "status",
-    "tickets"
+    "tickets",
+    "timestamp",
+    "transaction_id",
+    "user_id"
   ]
 }
