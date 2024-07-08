@@ -13,7 +13,9 @@
     },
     "currency": {
       "type": "string",
-      "pattern": "^[A-Z]{3}$"
+      "pattern": "^[A-Z]{3}$",
+      "minLength": 3,
+      "maxLength": 3
     },
     "device_type": {
       "type": "string"
@@ -52,9 +54,6 @@
       "items": {
         "type": "object",
         "properties": {
-          "line_id": {
-            "type": "number"
-          },
           "is_free_bet": {
             "type": "boolean"
           },
@@ -64,17 +63,26 @@
           "is_winning_line": {
             "type": "boolean"
           },
-          "meta": {
-            "type": [
-              "object",
-              "null"
-            ]
+          "line_id": {
+            "type": "number"
           },
           "matched_numbers": {
             "type": "array",
             "items": {
               "type": "number"
             }
+          },
+          "matched_special_numbers": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "meta": {
+            "type": [
+              "object",
+              "null"
+            ]
           },
           "numbers": {
             "type": "array",

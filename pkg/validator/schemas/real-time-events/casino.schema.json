@@ -29,7 +29,9 @@
     "currency": {
       "description": "Transactions currency in ISO 4217 format",
       "type": "string",
-      "pattern": "^[A-Z]{3}$"
+      "pattern": "^[A-Z]{3}$",
+      "minLength": 3,
+      "maxLength": 3
     },
     "exchange_rate": {
       "description": "Exchange rate",
@@ -45,7 +47,8 @@
     },
     "game_name": {
       "description": "Game Name",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "game_type": {
       "description": "Game Type as defined in the platform",
@@ -57,15 +60,28 @@
     },
     "locked_wager_amount": {
       "description": "Amount (either bet or win) if the round was played using money from a 'locked' wallet (when bonus and real money is combined)",
-      "type": "number"
+      "type": "number",
+      "minimum": 0
+    },
+    "meta": {
+      "description": "Used for miscellaneous/auxiliary values that are brand specific",
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "origin": {
       "description": "Origin of the event",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "round_id": {
       "description": "Round ID, send same for Bet & Win",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
+    },
+    "skip_publishing": {
+      "type": "boolean"
     },
     "status": {
       "description": "Status, indicates whether the event should be reversed or not",
@@ -107,13 +123,6 @@
     "wager_amount": {
       "description": "Amount (either bet or win) if the round was played using real money",
       "type": "number"
-    },
-    "meta": {
-      "description": "Used for miscellaneous/auxiliary values that are brand specific",
-      "type": [
-        "object",
-        "null"
-      ]
     }
   },
   "required": [

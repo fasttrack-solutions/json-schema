@@ -33,6 +33,10 @@
       "type": "number",
       "minimum": 0
     },
+    "meta": {
+      "description": "Additional information",
+      "type": "object"
+    },
     "note": {
       "description": "Any useful notes",
       "type": "string"
@@ -44,17 +48,24 @@
     },
     "payment_id": {
       "description": "Platform Id of the payment",
-      "type": "string"
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "skip_publishing": {
+      "description": "Skip publishing the event",
+      "type": "boolean"
     },
     "status": {
       "description": "Payment Status. Please select a value from the provided list of options",
       "type": "string",
       "enum": [
         "Approved",
-        "Requested",
+        "Cancelled",
         "Rejected",
-        "Rollback",
-        "Cancelled"
+        "Requested",
+        "Rollback"
       ]
     },
     "timestamp": {
@@ -66,10 +77,10 @@
       "description": "Payment type. Please select a value from the provided list of options",
       "type": "string",
       "enum": [
+        "Authorization",
+        "Capture",
         "Credit",
         "Debit",
-        "Capture",
-        "Authorization",
         "Void"
       ]
     },
@@ -81,8 +92,8 @@
     "vendor_id": {
       "description": "Platform Id of the vendor",
       "type": [
-        "string",
-        "number"
+        "number",
+        "string"
       ],
       "minimum": 0
     },
@@ -94,10 +105,6 @@
       "description": "Number of withdrawals made by the user",
       "type": "number",
       "minimum": 0
-    },
-    "skip_publishing": {
-      "description": "Skip publishing the event",
-      "type": "boolean"
     }
   },
   "required": [

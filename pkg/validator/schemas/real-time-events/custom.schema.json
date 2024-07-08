@@ -4,43 +4,45 @@
   "title": "Custom Event (CUSTOM)",
   "type": "object",
   "properties": {
+    "data": {
+      "description": "Additional data for the event",
+      "type": "object"
+    },
+    "ip_address": {
+      "description": "The IP address",
+      "type": "string",
+      "format": "ipv4,ipv6"
+    },
     "notification_type": {
       "description": "The type of notification",
-      "type": "string"
-    },
-    "user_id": {
-      "description": "The ID of the user",
       "type": "string",
       "minLength": 1
     },
     "origin": {
       "description": "The origin of the event",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "timestamp": {
       "description": "The timestamp of the event",
       "type": "string",
       "format": "date-time"
     },
-    "data": {
-      "description": "Additional data for the event",
-      "type": "object"
-    },
     "user_agent": {
       "description": "The user agent",
       "type": "string"
     },
-    "ip_address": {
-      "description": "The IP address",
+    "user_id": {
+      "description": "The ID of the user",
       "type": "string",
-      "format": "ipv4"
+      "minLength": 1
     }
   },
   "required": [
+    "data",
     "notification_type",
-    "user_id",
     "origin",
     "timestamp",
-    "data"
+    "user_id"
   ]
 }

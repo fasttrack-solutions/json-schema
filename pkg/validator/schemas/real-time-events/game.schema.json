@@ -4,24 +4,37 @@
   "title": "Game Details (GAME)",
   "type": "object",
   "properties": {
+    "category": {
+      "description": "The category of the game",
+      "type": "string"
+    },
     "game_id": {
       "description": "The ID of the game",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
+    },
+    "is_live": {
+      "description": "Indicates if the game is live",
+      "type": "boolean"
     },
     "name": {
       "description": "The name of the game",
       "type": "string"
     },
-    "slug": {
-      "description": "The slug of the game",
+    "origin": {
+      "description": "The origin of the game",
       "type": "string"
     },
     "provider": {
       "description": "The provider of the game",
       "type": "string"
     },
-    "category": {
-      "description": "The category of the game",
+    "rtp": {
+      "description": "The return to player percentage of the game",
+      "type": "number"
+    },
+    "slug": {
+      "description": "The slug of the game",
       "type": "string"
     },
     "subcategory": {
@@ -30,32 +43,21 @@
     },
     "supported_devices": {
       "description": "The supported devices for the game",
-      "type": "array",
       "items": {
-        "type": "string",
         "enum": [
           "mobile",
           "desktop",
           "app",
           "unknown"
-        ]
-      }
-    },
-    "origin": {
-      "description": "The origin of the game",
-      "type": "string"
-    },
-    "is_live": {
-      "description": "Indicates if the game is live",
-      "type": "boolean"
-    },
-    "rtp": {
-      "description": "The return to player percentage of the game",
-      "type": "number"
+        ],
+        "type": "string"
+      },
+      "type": "array"
     }
   },
   "required": [
     "game_id",
-    "is_live"
+    "is_live",
+    "name"
   ]
 }
