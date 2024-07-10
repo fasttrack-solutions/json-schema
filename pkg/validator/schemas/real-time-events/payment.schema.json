@@ -14,9 +14,8 @@
       "type": "string"
     },
     "currency": {
-      "description": "Transactions currency in ISO 4217 format",
-      "type": "string",
-      "pattern": "^[A-Z]{3}$"
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
     },
     "deposit_count": {
       "description": "Number of deposits made by the user",

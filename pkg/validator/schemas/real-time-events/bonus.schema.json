@@ -28,8 +28,7 @@
     },
     "currency": {
       "description": "Currency",
-      "type": "string",
-      "pattern": "^[A-Z]{3}$"
+      "type": "string"
     },
     "exchange_rate": {
       "description": "The exchange rate at the timestamp",

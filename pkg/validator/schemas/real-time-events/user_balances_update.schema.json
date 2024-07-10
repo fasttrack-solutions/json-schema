@@ -13,8 +13,8 @@
             "minimum": 0
           },
           "currency": {
-            "type": "string",
-            "pattern": "^[A-Z]{3}$"
+            "description": "Currency code, e.g., 'USD'",
+            "type": "string"
           },
           "exchange_rate": {
             "type": "number",
@@ -45,10 +45,9 @@
       "format": "date-time"
     },
     "user_id": {
+      "description": "User Id",
       "type": "string",
-      "pattern": "^.*[a-zA-Z0-9]+.*$",
-      "minLength": 1,
-      "maxLength": 36
+      "minLength": 1
     }
   },
   "required": [

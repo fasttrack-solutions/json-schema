@@ -27,11 +27,8 @@
       "minimum": 0
     },
     "currency": {
-      "description": "Transactions currency in ISO 4217 format",
-      "type": "string",
-      "pattern": "^[A-Z]{3}$",
-      "minLength": 3,
-      "maxLength": 3
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
     },
     "exchange_rate": {
       "description": "Exchange rate",

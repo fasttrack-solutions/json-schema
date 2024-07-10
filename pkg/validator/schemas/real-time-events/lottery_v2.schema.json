@@ -12,10 +12,8 @@
       "type": "string"
     },
     "currency": {
-      "type": "string",
-      "pattern": "^[A-Z]{3}$",
-      "minLength": 3,
-      "maxLength": 3
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
     },
     "device_type": {
       "type": "string"

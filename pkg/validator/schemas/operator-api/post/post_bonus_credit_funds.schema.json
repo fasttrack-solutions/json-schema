@@ -31,8 +31,7 @@
       "type": "string",
       "message": {
         "format": "Field is required."
-      },
-      "pattern": "^[A-Z]{3}$"
+      }
     }
   },
   "required": [

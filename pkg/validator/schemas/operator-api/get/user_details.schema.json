@@ -42,8 +42,7 @@
     },
     "currency": {
       "description": "Preferred currency for the user's transactions.",
-      "type": "string",
-      "pattern": "^[A-Z]{3}$"
+      "type": "string"
     },
     "email": {
       "description": "Email address of the user.",

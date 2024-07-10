@@ -104,8 +104,8 @@
       "type": "number"
     },
     "currency": {
-      "type": "string",
-      "pattern": "^[A-Z]{3}$"
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
     },
     "device_type": {
       "type": "string"
