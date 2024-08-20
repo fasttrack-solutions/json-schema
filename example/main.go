@@ -9,7 +9,11 @@ import (
 
 func main() {
 
-	validatorClient, err := validator.NewClient()
+	validatorClient, err := validator.NewClient(validator.ValidationConfig{
+		ChangePaymentNegativeCountToZero: false,
+		DisableCurrencyValidation:        false,
+		EnableStringIDs:                  false,
+	})
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -17,21 +21,21 @@ func main() {
 
 	// Will validate a real time event
 	realtimeEventTestPayload := `{
-    "amount": 51.18,
-    "bonus_code": "BONUSCODE",
-    "currency": "USD",
-    "exchange_rate": 0.91,
-    "fee_amount": 1.61,
-    "note": "string",
-    "origin": "sub.example.com",
-    "payment_id": "123456",
-    "status": "Approved",
-    "timestamp": "2015-03-02T8:27:58.721607Z",
-    "type": "Debit",
-    "user_id": 123457,
-    "vendor_id": "123",
-    "vendor_name": "Vendor"
-}`
+		"amount": 51.18,
+		"bonus_code": "BONUSCODE",
+		"currency": "USD",
+		"exchange_rate": 0.91,
+		"fee_amount": 1.61,
+		"note": "string",
+		"origin": "sub.example.com",
+		"payment_id": "123456",
+		"status": "Approved",
+		"timestamp": "2015-03-02T8:27:58.721607Z",
+		"type": "Debit",
+		"user_id": 123457,
+		"vendor_id": "123",
+		"vendor_name": "Vendor"
+	}`
 
 	notificationType := "PAYMENT"
 	resultValidateEvent, errValidateEvent := validatorClient.ValidateRealTimeEvent(notificationType, []byte(realtimeEventTestPayload))

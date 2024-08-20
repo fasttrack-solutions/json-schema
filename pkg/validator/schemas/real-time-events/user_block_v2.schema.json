@@ -4,19 +4,19 @@
   "title": "User Block Event (USER_BLOCK_V2)",
   "type": "object",
   "properties": {
-    "user_id": {
-      "description": "The unique id of the user",
-      "type": "string",
-      "minLength": 1
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
     },
     "timestamp": {
       "description": "Timestamp of login in RFC3339 format",
       "type": "string",
       "format": "date-time"
     },
-    "origin": {
-      "description": "The Origin of the user",
-      "type": "string"
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
     }
   },
   "required": [

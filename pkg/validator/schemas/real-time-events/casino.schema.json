@@ -37,10 +37,7 @@
     },
     "game_id": {
       "description": "Game ID",
-      "type": [
-        "string",
-        "number"
-      ]
+      "type": "number"
     },
     "game_name": {
       "description": "Game Name",
@@ -108,10 +105,7 @@
     },
     "vendor_id": {
       "description": "Vendor ID",
-      "type": [
-        "string",
-        "number"
-      ]
+      "type": "number"
     },
     "vendor_name": {
       "description": "Vendor Name",

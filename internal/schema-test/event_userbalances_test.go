@@ -1,11 +1,10 @@
 package schemas
 
 import (
-	"path/filepath"
 	"testing"
-)
 
-var pathUserBalanceUpdate = filepath.Join(realtTimeSchemaPath, "/user_balances_update.schema.json")
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
+)
 
 func TestValidData_Realtime_Post_UserBalances(t *testing.T) {
 	tests := []schemaTest{
@@ -34,5 +33,5 @@ func TestValidData_Realtime_Post_UserBalances(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathUserBalanceUpdate, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeUserBalancesUpdate, tests, nil)
 }

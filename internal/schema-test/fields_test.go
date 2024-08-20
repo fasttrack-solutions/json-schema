@@ -42,47 +42,6 @@ var fieldValidators = []fieldValidator{
 	{keyUserBonusID, validateUserBonusIDField},
 }
 
-func createFieldTests(schema string, test schemaTest, enums *EventEnums) ([]schemaTest, error) {
-	var (
-		jsonData  map[string]interface{}
-		testCases []schemaTest
-		errors    []error
-	)
-
-	methodMap := make(map[string]func(string, schemaTest, *EventEnums) ([]schemaTest, error))
-	for _, validator := range fieldValidators {
-		methodMap[validator.fieldName] = validator.validator
-	}
-
-	err := json.Unmarshal([]byte(test.payload), &jsonData)
-	if err != nil {
-		return nil, fmt.Errorf("Failed to unmarshal payload: %v", err)
-	}
-
-	if enums == nil {
-		enums = &EventEnums{}
-	}
-
-	for key := range jsonData {
-		method, ok := methodMap[key]
-		if ok {
-			cassefs, err := method(schema, test, enums)
-			if err != nil {
-				errors = append(errors, fmt.Errorf("Failed to validate field %s: %v", key, err))
-				continue
-			}
-
-			testCases = append(testCases, cassefs...)
-		}
-	}
-
-	if len(errors) > 0 {
-		return nil, fmt.Errorf("Failed to validate payload: %v", errors)
-	}
-
-	return testCases, nil
-}
-
 func addFieldTestCases(fieldName string, test schemaTest, testCases []validationCase) ([]schemaTest, error) {
 	modifiedTestCases := make([]schemaTest, len(testCases))
 
@@ -146,6 +105,7 @@ func validateCurrencyField(schemaPath string, schema schemaTest, enums *EventEnu
 		allowSpace:     false,
 		allowSpecial:   false,
 		allowUpperCase: true,
+		includeNumeric: true,
 	}))
 }
 

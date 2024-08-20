@@ -41,7 +41,7 @@ func Test_loadSchemas(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			actualSchemas, actualRegistry, err := loadSchemas(tt.schemasPath, tt.notificationTypes)
+			actualSchemas, actualRegistry, err := loadSchemas(tt.schemasPath, tt.notificationTypes, ValidationConfig{})
 
 			if tt.expectError {
 				require.Error(t, err)

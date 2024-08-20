@@ -11,17 +11,19 @@ import (
 //go:embed schemas/*
 var schemasFileSystem embed.FS
 
-func loadSchemas(schemasPath string, notificationTypes []string) (map[string]gojsonschema.JSONLoader, map[string]map[string]interface{}, error) {
-	schemas := make(map[string]gojsonschema.JSONLoader, len(notificationTypes))
+func loadSchemas(schemasPath string, notificationTypes []string, config ValidationConfig) (map[string]gojsonschema.Schema, map[string]map[string]interface{}, error) {
+	schemas := make(map[string]gojsonschema.Schema, len(notificationTypes))
 	schemasRegistry := make(map[string]map[string]interface{}, len(notificationTypes))
 
 	for _, notificationType := range notificationTypes {
+		loader := gojsonschema.NewSchemaLoader()
+		loader.Validate = true
+		loader.Draft = gojsonschema.Draft7
+
 		fileData, err := readSchemaFile(schemasPath, notificationType)
 		if err != nil {
 			return nil, nil, err
 		}
-
-		schemas[notificationType] = gojsonschema.NewBytesLoader(fileData)
 
 		var unmarshalledSchema map[string]interface{}
 		err = json.Unmarshal(fileData, &unmarshalledSchema)
@@ -29,6 +31,14 @@ func loadSchemas(schemasPath string, notificationTypes []string) (map[string]goj
 			return nil, nil, fmt.Errorf("unmarshaling schema json: %v", err)
 		}
 
+		processConfig(notificationType, unmarshalledSchema, config)
+
+		schema, err := loader.Compile(gojsonschema.NewGoLoader(unmarshalledSchema))
+		if err != nil {
+			return nil, nil, fmt.Errorf("compiling schema for %s: %v", notificationType, err)
+		}
+
+		schemas[notificationType] = *schema
 		schemasRegistry[notificationType] = unmarshalledSchema
 	}
 
@@ -36,7 +46,9 @@ func loadSchemas(schemasPath string, notificationTypes []string) (map[string]goj
 }
 
 func readSchemaFile(schemasPath string, notificationType string) ([]byte, error) {
-	filename := fmt.Sprintf("%s/%s.schema.json", schemasPath, notificationType)
+	const schemaFilePath = "%s/%s.schema.json"
+
+	filename := fmt.Sprintf(schemaFilePath, schemasPath, notificationType)
 
 	fileData, err := schemasFileSystem.ReadFile(filename)
 	if err != nil {

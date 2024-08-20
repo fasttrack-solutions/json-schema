@@ -1,11 +1,10 @@
 package schemas
 
 import (
-	"path/filepath"
 	"testing"
-)
 
-var pathSportsbook = filepath.Join(realtTimeSchemaPath, "/sportsbook.schema.json")
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
+)
 
 func TestValidData_Realtime_Get_SportsSingle(t *testing.T) {
 	tests := []schemaTest{
@@ -58,7 +57,7 @@ func TestValidData_Realtime_Get_SportsSingle(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathSportsbook, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeSportsbook, tests, nil)
 }
 
 func TestValidData_Realtime_Get_SportsMulti(t *testing.T) {
@@ -150,7 +149,7 @@ func TestValidData_Realtime_Get_SportsMulti(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathSportsbook, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeSportsbook, tests, nil)
 }
 
 func TestValidData_Realtime_Get_SportsSettlment(t *testing.T) {
@@ -183,7 +182,7 @@ func TestValidData_Realtime_Get_SportsSettlment(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathSportsbook, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeSportsbook, tests, nil)
 }
 
 func TestValidData_Realtime_Get_SportsCashout(t *testing.T) {
@@ -216,7 +215,7 @@ func TestValidData_Realtime_Get_SportsCashout(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathSportsbook, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeSportsbook, tests, nil)
 }
 
 func TestValidData_Realtime_Get_SportsCashoutMulti(t *testing.T) {
@@ -249,5 +248,5 @@ func TestValidData_Realtime_Get_SportsCashoutMulti(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathSportsbook, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeSportsbook, tests, nil)
 }

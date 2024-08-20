@@ -3,10 +3,11 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var (
-	pathUserBlocks  = filepath.Join(operatorApiSchemaPath, "/get/user_blocks.schema.json")
 	pathUserBlockV2 = filepath.Join(realtTimeSchemaPath, "/user_block_v2.schema.json")
 )
 
@@ -32,7 +33,7 @@ func TestValidData_Operator_Get_UserBlocks(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathUserBlocks, tests, nil)
+	runOperatorTest(t, validator.GetUserBlocks, tests, nil)
 }
 
 func TestValidData_Realtime_Put_UserBlock(t *testing.T) {
@@ -48,5 +49,5 @@ func TestValidData_Realtime_Put_UserBlock(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathUserBlockV2, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeUserBlockV2, tests, nil)
 }

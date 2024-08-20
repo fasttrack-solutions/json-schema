@@ -3,6 +3,8 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var loginSchema = filepath.Join(realtTimeSchemaPath, "/login_v2.schema.json")
@@ -23,5 +25,5 @@ func TestValidData_Realtime_Post_Login(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, loginSchema, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeLoginV2, tests, nil)
 }

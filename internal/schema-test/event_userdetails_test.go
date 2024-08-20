@@ -49,5 +49,5 @@ func TestValidData_Operator_Get_UserDetails(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathUserDetails, tests, nil)
+	runOperatorTest(t, pathUserDetails, tests, nil)
 }

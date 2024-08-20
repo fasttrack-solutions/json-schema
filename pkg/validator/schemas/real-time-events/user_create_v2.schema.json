@@ -4,21 +4,16 @@
   "title": "User Registration Event (USER_CREATE_V2)",
   "type": "object",
   "properties": {
-    "user_id": {
-      "description": "The unique id of the user",
-      "type": "string",
-      "minLength": 1
+    "ip_address": {
+      "description": "IP Address",
+      "type": "string"
     },
     "note": {
       "description": "Notes",
       "type": "string"
     },
-    "user_agent": {
-      "description": "The client that is used in registration",
-      "type": "string"
-    },
-    "ip_address": {
-      "description": "IP Address",
+    "origin": {
+      "description": "The Origin of the user",
       "type": "string"
     },
     "timestamp": {
@@ -26,9 +21,14 @@
       "type": "string",
       "format": "date-time"
     },
-    "origin": {
-      "description": "The Origin of the user",
+    "user_agent": {
+      "description": "The client that is used in registration",
       "type": "string"
+    },
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
     }
   },
   "required": [

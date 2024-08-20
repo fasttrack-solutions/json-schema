@@ -19,5 +19,5 @@ func TestValidData_Operator_Error(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, errorSchema, tests, nil)
+	runOperatorTest(t, errorSchema, tests, nil)
 }
