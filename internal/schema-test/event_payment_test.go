@@ -3,6 +3,8 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var paymentSchema = filepath.Join(realtTimeSchemaPath, "/payment.schema.json")
@@ -31,7 +33,7 @@ func TestValidData_Realtime_Payment(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, paymentSchema, tests, &EventEnums{
+	runRealtimeTest(t, validator.NotificationTypePayment, tests, &EventEnums{
 		statusEnums: []string{"Approved"},
 		typeEnums:   []string{"Debit"},
 	})

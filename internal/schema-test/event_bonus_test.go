@@ -3,13 +3,12 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var (
-	bonusListSchema        = filepath.Join(operatorApiSchemaPath, "/get/bonus_list.schema.json")
-	bonusCreditSchema      = filepath.Join(operatorApiSchemaPath, "/post/bonus_credit.schema.json")
-	bonusCreditFundsSchema = filepath.Join(operatorApiSchemaPath, "/post/post_bonus_credit_funds.schema.json")
-	bonusRealtimeSchema    = filepath.Join(realtTimeSchemaPath, "/bonus.schema.json")
+	bonusRealtimeSchema = filepath.Join(realtTimeSchemaPath, "/bonus.schema.json")
 )
 
 func TestValidData_OperatorGetBonusList(t *testing.T) {
@@ -34,7 +33,7 @@ func TestValidData_OperatorGetBonusList(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, bonusListSchema, tests, nil)
+	runOperatorTest(t, validator.GetBonusList, tests, nil)
 }
 
 func TestValidData_OperatorPostBonsuCredit(t *testing.T) {
@@ -49,7 +48,7 @@ func TestValidData_OperatorPostBonsuCredit(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, bonusCreditSchema, tests, nil)
+	runOperatorTest(t, validator.PostBonusCredit, tests, nil)
 }
 
 func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
@@ -66,7 +65,7 @@ func TestValidData_OperatorPostBonusCreditFunds(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, bonusCreditFundsSchema, tests, nil)
+	runOperatorTest(t, validator.PostBonusCreditFunds, tests, nil)
 }
 
 func TestValidData_RealtimePostBonus(t *testing.T) {
@@ -99,7 +98,7 @@ func TestValidData_RealtimePostBonus(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, bonusRealtimeSchema, tests, &EventEnums{
+	runRealtimeTest(t, validator.NotificationTypeBonus, tests, &EventEnums{
 		statusEnums: []string{"Pending"},
 		typeEnums:   []string{"WelcomeBonus"},
 	})

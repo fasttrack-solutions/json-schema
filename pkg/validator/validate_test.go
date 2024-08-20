@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/xeipuuv/gojsonschema"
 )
 
 func TestClient_ValidateRealTimeEvent(t *testing.T) {
@@ -78,15 +77,8 @@ func TestClient_ValidateRealTimeEvent(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-
-			c := &Client{
-				realTimeSchemas: map[string]gojsonschema.JSONLoader{
-					"login_v2": gojsonschema.NewStringLoader(schemaJson),
-				},
-				operatorAPISchemas:         nil,
-				realTimeSchemaRegistry:     nil,
-				operatorAPISchemasRegistry: nil,
-			}
+			c, err := NewClient(ValidationConfig{})
+			require.NoError(t, err)
 
 			actualValidationError, err := c.ValidateRealTimeEvent(tt.args.notificationType, tt.args.payload)
 			if tt.expectError {
@@ -176,14 +168,8 @@ func TestClient_ValidateOperatorAPIResponse(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Client{
-				realTimeSchemas: nil,
-				operatorAPISchemas: map[string]gojsonschema.JSONLoader{
-					"bonus_credit": gojsonschema.NewStringLoader(schemaJson),
-				},
-				realTimeSchemaRegistry:     nil,
-				operatorAPISchemasRegistry: nil,
-			}
+			c, err := NewClient(ValidationConfig{})
+			require.NoError(t, err)
 
 			actualValidationError, err := c.ValidateOperatorAPIResponse(tt.args.endpoint, tt.args.payload)
 			if tt.expectError {

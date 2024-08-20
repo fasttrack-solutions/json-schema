@@ -3,6 +3,8 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var gameListSchema = filepath.Join(realtTimeSchemaPath, "/game.schema.json")
@@ -31,5 +33,5 @@ func loadTestsRealtimePostGame() []schemaTest {
 func TestValidData_Realtime_Post_Game(t *testing.T) {
 	tests := loadTestsRealtimePostGame()
 
-	runTestCases(t, gameListSchema, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeGame, tests, nil)
 }

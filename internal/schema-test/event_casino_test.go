@@ -1,11 +1,10 @@
 package schemas
 
 import (
-	"path/filepath"
 	"testing"
-)
 
-var casinoSchema = filepath.Join(realtTimeSchemaPath, "/casino.schema.json")
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
+)
 
 func TestValidData_RealtimeCasinoBet(t *testing.T) {
 	tests := []schemaTest{
@@ -43,7 +42,7 @@ func TestValidData_RealtimeCasinoBet(t *testing.T) {
 		},
 	}
 
-	runTestsRealtimeCasino(t, casinoSchema, tests, EventEnums{
+	runTestsRealtimeCasino(t, tests, EventEnums{
 		typeEnums: []string{"Bet"},
 	})
 }
@@ -84,11 +83,11 @@ func TestValidData_RealtimeCasinoWin(t *testing.T) {
 		},
 	}
 
-	runTestsRealtimeCasino(t, casinoSchema, tests, EventEnums{
+	runTestsRealtimeCasino(t, tests, EventEnums{
 		typeEnums: []string{"Bet", "Win"},
 	})
 }
 
-func runTestsRealtimeCasino(t *testing.T, schema string, schemaTests []schemaTest, enums EventEnums) {
-	runTestCases(t, schema, schemaTests, &enums)
+func runTestsRealtimeCasino(t *testing.T, schemaTests []schemaTest, enums EventEnums) {
+	runRealtimeTest(t, validator.NotificationTypeCasino, schemaTests, &enums)
 }

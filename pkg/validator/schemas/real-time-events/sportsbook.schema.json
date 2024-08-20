@@ -194,5 +194,48 @@
     "status",
     "timestamp",
     "user_id"
-  ]
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "bet_type": {
+            "const": "Single"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bets": {
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "bet_type": {
+            "const": "Multi"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "bets": {
+            "minItems": 2
+          }
+        }
+      }
+    }
+  ],
+  "dependentRequired": {
+    "odds": [
+      "bets"
+    ],
+    "bets": [
+      "odds"
+    ]
+  }
 }

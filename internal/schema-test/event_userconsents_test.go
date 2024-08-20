@@ -12,13 +12,13 @@ var (
 )
 
 func TestValidData_Operator_Get_UserConsents(t *testing.T) {
-	runTestCases(t, pathUserConsents, generateUserConsentTests(), nil)
+	runOperatorTest(t, pathUserConsents, generateUserConsentTests(), nil)
 }
 
 func TestValidData_Operator_Post_UserConsents(t *testing.T) {
-	runTestCases(t, pathPostUserConsents, generateUserConsentTests(), nil)
+	runOperatorTest(t, pathPostUserConsents, generateUserConsentTests(), nil)
 }
 
 func TestValidData_Realtime_Put_UserConsents(t *testing.T) {
-	runTestCases(t, pathUserConsentsV2, generateUserConsentsV2Tests(), nil)
+	runRealtimeTest(t, pathUserConsentsV2, generateUserConsentsV2Tests(), nil)
 }

@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-var pathUserUpdateV2 = filepath.Join(realtTimeSchemaPath, "/user_update_v2.schema.json")
-
 func TestValidData_Realtime_Put_UserUpdate(t *testing.T) {
 	tests := []schemaTest{
 		{
@@ -20,5 +18,7 @@ func TestValidData_Realtime_Put_UserUpdate(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathUserUpdateV2, tests, nil)
+	pathUserUpdateV2 := filepath.Join(realtTimeSchemaPath, "/user_update_v2.schema.json")
+
+	runRealtimeTest(t, pathUserUpdateV2, tests, nil)
 }

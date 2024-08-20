@@ -23,5 +23,5 @@ func TestValidData_Realtime_Post_UserRegistration(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, pathUserCreateV2, tests, nil)
+	runRealtimeTest(t, pathUserCreateV2, tests, nil)
 }

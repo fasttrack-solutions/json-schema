@@ -3,6 +3,8 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var customSMSSchema = filepath.Join(operatorApiSchemaPath, "/post/custom_sms.schema.json")
@@ -32,5 +34,5 @@ func TestValidData_Realtime_Post_SMS(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, customSMSSchema, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeCustom, tests, nil)
 }

@@ -3,6 +3,8 @@ package schemas
 import (
 	"path/filepath"
 	"testing"
+
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
 )
 
 var lotterySchema = filepath.Join(realtTimeSchemaPath, "/lottery.schema.json")
@@ -58,7 +60,7 @@ func TestValidData_Realtime_Post_LotteryPurchase(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, lotteryV2Schema, tests, &EventEnums{
+	runRealtimeTest(t, lotteryV2Schema, tests, &EventEnums{
 		typeEnums: []string{"Bet"},
 	})
 }
@@ -104,7 +106,7 @@ func TestValidData_Realtime_Post_LotterySettlement(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, lotteryV2Schema, tests, &EventEnums{
+	runRealtimeTest(t, lotteryV2Schema, tests, &EventEnums{
 		typeEnums: []string{"Settlement"},
 	})
 }
@@ -149,7 +151,7 @@ func TestValidData_Realtime_Post_LotterySubscription(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, lotterySchema, tests, &EventEnums{})
+	runRealtimeTest(t, lotterySchema, tests, &EventEnums{})
 }
 
 func TestValidData_Realtime_Post_LotteryCart(t *testing.T) {
@@ -218,7 +220,7 @@ func TestValidData_Realtime_Post_LotteryCart(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, cartSchema, tests, &EventEnums{
+	runRealtimeTest(t, validator.NotificationTypeCart, tests, &EventEnums{
 		statusEnums: []string{"Successful"},
 		typeEnums:   []string{"Checkout"},
 	})

@@ -5,17 +5,18 @@ import (
 )
 
 type Client struct {
-	realTimeSchemas, operatorAPISchemas                map[string]gojsonschema.JSONLoader
+	realTimeSchemas, operatorAPISchemas                map[string]gojsonschema.Schema
 	realTimeSchemaRegistry, operatorAPISchemasRegistry map[string]map[string]interface{}
+	ValidationConfig
 }
 
-func NewClient() (*Client, error) {
-	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, getNotificationTypes())
+func NewClient(config ValidationConfig) (*Client, error) {
+	eventSchemas, eventSchemaRegistry, err := loadSchemas(pathSchemasRealTime, getNotificationTypes(), config)
 	if err != nil {
 		return nil, err
 	}
 
-	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, getOperatorAPIEndpoints())
+	operatorAPISchemas, operatorAPISchemasRegistry, err := loadSchemas(pathSchemasOperatorAPI, getOperatorAPIEndpoints(), config)
 	if err != nil {
 		return nil, err
 	}
@@ -36,32 +37,4 @@ func (c *Client) GetEventSchemas() map[string]map[string]interface{} {
 // GetOperatorAPISchemas returns schemas for real time events in a map string (payload type) gojsonschema
 func (c *Client) GetOperatorAPISchemas() map[string]map[string]interface{} {
 	return c.operatorAPISchemasRegistry
-}
-
-func getNotificationTypes() []string {
-	return []string{
-		"bonus",
-		"cart",
-		"casino",
-		"custom",
-		"game",
-		"login_v2",
-		"lottery_v2",
-		"lottery",
-		"payment",
-		"sportsbook",
-		"user_balances_update",
-		"user_block_v2",
-		"user_consents_v2",
-		"user_create_v2",
-		"user_update_v2",
-	}
-}
-
-func getOperatorAPIEndpoints() []string {
-	return []string{
-		"user_details",
-		"user_blocks",
-		"user_consents",
-	}
 }

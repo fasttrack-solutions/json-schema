@@ -1,11 +1,10 @@
 package schemas
 
 import (
-	"path/filepath"
 	"testing"
-)
 
-var customEventsSchema = filepath.Join(realtTimeSchemaPath, "/custom.schema.json")
+	"github.com/fasttrack-solutions/json-schema/pkg/validator"
+)
 
 func TestValidData_Realtime_Post_CustomEvent(t *testing.T) {
 	tests := []schemaTest{
@@ -26,5 +25,5 @@ func TestValidData_Realtime_Post_CustomEvent(t *testing.T) {
 		},
 	}
 
-	runTestCases(t, customEventsSchema, tests, nil)
+	runRealtimeTest(t, validator.NotificationTypeCustom, tests, nil)
 }

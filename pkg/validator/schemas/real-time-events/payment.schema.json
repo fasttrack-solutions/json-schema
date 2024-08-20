@@ -46,11 +46,8 @@
       "minLength": 1
     },
     "payment_id": {
-      "description": "Platform Id of the payment",
-      "type": [
-        "string",
-        "number"
-      ]
+      "description": "Platform ID of the payment",
+      "type": "number"
     },
     "skip_publishing": {
       "description": "Skip publishing the event",
