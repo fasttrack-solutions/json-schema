@@ -21,7 +21,14 @@
     "birth_date": {
       "description": "User's birth date in YYYY-MM-DD format.",
       "type": "string",
-      "format": "date",
+      "anyOf": [
+        {
+          "format": "date"
+        },
+        {
+          "maxLength": 0
+        }
+      ],
       "message": {
         "format": "Field is required in DATE format. Can be left as an empty string"
       }
@@ -47,7 +54,14 @@
     "email": {
       "description": "Email address of the user.",
       "type": "string",
-      "format": "email",
+      "anyOf": [
+        {
+          "format": "email"
+        },
+        {
+          "maxLength": 0
+        }
+      ],
       "message": {
         "format": "Field is required. Can be left as an empty string"
       }
@@ -190,7 +204,14 @@
     "verified_at": {
       "description": "Timestamp of when the user's account was verified, optional. In RFC3339 format.",
       "type": "string",
-      "format": "date-time",
+      "anyOf": [
+        {
+          "format": "date-time"
+        },
+        {
+          "maxLength": 0
+        }
+      ],
       "message": {
         "format": "Expected format 2023-03-02T8:27:58Z, given: {0}",
         "type": "expected string"
