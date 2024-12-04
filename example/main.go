@@ -16,22 +16,24 @@ func main() {
 	}
 
 	// Will validate a real time event
-	realtimeEventTestPayload := `{
-    "amount": 51.18,
-    "bonus_code": "BONUSCODE",
-    "currency": "USD",
-    "exchange_rate": 0.91,
-    "fee_amount": 1.61,
-    "note": "string",
-    "origin": "sub.example.com",
-    "payment_id": "123456",
-    "status": "Approved",
-    "timestamp": "2015-03-02T8:27:58.721607Z",
-    "type": "Debit",
-    "user_id": 123457,
-    "vendor_id": "123",
-    "vendor_name": "Vendor"
-}`
+	realtimeEventTestPayload := `
+		{
+			"amount": 51.18,
+			"bonus_code": "BONUSCODE",
+			"currency": "USD",
+			"exchange_rate": 0.91,
+			"fee_amount": 1.61,
+			"note": "string",
+			"origin": "sub.example.com",
+			"payment_id": "123456",
+			"status": "Approved",
+			"timestamp": "2015-03-02T8:27:58.721607Z",
+			"type": "Debit",
+			"user_id": 123457,
+			"vendor_id": "123",
+			"vendor_name": "Vendor"
+		}
+	`
 
 	notificationType := "PAYMENT"
 	resultValidateEvent, errValidateEvent := validatorClient.ValidateRealTimeEvent(notificationType, []byte(realtimeEventTestPayload))
@@ -52,22 +54,24 @@ func main() {
 	}
 
 	// Will validate an operator API response
-	operatorAPITestResponse := `{
-		"amount": "32.76",
-		"bonus_code": "CHRISTMAS2023",
-		"currency": "USD",
-		"exchange_rate": 0.91,
-		"fee_amount": 2.34,
-		"note": "string",
-		"origin": "sub.example.com",
-		"payment_id": "23541",
-		"status": "Approved",
-		"timestamp": "2015-03-02T8:27:58.721607Z",
-		"type": "Debit",
-		"user_id": "7865312321",
-		"vendor_id": "562",
-		"vendor_name": "Skrill"
-	}`
+	operatorAPITestResponse := `
+		{
+			"amount": "32.76",
+			"bonus_code": "CHRISTMAS2023",
+			"currency": "USD",
+			"exchange_rate": 0.91,
+			"fee_amount": 2.34,
+			"note": "string",
+			"origin": "sub.example.com",
+			"payment_id": "23541",
+			"status": "Approved",
+			"timestamp": "2015-03-02T8:27:58.721607Z",
+			"type": "Debit",
+			"user_id": "7865312321",
+			"vendor_id": "562",
+			"vendor_name": "Skrill"
+		}
+	`
 
 	endpoint := "user_details"
 	resultValidateOperatorAPIResponse, errValidateOperatorAPIResponse := validatorClient.ValidateOperatorAPIResponse(endpoint, []byte(operatorAPITestResponse))

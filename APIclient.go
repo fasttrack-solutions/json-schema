@@ -15,6 +15,8 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
+const schemasFolderPath = "pkg/validator/schemas"
+
 type APIClient struct {
 	baseURL   string
 	authToken string
@@ -40,8 +42,6 @@ func (c *APIClient) CallAPI(t *testing.T, endpoint string, expectedStatusCode in
 }
 
 func (c *APIClient) ValidateResponse(t *testing.T, response interface{}, schemaFilename string) {
-	const schemasFolderPath = "pkg/validator/schemas"
-
 	schemaPath := filepath.Join(schemasFolderPath, schemaFilename)
 	schemaContent, err := os.ReadFile(schemaPath)
 	if err != nil {

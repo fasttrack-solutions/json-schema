@@ -1,0 +1,37 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-tags",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Tag Event (USER_TAG)",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    },
+    "tags": {
+      "description": "The tags associated with the user",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin",
+    "tags",
+    "skip_publishing"
+  ]
+}
