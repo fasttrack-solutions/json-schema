@@ -1,15 +1,11 @@
 {
-  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-tags",
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-migration",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "User Tag Event (USER_TAG)",
+  "title": "User Migration Event (USER_MIGRATION)",
   "type": "object",
   "properties": {
-    "tags": {
-      "description": "The tags associated with the user",
-      "type": "string"
-    },
-    "origin": {
-      "description": "The Origin of the user",
+    "migration_reference": {
+      "description": "The reference of the migration",
       "type": "string"
     },
     "timestamp": {
@@ -22,13 +18,17 @@
       "type": "string",
       "minLength": 1
     },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
     "skip_publishing": {
       "description": "Flag to skip publishing",
       "type": "boolean"
     }
   },
   "required": [
-    "tags",
+    "migration_reference",
     "timestamp",
     "user_id",
     "origin"

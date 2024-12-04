@@ -56,6 +56,7 @@ func getNotificationTypes() []string {
 		"user_create_v2",
 		"user_update_v2",
 		"user_tags",
+		"user_migration",
 	}
 }
 
