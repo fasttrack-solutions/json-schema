@@ -1,0 +1,59 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/balances",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Balance Update Event (USER_BALANCES_UPDATE)",
+  "type": "object",
+  "properties": {
+    "balances": {
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "currency": {
+            "description": "Currency code, e.g., 'USD'",
+            "type": "string"
+          },
+          "exchange_rate": {
+            "type": "number",
+            "minimum": 0
+          },
+          "key": {
+            "type": "string",
+            "enum": [
+              "real_money",
+              "bonus_money"
+            ]
+          }
+        },
+        "required": [
+          "amount",
+          "currency",
+          "key",
+          "exchange_rate"
+        ]
+      },
+      "type": "array"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_id": {
+      "description": "User Id",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "balances",
+    "origin",
+    "timestamp",
+    "user_id"
+  ]
+}

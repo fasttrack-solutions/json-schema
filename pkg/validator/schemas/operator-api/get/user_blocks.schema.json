@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Blocks",
+  "description": "Schema for the response of the /userblocks/:userid endpoint. It provides a list of blocks associated with a user.",
+  "type": "object",
+  "properties": {
+    "blocks": {
+      "description": "List of blocks associated with the user, specifically one 'Excluded' and one 'Blocked'.",
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "description": "Indicates whether the block is currently active.",
+            "type": "boolean",
+            "message": {
+              "format": "Field is required."
+            }
+          },
+          "type": {
+            "description": "Type of block, either 'Excluded' or 'Blocked'.",
+            "type": "string",
+            "message": {
+              "format": "Field is required."
+            },
+            "enum": [
+              "Excluded",
+              "Blocked"
+            ]
+          },
+          "note": {
+            "description": "Note or reason for the block.",
+            "type": "string",
+            "message": {
+              "format": "Field is required but can be left empty."
+            }
+          }
+        },
+        "required": [
+          "active",
+          "type",
+          "note"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "blocks"
+  ],
+  "additionalProperties": false
+}

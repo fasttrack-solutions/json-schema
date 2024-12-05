@@ -1,0 +1,141 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/casino",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Casino Event (CASINO)",
+  "type": "object",
+  "properties": {
+    "activity_id": {
+      "description": "Unique ID for each event",
+      "type": "string"
+    },
+    "amount": {
+      "description": "The total amount (bonus_wager_amount + wager_amount + locked_wager_amount)",
+      "type": "number",
+      "minimum": 0
+    },
+    "balance_after": {
+      "description": "Player balance after the round is finished",
+      "type": "number"
+    },
+    "balance_before": {
+      "description": "Player balance before the round started",
+      "type": "number"
+    },
+    "bonus_wager_amount": {
+      "description": "Amount (either bet or win) if the round was played using bonus money",
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
+    },
+    "exchange_rate": {
+      "description": "Exchange rate",
+      "type": "number",
+      "minimum": 0
+    },
+    "game_id": {
+      "description": "Game ID",
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "game_name": {
+      "description": "Game Name",
+      "type": "string",
+      "minLength": 1
+    },
+    "game_type": {
+      "description": "Game Type as defined in the platform",
+      "type": "string"
+    },
+    "is_round_end": {
+      "description": "Is the round ended?",
+      "type": "boolean"
+    },
+    "locked_wager_amount": {
+      "description": "Amount (either bet or win) if the round was played using money from a 'locked' wallet (when bonus and real money is combined)",
+      "type": "number",
+      "minimum": 0
+    },
+    "meta": {
+      "description": "Used for miscellaneous/auxiliary values that are brand specific",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "origin": {
+      "description": "Origin of the event",
+      "type": "string",
+      "minLength": 1
+    },
+    "round_id": {
+      "description": "Round ID, send same for Bet & Win",
+      "type": "string",
+      "minLength": 1
+    },
+    "skip_publishing": {
+      "type": "boolean"
+    },
+    "status": {
+      "description": "Status, indicates whether the event should be reversed or not",
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Rollback"
+      ]
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "description": "Type, either 'Bet' or 'Win'",
+      "type": "string",
+      "enum": [
+        "Bet",
+        "Win"
+      ]
+    },
+    "user_id": {
+      "description": "User ID",
+      "type": "string",
+      "minLength": 1
+    },
+    "vendor_id": {
+      "description": "Vendor ID",
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "vendor_name": {
+      "description": "Vendor Name",
+      "type": "string"
+    },
+    "wager_amount": {
+      "description": "Amount (either bet or win) if the round was played using real money",
+      "type": "number"
+    }
+  },
+  "required": [
+    "activity_id",
+    "amount",
+    "currency",
+    "exchange_rate",
+    "game_id",
+    "game_name",
+    "is_round_end",
+    "origin",
+    "round_id",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "vendor_id"
+  ]
+}

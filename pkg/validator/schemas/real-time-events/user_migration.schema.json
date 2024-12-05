@@ -1,0 +1,36 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-migration",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Migration Event (USER_MIGRATION)",
+  "type": "object",
+  "properties": {
+    "migration_reference": {
+      "description": "The reference of the migration",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "migration_reference",
+    "timestamp",
+    "user_id",
+    "origin"
+  ]
+}

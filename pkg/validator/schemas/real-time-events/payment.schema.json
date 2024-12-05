@@ -1,0 +1,120 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/payments",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Payment Event (PAYMENT)",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "description": "Amount",
+      "type": "number",
+      "minimum": 0
+    },
+    "bonus_code": {
+      "description": "Bonus code",
+      "type": "string"
+    },
+    "currency": {
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
+    },
+    "deposit_count": {
+      "description": "Number of deposits made by the user",
+      "type": "number",
+      "minimum": 0
+    },
+    "exchange_rate": {
+      "description": "The exchange rate at the timestamp",
+      "type": "number",
+      "minimum": 0
+    },
+    "fee_amount": {
+      "description": "Fee Amount, if not applicable then send 0",
+      "type": "number",
+      "minimum": 0
+    },
+    "meta": {
+      "description": "Additional information",
+      "type": "object"
+    },
+    "note": {
+      "description": "Any useful notes",
+      "type": "string"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "payment_id": {
+      "description": "Platform Id of the payment",
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "skip_publishing": {
+      "description": "Skip publishing the event",
+      "type": "boolean"
+    },
+    "status": {
+      "description": "Payment Status. Please select a value from the provided list of options",
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Cancelled",
+        "Rejected",
+        "Requested",
+        "Rollback"
+      ]
+    },
+    "timestamp": {
+      "description": "Timestamp of the payment in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "description": "Payment type. Please select a value from the provided list of options",
+      "type": "string",
+      "enum": [
+        "Authorization",
+        "Capture",
+        "Credit",
+        "Debit",
+        "Void"
+      ]
+    },
+    "user_id": {
+      "description": "User Id",
+      "type": "string",
+      "minLength": 1
+    },
+    "vendor_id": {
+      "description": "Platform Id of the vendor",
+      "type": [
+        "number",
+        "string"
+      ],
+      "minimum": 0
+    },
+    "vendor_name": {
+      "description": "Platform name of the vendor",
+      "type": "string"
+    },
+    "withdraw_count": {
+      "description": "Number of withdrawals made by the user",
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "amount",
+    "currency",
+    "origin",
+    "payment_id",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "vendor_id"
+  ]
+}

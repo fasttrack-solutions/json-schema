@@ -1,0 +1,157 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/lottery-and-scratch",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lottery Event (LOTTERY_V2)",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bonus_code": {
+      "type": "string"
+    },
+    "currency": {
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
+    },
+    "device_type": {
+      "type": "string"
+    },
+    "discount_amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "draw_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "draw_id": {
+      "type": "string",
+      "pattern": "^[0-9]+$",
+      "minLength": 1
+    },
+    "draw_numbers": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "draw_special_numbers": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "exchange_rate": {
+      "type": "number",
+      "minimum": 0
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "is_free_bet": {
+            "type": "boolean"
+          },
+          "is_quick_pick": {
+            "type": "boolean"
+          },
+          "is_winning_line": {
+            "type": "boolean"
+          },
+          "line_id": {
+            "type": "number"
+          },
+          "matched_numbers": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "matched_special_numbers": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "meta": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "numbers": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "special_numbers": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "line_id"
+        ]
+      }
+    },
+    "lottery_id": {
+      "type": "string",
+      "pattern": "^[0-9]+$",
+      "minLength": 1
+    },
+    "lottery_name": {
+      "type": "string"
+    },
+    "lottery_type": {
+      "type": "string"
+    },
+    "meta": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "origin": {
+      "type": "string"
+    },
+    "skip_publishing": {
+      "type": "boolean"
+    },
+    "ticket_id": {
+      "type": "string",
+      "pattern": "^[0-9]+$",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Bet",
+        "Settlement"
+      ]
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "amount",
+    "currency",
+    "exchange_rate",
+    "lines",
+    "origin",
+    "timestamp",
+    "type",
+    "user_id"
+  ]
+}

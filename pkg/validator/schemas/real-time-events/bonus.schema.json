@@ -1,0 +1,124 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/bonus",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bonus Event (BONUS)",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "description": "Bonus amount",
+      "type": "number",
+      "minimum": 0,
+      "message": {
+        "format": "Field is required."
+      }
+    },
+    "bonus_code": {
+      "description": "Bonus code",
+      "type": "string"
+    },
+    "bonus_id": {
+      "description": "Bonus id",
+      "type": "string",
+      "minLength": 1
+    },
+    "bonus_turned_real": {
+      "description": "Bonus amount turned to real money: If wagering is finished",
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "description": "Currency",
+      "type": "string"
+    },
+    "exchange_rate": {
+      "description": "The exchange rate at the timestamp",
+      "type": "number",
+      "minimum": 0
+    },
+    "locked_amount": {
+      "description": "Bonus amount locked to wagering",
+      "type": "number",
+      "minimum": 0
+    },
+    "meta": {
+      "description": "If meta data is required to be sent",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "origin": {
+      "description": "Origin",
+      "type": "string"
+    },
+    "product": {
+      "description": "Product type",
+      "type": "string",
+      "enum": [
+        "Casino",
+        "Sportsbook",
+        "Lotto",
+        "Poker"
+      ]
+    },
+    "required_wagering_amount": {
+      "description": "Required wagering amount of bonus",
+      "type": "number",
+      "minimum": 0
+    },
+    "status": {
+      "description": "Bonus status",
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Created",
+        "Ongoing",
+        "Completed",
+        "AutoCompleted",
+        "Forfeited",
+        "Expired",
+        "Lost",
+        "Reversed",
+        "NotApplicable",
+        "Claimed"
+      ]
+    },
+    "timestamp": {
+      "description": "Timestamp",
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "description": "Bonus type",
+      "type": "string",
+      "minLength": 1
+    },
+    "user_bonus_id": {
+      "description": "User bonus id",
+      "type": "string",
+      "minLength": 1
+    },
+    "user_id": {
+      "description": "User id",
+      "type": "string",
+      "minLength": 1
+    },
+    "skip_publishing": {
+      "description": "Skip publishing the event",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "amount",
+    "bonus_id",
+    "currency",
+    "exchange_rate",
+    "origin",
+    "product",
+    "status",
+    "timestamp",
+    "type",
+    "user_bonus_id",
+    "user_id"
+  ]
+}

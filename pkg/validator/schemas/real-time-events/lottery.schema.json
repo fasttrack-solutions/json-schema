@@ -1,0 +1,115 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/lottery-and-scratch",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lottery Event (LOTTERY_V2)",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "account_amount": {
+      "type": "number"
+    },
+    "bonus_amount": {
+      "type": "number"
+    },
+    "bonus_code": {
+      "type": "string"
+    },
+    "currency": {
+      "description": "Currency code, e.g., 'USD'",
+      "type": "string"
+    },
+    "deposit_amount": {
+      "type": "number"
+    },
+    "exchange_rate": {
+      "type": "number",
+      "minimum": 0
+    },
+    "origin": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Rejected"
+      ]
+    },
+    "tickets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ticket_id",
+          "product",
+          "product_name",
+          "amount",
+          "lines_count",
+          "draws"
+        ],
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "product": {
+            "type": "string"
+          },
+          "product_name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "lines_count": {
+            "type": "number"
+          },
+          "draws": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "timestamp"
+              ],
+              "properties": {
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "account_amount",
+    "amount",
+    "bonus_amount",
+    "bonus_code",
+    "currency",
+    "deposit_amount",
+    "exchange_rate",
+    "origin",
+    "status",
+    "tickets",
+    "timestamp",
+    "transaction_id",
+    "user_id"
+  ]
+}

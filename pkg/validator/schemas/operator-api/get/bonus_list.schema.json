@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bonus List",
+  "description": "Schema for a response that includes a Data array with multiple objects, each containing 'text' and 'value' fields.",
+  "type": "object",
+  "properties": {
+    "Data": {
+      "description": "An array of objects, each with 'text' and 'value' fields.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "description": "Bonus description.",
+            "type": "string",
+            "message": {
+              "format": "Field is required."
+            }
+          },
+          "value": {
+            "description": "Bonus Code that is expected in the /bonus/credit payload",
+            "type": "string",
+            "message": {
+              "format": "Field is required."
+            }
+          }
+        },
+        "required": [
+          "text",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "Success": {
+      "description": "Indicates whether the operation was successful.",
+      "type": "boolean",
+      "message": {
+        "format": "Field is required."
+      }
+    },
+    "Errors": {
+      "description": "List of errors, if any.",
+      "type": "array",
+      "message": {
+        "format": "Field is required."
+      },
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "Data",
+    "Success",
+    "Errors"
+  ],
+  "additionalProperties": false
+}

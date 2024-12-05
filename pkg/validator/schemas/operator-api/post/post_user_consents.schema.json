@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Request payload schema for POST /userconsents/:userid. It specifies a single user consent preference.",
+  "type": "object",
+  "properties": {
+    "consents": {
+      "description": "A list containing a single user consent preference.",
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "properties": {
+          "opted_in": {
+            "description": "Indicates whether the user has opted in for the specified communication type.",
+            "type": "boolean"
+          },
+          "type": {
+            "description": "Type of communication consented to. Allowed values include 'email', 'sms', etc.",
+            "type": "string",
+            "enum": [
+              "email",
+              "sms",
+              "telephone",
+              "postMail",
+              "siteNotification",
+              "pushNotification"
+            ]
+          }
+        },
+        "required": [
+          "opted_in",
+          "type"
+        ]
+      }
+    }
+  },
+  "required": [
+    "consents"
+  ],
+  "additionalProperties": false
+}

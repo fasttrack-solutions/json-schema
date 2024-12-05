@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for the request payload of POST /bonus/credit/funds. It specifies the user identifier, a bonus code, the amount, and the currency.",
+  "properties": {
+    "user_id": {
+      "description": "The unique identifier of the user.",
+      "type": "string",
+      "minLength": 1,
+      "message": {
+        "format": "Field is required."
+      }
+    },
+    "bonus_code": {
+      "description": "The code representing a specific bonus.",
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      }
+    },
+    "amount": {
+      "description": "The amount of funds to credit.",
+      "type": "number",
+      "minimum": 0,
+      "message": {
+        "format": "Field is required."
+      }
+    },
+    "currency": {
+      "description": "The currency code for the amount, e.g., 'USD'.",
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      }
+    }
+  },
+  "required": [
+    "user_id",
+    "bonus_code",
+    "amount",
+    "currency"
+  ],
+  "additionalProperties": false
+}

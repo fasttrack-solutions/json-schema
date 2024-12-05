@@ -4,15 +4,18 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/gavv/httpexpect/v2"
-	"github.com/xeipuuv/gojsonschema"
 	"log"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/gavv/httpexpect/v2"
+	"github.com/xeipuuv/gojsonschema"
 )
+
+const schemasFolderPath = "pkg/validator/schemas"
 
 type APIClient struct {
 	baseURL   string
@@ -39,7 +42,7 @@ func (c *APIClient) CallAPI(t *testing.T, endpoint string, expectedStatusCode in
 }
 
 func (c *APIClient) ValidateResponse(t *testing.T, response interface{}, schemaFilename string) {
-	schemaPath := filepath.Join("validation_schemas", schemaFilename)
+	schemaPath := filepath.Join(schemasFolderPath, schemaFilename)
 	schemaContent, err := os.ReadFile(schemaPath)
 	if err != nil {
 		t.Fatalf("Error reading schema from file: %s", err)

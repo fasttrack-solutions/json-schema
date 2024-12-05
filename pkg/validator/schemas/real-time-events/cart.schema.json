@@ -1,0 +1,160 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/lottery-and-scratch/cart",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lottery Cart Event (CART)",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "description": "Total amount of the cart",
+      "type": "number",
+      "minimum": 0
+    },
+    "bonus_code": {
+      "type": "string"
+    },
+    "cart_id": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string"
+    },
+    "device_type": {
+      "enum": [
+        "desktop",
+        "mobile",
+        "tablet",
+        "unkown"
+      ],
+      "type": "string"
+    },
+    "discount_amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "exchange_rate": {
+      "type": "number",
+      "minimum": 0
+    },
+    "items": {
+      "items": {
+        "properties": {
+          "amount": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "bonus_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "discount_amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "id": {
+            "type": "number",
+            "minimum": 0
+          },
+          "meta": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name",
+          "description",
+          "amount",
+          "discount_amount",
+          "bonus_code"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "meta": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "origin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payments": {
+      "items": {
+        "properties": {
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "meta": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "type",
+          "amount"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "Successful"
+      ],
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "enum": [
+        "Checkout"
+      ],
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "amount",
+    "cart_id",
+    "currency",
+    "discount_amount",
+    "status",
+    "timestamp",
+    "type",
+    "user_id",
+    "device_type",
+    "exchange_rate",
+    "origin",
+    "payments",
+    "items"
+  ]
+}

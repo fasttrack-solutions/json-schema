@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Schema for the request payload of POST /bonus/credit. It specifies the user identifier and a bonus code.",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique identifier of the user.",
+      "type": "string",
+      "minLength": 1,
+      "message": {
+        "format": "Field is required."
+      }
+    },
+    "bonus_code": {
+      "description": "The code representing a specific bonus.",
+      "type": "string",
+      "message": {
+        "format": "Field is required."
+      }
+    }
+  },
+  "required": [
+    "user_id",
+    "bonus_code"
+  ],
+  "additionalProperties": false
+}

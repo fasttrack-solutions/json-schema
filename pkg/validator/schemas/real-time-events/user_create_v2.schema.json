@@ -1,0 +1,39 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/registrations",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Registration Event (USER_CREATE_V2)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "note": {
+      "description": "Notes",
+      "type": "string"
+    },
+    "user_agent": {
+      "description": "The client that is used in registration",
+      "type": "string"
+    },
+    "ip_address": {
+      "description": "IP Address",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp of registration in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin"
+  ]
+}
