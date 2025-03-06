@@ -33,7 +33,8 @@
           "currency",
           "key",
           "exchange_rate"
-        ]
+        ],
+        "additionalProperties": true
       },
       "type": "array"
     },
