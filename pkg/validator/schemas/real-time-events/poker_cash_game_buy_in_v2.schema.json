@@ -1,5 +1,5 @@
 {
-    "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data",
+    "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/poker-cash-game-buy-in",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Poker Cash Game Buy In Event (POKER_CASH_GAME_BUY_IN_V2)",
     "type": "object",
