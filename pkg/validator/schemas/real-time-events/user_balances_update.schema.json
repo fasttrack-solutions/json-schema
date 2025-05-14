@@ -24,7 +24,8 @@
             "type": "string",
             "enum": [
               "real_money",
-              "bonus_money"
+              "bonus_money",
+              "locked_money"
             ]
           }
         },
