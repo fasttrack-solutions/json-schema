@@ -21,6 +21,8 @@
       }
     },
     "required": [
+      "currency",
+      "exchange_rate",
       "status",
       "timestamp",
       "user_id"
