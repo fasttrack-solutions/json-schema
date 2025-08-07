@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	logger "github.com/sirupsen/logrus"
 	"github.com/xeipuuv/gojsonschema"
 )
 
@@ -22,6 +23,9 @@ func (c *Client) ValidateRealTimeEvent(notificationType string, payload []byte) 
 // ValidateOperatorAPIResponse validates the given payload against the operator API schemas.
 // Allowed operator API endpoints are: user_details, user_blocks, user_consents
 func (c *Client) ValidateOperatorAPIResponse(endpoint string, payload []byte) ([]ValidationError, error) {
+	logger.Debugf("PAYLOAD %s", string(payload))
+	logger.Debugf("VALIDATING %s", endpoint)
+	logger.Debugf("SCHEMA %s", c.operatorAPISchemas[endpoint])
 	return validatePayload(endpoint, payload, c.operatorAPISchemas)
 }
 
