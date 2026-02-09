@@ -120,6 +120,10 @@
     "wager_amount": {
       "description": "Amount (either bet or win) if the round was played using real money",
       "type": "number"
+    },
+    "is_free_money": {
+      "description": "Sweepstakes partner is using free to play currency",
+      "type": "boolean"
     }
   },
   "required": [
