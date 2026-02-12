@@ -61,6 +61,7 @@ func getNotificationTypes() []string {
 		"poker_tournament_cash_out_v2",
 		"poker_cash_game_buy_in_v2",
 		"poker_cash_game_cash_out_v2",
+		"it_ping",
 	}
 }
 
