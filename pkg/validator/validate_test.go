@@ -101,6 +101,84 @@ func TestClient_ValidateRealTimeEvent(t *testing.T) {
 	}
 }
 
+func TestClient_ValidateRealTimeEvent_ITPing(t *testing.T) {
+	// Use real embedded schemas via NewClient to verify the it_ping schema loads and validates correctly.
+	c, err := NewClient()
+	require.NoError(t, err)
+
+	tests := []struct {
+		name                     string
+		notificationType         string
+		payload                  string
+		expectedValidationErrors []ValidationError
+		expectError              bool
+	}{
+		{
+			name:             "Valid IT_PING payload",
+			notificationType: "IT_PING",
+			payload:          `{"ping_id":"6e16158b-df22-4a52-9a5d-12ff1b71da09","user_id":"-1","timestamp":"2026-02-03T19:44:35Z","origin":"defaultorigin"}`,
+		},
+		{
+			name:             "Valid it_ping payload (lowercase type)",
+			notificationType: "it_ping",
+			payload:          `{"ping_id":"abc-123","user_id":"42","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
+		},
+		{
+			name:             "Missing required field ping_id",
+			notificationType: "IT_PING",
+			payload:          `{"user_id":"-1","timestamp":"2026-02-03T19:44:35Z","origin":"defaultorigin"}`,
+			expectedValidationErrors: []ValidationError{
+				{
+					Path:  "(root)",
+					Error: "ping_id is required",
+				},
+			},
+		},
+		{
+			name:             "Missing multiple required fields",
+			notificationType: "IT_PING",
+			payload:          `{"ping_id":"abc-123"}`,
+			expectedValidationErrors: []ValidationError{
+				{
+					Path:  "(root)",
+					Error: "origin is required",
+				},
+				{
+					Path:  "(root)",
+					Error: "timestamp is required",
+				},
+				{
+					Path:  "(root)",
+					Error: "user_id is required",
+				},
+			},
+		},
+		{
+			name:             "Invalid user_id type (integer instead of string)",
+			notificationType: "IT_PING",
+			payload:          `{"ping_id":"abc-123","user_id":42,"timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
+			expectedValidationErrors: []ValidationError{
+				{
+					Path:  "(root).user_id",
+					Error: "Invalid type. Expected: string, given: integer",
+				},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			validationErrors, err := c.ValidateRealTimeEvent(tt.notificationType, []byte(tt.payload))
+			if tt.expectError {
+				require.Error(t, err)
+				return
+			}
+			require.NoError(t, err)
+			require.Equal(t, tt.expectedValidationErrors, validationErrors)
+		})
+	}
+}
+
 func TestClient_ValidateOperatorAPIResponse(t *testing.T) {
 	const (
 		testValidEvent   = `{"user_id":"123abc","bonus_code":"xyz"}`
