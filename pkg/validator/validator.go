@@ -57,6 +57,7 @@ func getNotificationTypes() []string {
 		"user_update_v2",
 		"user_tags",
 		"user_migration",
+		"user_migration_approve",
 		"poker_tournament_buy_in_v2",
 		"poker_tournament_cash_out_v2",
 		"poker_cash_game_buy_in_v2",
