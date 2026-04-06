@@ -82,7 +82,10 @@
               ],
               "type": "object"
             },
-            "type": "array"
+            "type": [
+              "array",
+              "null"
+            ]
           },
           "sports_name": {
             "type": "string"
