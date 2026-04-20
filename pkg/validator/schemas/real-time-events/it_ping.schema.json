@@ -1,0 +1,34 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/it-ping",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Integration Testing Ping Event (IT_PING)",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "description": "The origin of the event",
+      "type": "string",
+      "minLength": 1
+    },
+    "ping_id": {
+      "description": "Unique identifier for the ping",
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "description": "The timestamp of the event",
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_id": {
+      "description": "The ID of the user",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "origin",
+    "ping_id",
+    "timestamp",
+    "user_id"
+  ]
+}
