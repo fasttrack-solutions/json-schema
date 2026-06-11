@@ -1,0 +1,34 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-agent",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Agent Event (USER_AGENT)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "integer"
+    },
+    "user_agent": {
+      "description": "The user agent of the user",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin"
+  ]
+}

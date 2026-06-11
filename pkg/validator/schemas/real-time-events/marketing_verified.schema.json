@@ -1,0 +1,36 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/marketing-verified",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Marketing Verified Event (MARKETING_VERIFIED)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "verified": {
+      "description": "The user verification status",
+      "type": ["boolean", "null"]
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "verified",
+    "timestamp",
+    "origin"
+  ]
+}

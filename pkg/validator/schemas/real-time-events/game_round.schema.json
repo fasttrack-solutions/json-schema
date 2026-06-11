@@ -1,0 +1,106 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/game-round",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Game Round Event (GAME_ROUND)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "round_id": {
+      "description": "The game round ID",
+      "type": "string"
+    },
+    "game_id": {
+      "description": "The game ID",
+      "type": "string"
+    },
+    "game_name": {
+      "description": "The game name",
+      "type": "string"
+    },
+    "game_type": {
+      "description": "The game type",
+      "type": "string"
+    },
+    "vendor_id": {
+      "description": "The vendor ID",
+      "type": "string"
+    },
+    "vendor_name": {
+      "description": "The vendor name",
+      "type": "string"
+    },
+    "real_bet_user": {
+      "description": "Real bet in user currency",
+      "type": "number"
+    },
+    "real_win_user": {
+      "description": "Real win in user currency",
+      "type": "number"
+    },
+    "bonus_bet_user": {
+      "description": "Bonus bet in user currency",
+      "type": "number"
+    },
+    "bonus_win_user": {
+      "description": "Bonus win in user currency",
+      "type": "number"
+    },
+    "real_bet_base": {
+      "description": "Real bet in base currency",
+      "type": "number"
+    },
+    "real_win_base": {
+      "description": "Real win in base currency",
+      "type": "number"
+    },
+    "bonus_bet_base": {
+      "description": "Bonus bet in base currency",
+      "type": "number"
+    },
+    "bonus_win_base": {
+      "description": "Bonus win in base currency",
+      "type": "number"
+    },
+    "user_currency": {
+      "description": "The user currency in ISO 4217 format",
+      "type": "string"
+    },
+    "device_type": {
+      "description": "The device type, e.g. mobile, desktop, app, unknown",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "meta": {
+      "description": "Metadata as key value pairs",
+      "type": "object"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "round_id",
+    "game_id",
+    "game_name",
+    "game_type",
+    "vendor_id",
+    "user_currency",
+    "device_type",
+    "timestamp",
+    "origin"
+  ]
+}

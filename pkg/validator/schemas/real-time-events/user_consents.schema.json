@@ -1,0 +1,61 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-consents",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Consents Event (USER_CONSENTS)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "consents": {
+      "description": "The list of consents updated",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "The type of consent, e.g. Email, SMS, Telephone, PostMail, SiteNotification, PushNotification",
+            "type": "string"
+          },
+          "opted_in": {
+            "description": "The opt in status of the consent",
+            "type": "boolean"
+          },
+          "products": {
+            "description": "List of products associated with this consent",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "description": "The action that triggered the consent update, e.g. site-update or queue",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "consents",
+    "action",
+    "timestamp",
+    "origin"
+  ]
+}

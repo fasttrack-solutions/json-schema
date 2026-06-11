@@ -1,0 +1,60 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-device-unlink",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Device Unlink Event (USER_DEVICE_UNLINK)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "tokens": {
+      "description": "List of device tokens to unlink. Supported channels: android, ios, web, unknown. Supported providers: firebase",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "description": "The device token",
+            "type": "string"
+          },
+          "channel": {
+            "description": "The device channel",
+            "type": "string",
+            "enum": ["android", "ios", "web", "unknown"]
+          },
+          "provider": {
+            "description": "The push notification provider",
+            "type": "string",
+            "enum": ["firebase"]
+          }
+        },
+        "required": [
+          "token",
+          "channel",
+          "provider"
+        ]
+      }
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "tokens",
+    "timestamp",
+    "origin"
+  ]
+}

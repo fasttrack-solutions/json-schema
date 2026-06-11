@@ -1,0 +1,48 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/casumo-level-up",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Casumo Level Up Event (CASUMO_LEVEL_UP)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the level",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of the level",
+      "type": "string"
+    },
+    "new_level": {
+      "description": "The new level of the user",
+      "type": "integer"
+    },
+    "previous_level": {
+      "description": "The previous level of the user",
+      "type": "integer"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin",
+    "new_level"
+  ]
+}

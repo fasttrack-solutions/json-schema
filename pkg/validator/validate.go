@@ -13,6 +13,11 @@ const (
 	pathSchemasRealTime    = "schemas/real-time-events"
 )
 
+// ErrSchemaNotFound is returned when no JSON schema is registered for the
+// given payload type or endpoint. Callers can detect it with errors.Is to
+// fall back gracefully instead of treating the payload as unprocessable.
+var ErrSchemaNotFound = errors.New("schema not found")
+
 // ValidateRealTimeEvent takes in notificationType which can be the notification type for the real time feed event, and payload which is the json payload.
 // Allowed notification types are: bonus, casino, custom, game, login_v2, lottery_v2, payment, sportsbook, user_balances_update, user_block_v2, user_consents_v2, user_create_v2, user_update_v2
 func (c *Client) ValidateRealTimeEvent(notificationType string, payload []byte) ([]ValidationError, error) {
@@ -27,17 +32,13 @@ func (c *Client) ValidateOperatorAPIResponse(endpoint string, payload []byte) ([
 
 func validatePayload(key string, payload []byte, schemasMap map[string]gojsonschema.JSONLoader) ([]ValidationError, error) {
 	key = strings.ToLower(key)
-	if key == "" || schemasMap[key] == nil {
-		return nil, fmt.Errorf("invalid payload type %s", key)
+	validationSchema := schemasMap[key]
+	if key == "" || validationSchema == nil {
+		return nil, fmt.Errorf("invalid payload type %s: %w", key, ErrSchemaNotFound)
 	}
 
 	if payload == nil {
 		return nil, errors.New("no payload provided")
-	}
-
-	validationSchema, exists := schemasMap[key]
-	if !exists {
-		return nil, fmt.Errorf("no validator schema found for payload type %s", key)
 	}
 
 	errors, err := performValidation(payload, validationSchema)

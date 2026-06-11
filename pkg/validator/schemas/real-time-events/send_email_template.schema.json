@@ -1,0 +1,60 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/send-email-template",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Send Email With Template Event (SEND_EMAIL_TEMPLATE)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The origin of the event",
+      "type": "string"
+    },
+    "player_origin_id": {
+      "description": "ID of where the event originated",
+      "type": "integer"
+    },
+    "template_id": {
+      "description": "The ID for the template that should be used with the email",
+      "type": "string"
+    },
+    "subject": {
+      "description": "The subject for the email",
+      "type": "string"
+    },
+    "recipient_email": {
+      "description": "The recipient email address",
+      "type": "string"
+    },
+    "communication_profile_id": {
+      "description": "The communication profile id",
+      "type": "integer"
+    },
+    "data": {
+      "description": "A key value object that contains data for mappings in the email template",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin",
+    "template_id",
+    "subject"
+  ]
+}
