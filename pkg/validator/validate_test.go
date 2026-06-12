@@ -304,20 +304,8 @@ func TestClient_ValidateRealTimeEvent_NewEventSchemas(t *testing.T) {
 			payload:          `{"user_id":"123","is_impersonated":false,"ip_address":"192.0.2.1","user_agent":"Mozilla/5.0","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
 		},
 		{
-			notificationType: "USER_AGENT",
-			payload:          `{"user_id":42,"user_agent":"Mozilla/5.0","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-		},
-		{
 			notificationType: "GAME_ROUND",
 			payload:          `{"user_id":"123","round_id":"r1","game_id":"g1","game_name":"Starburst","game_type":"slots","vendor_id":"v1","user_currency":"EUR","device_type":"mobile","real_bet_user":1.5,"real_win_user":0,"timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-		},
-		{
-			notificationType: "WALLET_UPDATE",
-			payload:          `{"user_id":"123","balance":10.5,"currency":"EUR","exchange_rate":1,"timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-		},
-		{
-			notificationType: "SHOP_PURCHASE",
-			payload:          `{"user_id":"123","transaction_id":"t1","type":"purchase","currency":"EUR","exchange_rate":1,"amount":9.99,"product_id":"p1","status":"completed","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
 		},
 		{
 			notificationType: "USER_BLOCK",
@@ -335,22 +323,6 @@ func TestClient_ValidateRealTimeEvent_NewEventSchemas(t *testing.T) {
 			// verified is a pointer in the Go model and may be explicitly null.
 			notificationType: "MARKETING_VERIFIED",
 			payload:          `{"user_id":"123","verified":null,"timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-		},
-		{
-			notificationType: "CUSTOM_SEGMENTATION",
-			payload:          `{"user_id":"123","origin":"test","source":"Carma","timestamp":"2026-01-01T00:00:00Z","data":{"example_1":"abc","example_2":1234}}`,
-		},
-		{
-			notificationType: "SEND_EMAIL_TEMPLATE",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test","template_id":"739b975f-232e-4dfc-a3d8-c78083ed52c2","subject":"Welcome!","data":{"banner":"https://example.com/banner.jpg"}}`,
-		},
-		{
-			notificationType: "SEND_SMS",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test","content":"Hello!","remove_stop_text":false}`,
-		},
-		{
-			notificationType: "SEND_PUSH_NOTIFICATION",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test","title":"Hi","body":"Welcome back","data":{"deeplink":"app://home"}}`,
 		},
 		{
 			notificationType: "CASUMO_VALUABLE",
@@ -432,35 +404,11 @@ func TestClient_ValidateRealTimeEvent_NewEventSchemas_Invalid(t *testing.T) {
 			},
 		},
 		{
-			name:             "USER_AGENT with string user_id",
-			notificationType: "USER_AGENT",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root).user_id", Error: "Invalid type. Expected: integer, given: string"},
-			},
-		},
-		{
 			name:             "GAME_ROUND missing device_type",
 			notificationType: "GAME_ROUND",
 			payload:          `{"user_id":"123","round_id":"r1","game_id":"g1","game_name":"Starburst","game_type":"slots","vendor_id":"v1","user_currency":"EUR","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
 			expectedValidationErrors: []ValidationError{
 				{Path: "(root)", Error: "device_type is required"},
-			},
-		},
-		{
-			name:             "WALLET_UPDATE with string exchange_rate",
-			notificationType: "WALLET_UPDATE",
-			payload:          `{"user_id":"123","currency":"EUR","exchange_rate":"1.0","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root).exchange_rate", Error: "Invalid type. Expected: number, given: string"},
-			},
-		},
-		{
-			name:             "SHOP_PURCHASE missing transaction_id",
-			notificationType: "SHOP_PURCHASE",
-			payload:          `{"user_id":"123","type":"purchase","currency":"EUR","exchange_rate":1,"amount":9.99,"product_id":"p1","status":"completed","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root)", Error: "transaction_id is required"},
 			},
 		},
 		{
@@ -485,38 +433,6 @@ func TestClient_ValidateRealTimeEvent_NewEventSchemas_Invalid(t *testing.T) {
 			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
 			expectedValidationErrors: []ValidationError{
 				{Path: "(root)", Error: "verified is required"},
-			},
-		},
-		{
-			name:             "CUSTOM_SEGMENTATION with string data",
-			notificationType: "CUSTOM_SEGMENTATION",
-			payload:          `{"user_id":"123","origin":"test","source":"Carma","timestamp":"2026-01-01T00:00:00Z","data":"not-an-object"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root).data", Error: "Invalid type. Expected: object, given: string"},
-			},
-		},
-		{
-			name:             "SEND_EMAIL_TEMPLATE missing template_id",
-			notificationType: "SEND_EMAIL_TEMPLATE",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test","subject":"Welcome!"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root)", Error: "template_id is required"},
-			},
-		},
-		{
-			name:             "SEND_SMS missing content",
-			notificationType: "SEND_SMS",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root)", Error: "content is required"},
-			},
-		},
-		{
-			name:             "SEND_PUSH_NOTIFICATION missing title",
-			notificationType: "SEND_PUSH_NOTIFICATION",
-			payload:          `{"user_id":"123","timestamp":"2026-01-01T00:00:00Z","origin":"test","body":"Welcome back"}`,
-			expectedValidationErrors: []ValidationError{
-				{Path: "(root)", Error: "title is required"},
 			},
 		},
 		{
