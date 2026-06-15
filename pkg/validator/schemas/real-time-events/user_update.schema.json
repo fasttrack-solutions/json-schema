@@ -1,0 +1,134 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/user-update",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Update Event (USER_UPDATE)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "username": {
+      "description": "The username of the user",
+      "type": "string"
+    },
+    "email": {
+      "description": "The email address of the user",
+      "type": "string"
+    },
+    "sex": {
+      "description": "The sex of the user",
+      "type": "string"
+    },
+    "title": {
+      "description": "The title of the user",
+      "type": "string"
+    },
+    "first_name": {
+      "description": "The first name of the user",
+      "type": "string"
+    },
+    "last_name": {
+      "description": "The last name of the user",
+      "type": "string"
+    },
+    "birth_date": {
+      "description": "The birth date of the user (YYYY-MM-DD)",
+      "type": "string"
+    },
+    "currency": {
+      "description": "The currency of the user in ISO 4217 format",
+      "type": "string"
+    },
+    "country": {
+      "description": "The country of the user in ISO 3166-1 Alpha 2 format",
+      "type": "string"
+    },
+    "city": {
+      "description": "The city of the user",
+      "type": "string"
+    },
+    "address": {
+      "description": "The address of the user",
+      "type": "string"
+    },
+    "postal_code": {
+      "description": "The postal code of the user",
+      "type": "string"
+    },
+    "language": {
+      "description": "The language of the user in RFC5646 format",
+      "type": "string"
+    },
+    "mobile_prefix": {
+      "description": "The mobile prefix of the user",
+      "type": "string"
+    },
+    "mobile": {
+      "description": "The mobile number of the user",
+      "type": "string"
+    },
+    "allows_email_marketing": {
+      "description": "Flag whether the user allows email marketing",
+      "type": "boolean"
+    },
+    "allows_sms_marketing": {
+      "description": "Flag whether the user allows SMS marketing",
+      "type": "boolean"
+    },
+    "allows_call_marketing": {
+      "description": "Flag whether the user allows call marketing",
+      "type": "boolean"
+    },
+    "allows_post_marketing": {
+      "description": "Flag whether the user allows post marketing",
+      "type": "boolean"
+    },
+    "allows_notification_marketing": {
+      "description": "Flag whether the user allows notification marketing",
+      "type": "boolean"
+    },
+    "verified_at": {
+      "description": "Verification timestamp in RFC3339 format",
+      "type": "string"
+    },
+    "roles_set": {
+      "description": "Flag used to show whether roles are passed or not",
+      "type": "boolean"
+    },
+    "roles": {
+      "description": "List of roles on the user",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_blocked": {
+      "description": "Flag whether the player is blocked",
+      "type": "boolean"
+    },
+    "is_excluded": {
+      "description": "Flag whether the player is excluded",
+      "type": "boolean"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin"
+  ]
+}

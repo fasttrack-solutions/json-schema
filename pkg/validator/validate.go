@@ -13,8 +13,10 @@ const (
 	pathSchemasRealTime    = "schemas/real-time-events"
 )
 
-// ValidateRealTimeEvent takes in notificationType which can be the notification type for the real time feed event, and payload which is the json payload.
-// Allowed notification types are: bonus, casino, custom, game, login_v2, lottery_v2, payment, sportsbook, user_balances_update, user_block_v2, user_consents_v2, user_create_v2, user_update_v2
+var ErrSchemaNotFound = errors.New("schema not found")
+
+// ValidateRealTimeEvent validates payload against the schema for the given notificationType.
+// See getNotificationTypes() in validator.go for the full list of supported types.
 func (c *Client) ValidateRealTimeEvent(notificationType string, payload []byte) ([]ValidationError, error) {
 	return validatePayload(notificationType, payload, c.realTimeSchemas)
 }
@@ -27,22 +29,18 @@ func (c *Client) ValidateOperatorAPIResponse(endpoint string, payload []byte) ([
 
 func validatePayload(key string, payload []byte, schemasMap map[string]gojsonschema.JSONLoader) ([]ValidationError, error) {
 	key = strings.ToLower(key)
-	if key == "" || schemasMap[key] == nil {
-		return nil, fmt.Errorf("invalid payload type %s", key)
+	validationSchema := schemasMap[key]
+	if key == "" || validationSchema == nil {
+		return nil, fmt.Errorf("invalid payload type %s: %w", key, ErrSchemaNotFound)
 	}
 
 	if payload == nil {
 		return nil, errors.New("no payload provided")
 	}
 
-	validationSchema, exists := schemasMap[key]
-	if !exists {
-		return nil, fmt.Errorf("no validator schema found for payload type %s", key)
-	}
-
 	errors, err := performValidation(payload, validationSchema)
 	if err != nil {
-		return nil, fmt.Errorf("validating %s event json payload: %v", key, err)
+		return nil, fmt.Errorf("validating %s event json payload: %w", key, err)
 	}
 
 	return errors, nil
@@ -53,7 +51,7 @@ func performValidation(payload []byte, validationSchema gojsonschema.JSONLoader)
 
 	validationResult, err := gojsonschema.Validate(validationSchema, schemaBytesLoader)
 	if err != nil {
-		return nil, fmt.Errorf("validating paylod: %v", err)
+		return nil, fmt.Errorf("validating payload: %w", err)
 	}
 
 	// If the payload is valid, return no errors

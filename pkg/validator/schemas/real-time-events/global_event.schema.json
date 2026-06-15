@@ -1,0 +1,30 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/global-event",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Global Event (GLOBAL_EVENT)",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "description": "The origin of the event",
+      "type": "string"
+    },
+    "notification_type": {
+      "description": "The notification type of the global event",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "description": "Metadata as key value pairs",
+      "type": "object"
+    }
+  },
+  "required": [
+    "origin",
+    "notification_type",
+    "timestamp"
+  ]
+}

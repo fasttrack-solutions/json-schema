@@ -1,0 +1,45 @@
+{
+  "$id": "https://www.fasttrack-solutions.com/en/resources/integration/real-time-data/casumo-belt",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Casumo Belt Event (CASUMO_BELT)",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The unique id of the user",
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "description": "Timestamp in RFC3339 format",
+      "type": "string",
+      "format": "date-time"
+    },
+    "origin": {
+      "description": "The Origin of the user",
+      "type": "string"
+    },
+    "id": {
+      "description": "The id of the belt",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the belt",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of the belt",
+      "type": "string"
+    },
+    "skip_publishing": {
+      "description": "Flag to skip publishing",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "user_id",
+    "timestamp",
+    "origin",
+    "id",
+    "name"
+  ]
+}
