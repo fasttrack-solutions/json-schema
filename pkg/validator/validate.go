@@ -13,9 +13,6 @@ const (
 	pathSchemasRealTime    = "schemas/real-time-events"
 )
 
-// ErrSchemaNotFound is returned when no JSON schema is registered for the
-// given payload type or endpoint. Callers can detect it with errors.Is to
-// fall back gracefully instead of treating the payload as unprocessable.
 var ErrSchemaNotFound = errors.New("schema not found")
 
 // ValidateRealTimeEvent validates payload against the schema for the given notificationType.
