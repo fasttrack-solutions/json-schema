@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    uses: fasttrack-solutions/ci/.github/workflows/golang-ci.yml@main
+    with:
+      go-version: "~1.23"
+    secrets: inherit
+  bump-version:
+    uses: fasttrack-solutions/ci/.github/workflows/bump-version.yml@main
+    needs: [build]
+    with:
+      is-library: true
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
