@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "Schema for the request payload of POST /bonus/credit. It specifies the user identifier and a bonus code.",
+  "description": "Schema for the request payload of POST /channels/sms/single (and each item of /channels/sms/batch): the SMS Fast Track sends to the operator's custom SMS endpoint.",
   "type": "object",
   "properties": {
     "activity": {
@@ -104,7 +104,7 @@
         "format": "Field is required."
       }
     },
-    "enconding": {
+    "encoding": {
       "description": "Type of encoding of SMS. Can be \"auto\", \"gsm7\" or \"usc2\"",
       "type": "string",
       "message": {
@@ -118,7 +118,7 @@
     "recipient",
     "sender_name",
     "provider_name",
-    "enconding"
+    "encoding"
   ],
   "additionalProperties": false
 }

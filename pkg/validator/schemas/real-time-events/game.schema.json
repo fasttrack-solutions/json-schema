@@ -23,7 +23,10 @@
     },
     "origin": {
       "description": "The origin of the game",
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "provider": {
       "description": "The provider of the game",
