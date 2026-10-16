@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
@@ -42,8 +41,7 @@ func (c *APIClient) CallAPI(t *testing.T, endpoint string, expectedStatusCode in
 }
 
 func (c *APIClient) ValidateResponse(t *testing.T, response interface{}, schemaFilename string) {
-	schemaPath := filepath.Join(schemasFolderPath, schemaFilename)
-	schemaContent, err := os.ReadFile(schemaPath)
+	schemaContent, err := readSchemaFile(schemaFilename)
 	if err != nil {
 		t.Fatalf("Error reading schema from file: %s", err)
 	}
@@ -103,6 +101,19 @@ func (c *APIClient) ValidateResponse(t *testing.T, response interface{}, schemaF
 		fmt.Println(prettyJSON.String())
 		t.Fail()
 	}
+}
+
+// readSchemaFile reads a schema from the schemas folder. The read goes through
+// os.Root, so a name that points outside the folder (for example "../x" or an
+// absolute path) is rejected instead of reading an arbitrary file.
+func readSchemaFile(schemaFilename string) ([]byte, error) {
+	root, err := os.OpenRoot(schemasFolderPath)
+	if err != nil {
+		return nil, err
+	}
+	defer root.Close()
+
+	return root.ReadFile(schemaFilename)
 }
 
 func (c *APIClient) TestEndpoint(t *testing.T, endpoint string, expectedStatusCode int, schemaFilename string) {
