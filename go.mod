@@ -1,8 +1,6 @@
 module github.com/fasttrack-solutions/json-schema
 
-go 1.27.0
-
-toolchain go1.27.4
+go 1.27.4
 
 require (
 	github.com/gavv/httpexpect/v2 v2.16.0
